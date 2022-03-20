@@ -1,0 +1,39 @@
+body{
+    overflow-y: hidden;
+}
+.mat-nav-list{
+    color:rgb(255, 255, 255);
+}
+.logo{
+    width: 50px;
+    height: 50px;
+}
+.mat-icon{
+    vertical-align: center;
+    margin-right:.5rem;
+}
+.mat-divider{
+    border-top-width:2px;
+}
+.mat-list-item{
+    color: #94a3b8!important;
+    font-size: .8rem;
+    height: 48px !important;
+    margin-bottom: 4px;
+    border-radius: 5px;
+    margin: 0 8px;
+    &:hover{
+        background-color: #2c3344 !important;
+    }
+}
+ .list-item-active{
+    color: #f2f5f7 !important;
+     ::ng-deep{
+         .mat-list-content{
+             background-color: #2c3344 !important;
+             &:hover{
+                 background-color: #2c3344 !important;
+             }
+         }
+     }
+ }

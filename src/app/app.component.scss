@@ -1,0 +1,22 @@
+html, body {
+    height: 100%;
+  }
+  body{
+    position: absolute;
+  }
+  :host
+  {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+ .mat-drawer{
+      width: 260px;
+      background-color: #0f172a;
+      color: white;
+  }
+  .mat-drawer-container{
+      height: 100%;
+      position: absolute;
+      overflow: hidden;
+  }
