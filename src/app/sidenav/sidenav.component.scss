@@ -1,5 +1,5 @@
-body{
-    overflow-y: hidden;
+html,body{
+    height: 100%;
 }
 .mat-nav-list{
     color:rgb(255, 255, 255);
@@ -36,4 +36,7 @@ body{
              }
          }
      }
+ }
+ .mat-drawer-container{
+     height: 100%;
  }
