@@ -17,6 +17,7 @@ export class SidenavComponent implements OnInit {
   toogleListPurshase:boolean=true;
   toogleListSales:boolean=true;
   toogleListReport:boolean=true;
+  toogleListStocks:boolean=true;
   toogleProductList(){
     this.toogleListProduct=!this.toogleListProduct;
   }
@@ -29,5 +30,9 @@ export class SidenavComponent implements OnInit {
   toogleReportList(){
   this.toogleListReport=!this.toogleListReport
   }
+  toogleStocksList(){
+    this.toogleListStocks=!this.toogleListStocks
+    }
+  
 
 }

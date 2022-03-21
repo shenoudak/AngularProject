@@ -7,9 +7,11 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 const routes: Routes = 
 [
   {path:'',redirectTo:'home',pathMatch:'full'},
-  {path:'home',component:HomeComponent},
+  {path:'home',component:HomeComponent,children:[]},
   {path:'dashboard',component:DashboardComponent},
   {path:'sidenav',component:SidenavComponent},
+  {path:'home/stock',loadChildren:()=>import('../stock/stock/stock.module')
+  .then(mod=>mod.StockModule),pathMatch:'full'},
 ];
 
 @NgModule({
