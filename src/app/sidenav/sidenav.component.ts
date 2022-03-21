@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-sidenav',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidenavComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private activateRoute:ActivatedRoute) { }
+  toogleSideNavBar:any;
   ngOnInit(): void {
+    
   }
   toogleListProduct:boolean=true;
   toogleListPurshase:boolean=true;
@@ -25,6 +27,7 @@ export class SidenavComponent implements OnInit {
     this.toogleListSales=!this.toogleListSales;
   }
   toogleReportList(){
-this.toogleListReport=!this.toogleListReport
+  this.toogleListReport=!this.toogleListReport
   }
+
 }

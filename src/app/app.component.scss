@@ -1,9 +1,6 @@
 html, body {
     height: 100%;
   }
-  body{
-    position: absolute;
-  }
   :host
   {
     display: flex;
@@ -16,7 +13,5 @@ html, body {
       color: white;
   }
   .mat-drawer-container{
-      height: 100%;
-      position: absolute;
-      overflow: hidden;
+      height: 100VH;  
   }
