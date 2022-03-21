@@ -34,7 +34,44 @@
                </span>
             </a>
         </span>
-        
+        <span class="row">
+            <a  mat-list-item (click)="toogleStocksList()" routerLinkActive="list-item-active">
+                <span class="col-2 ">
+                    <mat-icon>business_center</mat-icon>
+                </span>
+                <span class="col-8 d-flex ">
+                    Stocks
+                </span>
+    
+                <span class="col-2 d-flex justify-content-end" *ngIf="toogleListStocks">
+                    <mat-icon class="arrowIcon"  >keyboard_arrow_right</mat-icon>
+                </span>
+               <span class="col-2 d-flex justify-content-end" *ngIf="!toogleListStocks">
+                <mat-icon class="arrowIcon"  >keyboard_arrow_down</mat-icon>
+                
+               </span>
+             
+            </a>
+           </span>
+            <mat-nav-list [class.d-none]=toogleListStocks>
+                <span class="row ">
+                    <a mat-list-item routerLink="/home/stock" routerLinkActive="list-item-active">
+                     <span class=" ms-4"> Manage Store </span>
+                     </a>
+                </span>
+                <span class="row ">
+                    <a mat-list-item routerLink="/s" routerLinkActive="list-item-active">
+                     <span class=" ms-4"> Transformation </span>
+                     </a>
+                </span>
+                <span class="row ">
+                    <a mat-list-item routerLink="/s" routerLinkActive="list-item-active">
+                     <span class=" ms-4"> Settlement </span>
+                     </a>
+                </span>
+               
+            </mat-nav-list>
+    
        <span class="row">
         <a  mat-list-item routerLink="/sd" (click)="toogleProductList()" routerLinkActive="list-item-active">
             <span class="col-2 ">
