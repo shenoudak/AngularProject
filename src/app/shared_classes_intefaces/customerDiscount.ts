@@ -1,13 +1,13 @@
 export class CustomerDiscount
 {
-    ID:number;
+    ID:number=1;
     DiscountValue:string;
     Notes:string;
     StartDate:string;
     EndDate:string;
 
-    constructor(ID:number,DiscountValue:string,Notes:string,StartDate:string,EndDate:string){
-        this.ID=ID;
+    constructor(DiscountValue:string,Notes:string,StartDate:string,EndDate:string){
+        
         this.DiscountValue=DiscountValue;
         this.Notes=Notes;
         this.StartDate=StartDate;

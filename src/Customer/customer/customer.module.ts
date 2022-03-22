@@ -5,6 +5,7 @@ import { CustomerRoutingModule } from './customer-routing.module';
 import { ShowDiscountComponent } from './show-discount/show-discount.component';
 import { AddDiscountComponent } from './add-discount/add-discount.component';
 import { EditDiscountComponent } from './edit-discount/edit-discount.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,7 +16,9 @@ import { EditDiscountComponent } from './edit-discount/edit-discount.component';
   ],
   imports: [
     CommonModule,
-    CustomerRoutingModule
+    CustomerRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class CustomerModule { }

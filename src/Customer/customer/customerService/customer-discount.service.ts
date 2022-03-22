@@ -14,18 +14,24 @@ export class CustomerDiscountService {
        return throwError(()=>error.message||"Server Problem");
      }));
    }
-   getByID(stockId:number):Observable<CustomerDiscount>{
-     return this.http.get<CustomerDiscount>(this._url+stockId).pipe(catchError(error=>{
+   getByID(discountId:number):Observable<CustomerDiscount>{
+     return this.http.get<CustomerDiscount>(this._url+discountId).pipe(catchError(error=>{
        return throwError(()=>error.message||"Server Problem");
      }));
    }
-   insert(stock:CustomerDiscount):Observable<CustomerDiscount>{
-     return this.http.post<CustomerDiscount>(this._url,stock).pipe(catchError(error=>{
+   insert(customerDiscount:CustomerDiscount):Observable<CustomerDiscount>{
+     return this.http.post<CustomerDiscount>(this._url,customerDiscount).pipe(catchError(error=>{
        return throwError(()=>error.message||"Server Problem");
      }));
    }
-   removeD(stockId:number):Observable<CustomerDiscount>{
-     return this.http.delete<CustomerDiscount>(this._url+stockId).pipe(catchError(error=>{
+   update(discountId:number,customerDiscount:CustomerDiscount):Observable<CustomerDiscount>{
+    return this.http.patch<CustomerDiscount>(this._url+discountId,customerDiscount).pipe(catchError(error=>{
+      return throwError(()=>error.message||"Server Problem");
+    }));
+  }
+   
+   removeD(discountId:number):Observable<CustomerDiscount>{
+     return this.http.delete<CustomerDiscount>(this._url+discountId).pipe(catchError(error=>{
        return throwError(()=>error.message||"Server Problem");
      }));
    }
