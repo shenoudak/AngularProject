@@ -1,0 +1,31 @@
+<div class="container ">
+    <!-- <div class="alert alert-danger" role="alert">
+        A simple danger alert—check it out!
+      </div> -->
+    <div class="row">
+        
+        <form [formGroup]="deleteCategory"style="margin-top: 100px;margin-right: 200px;" >
+            <div class="form-group col-lg-4 col-md-4 col-sm-4 ">
+                <label  class="form-label mt-4">اختار الصنف:</label>
+                <select class="form-select"formControlName="name"[class.is-invalid]="deleteCategory.get('name')?.invalid && deleteCategory.get('name')?.touched"  >
+                  <option>1</option>
+                  <option>2</option>
+                </select>
+                <small class="text-danger"*ngIf="deleteCategory.get('name')?.invalid && deleteCategory.get('name')?.touched">*مطلوب</small>
+              </div>
+            <div class="form-group col-lg-4 col-md-4 col-sm-4 ">
+                <label class="form-label ">الوصف:</label>
+                <textarea  class="form-control " rows="3"formControlName="describtion"[class.is-invalid]="deleteCategory.get('describtion')?.invalid && deleteCategory.get('describtion')?.touched"></textarea>
+                <small class="text-danger"*ngIf="deleteCategory.get('describtion')?.invalid && deleteCategory.get('describtion')?.touched">*مطلوب</small>
+              </div>
+             
+            
+            <button type="submit" class="btn btn-danger m-t-4 col-lg-4 col-md-4 col-sm-4">حذف</button>
+          </form>
+   
+    </div>
+
+</div>
+
+
+

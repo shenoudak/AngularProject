@@ -1,0 +1,21 @@
+<div class="container ">
+    <div class="row">
+        <form [formGroup]="addCategory" style="margin-top: 100px;margin-right: 200px;">
+            <div class="form-group col-lg-4 col-md-4 col-sm-4">
+              <label for="exampleInputEmail1">اسم الصنف:</label>
+              <input type="text" class="form-control"formControlName="name"[class.is-invalid]="addCategory.get('name')?.invalid && addCategory.get('name')?.touched" >
+              <small class="text-danger"*ngIf="addCategory.get('name')?.invalid && addCategory.get('name')?.touched">*مطلوب</small>
+            </div>
+            <div class="form-group col-lg-4 col-md-4 col-sm-4 ">
+                <label class="form-label ">الوصف:</label>
+                <textarea class="form-control " rows="3"formControlName="describtion"[class.is-invalid]="addCategory.get('describtion')?.invalid && addCategory.get('describtion')?.touched"></textarea>
+                <small class="text-danger"*ngIf="addCategory.get('describtion')?.invalid && addCategory.get('describtion')?.touched">*مطلوب</small>
+              </div>
+            
+            <button type="submit" class="btn btn-success m-t-4 col-lg-4 col-md-4 col-sm-4">اضافة</button>
+          </form>
+   
+    </div>
+
+</div>
+
