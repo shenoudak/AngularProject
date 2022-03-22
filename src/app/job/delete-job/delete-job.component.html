@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+        <form style="margin-top: 100px;"[formGroup]="delelation">
+            <div class="form-group ">
+                <label>اسم المهنه:</label>
+                <input type="text" class="form-control col-lg-6"formControlName="Title" [class.is-invalid]="delelation.get('Title')?.invalid && delelation.get('Title')?.touched">
+                <small class="text-danger"*ngIf="delelation.get('Title')?.invalid && delelation.get('Title')?.touched">*مطلوب</small>
+            </div>
+            <div class="form-group  ">
+                <label class="form-label ">الوصف:</label>
+                <textarea class="form-control col-lg-6" rows="3"formControlName="Describtion"[class.is-invalid]="delelation.get('Describtion')?.invalid && delelation.get('Describtion')?.touched"></textarea>
+                <small class="text-danger"*ngIf="delelation.get('Describtion')?.invalid && delelation.get('Describtion')?.touched">*مطلوب</small>
+              </div>
+              <input type="submit" value="حذف"class="btn btn-danger col-lg-6">
+            </form>
+    </div>
+</div>
+
+
+
+

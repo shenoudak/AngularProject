@@ -1,0 +1,25 @@
+
+  <div class="container">
+      <div class="row">
+        <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+              <th >اسم الصنف :</th>
+              <th >الوصف:</th>
+              <th ></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="table-active"*ngFor="let cat of cateoryList">
+              <td>{{cat.name}}</td>
+              <td>{{cat.body}}</td>
+             <td><a class="btn btn-success" routerLink="/editCategory">تعديل</a></td> 
+              <td><a class="btn btn-danger" routerLink="/deleteCategory">حذف</a></td>
+            </tr>
+          </tbody>
+     </table>
+      </div>
+  </div>
+  
+ 

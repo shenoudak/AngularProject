@@ -1,0 +1,26 @@
+
+  <div class="container">
+    <div class="row">
+      <table class="table table-dark table-striped">
+      <thead>
+          <tr>
+            <th >اسم المهنة :</th>
+            <th >الوصف:</th>
+            <th ></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-active"*ngFor="let cat of job">
+            <td>{{cat.jobTitle}}</td>
+            <td>{{cat.jobDecribtion}}</td>
+           <td><a class="btn btn-success" routerLink='/editJob'>تعديل</a></td> 
+            <td><a class="btn btn-danger" routerLink='/deleteJob'>حذف</a></td>
+          </tr>
+        </tbody>
+   </table>
+    </div>
+</div>
+
+
+

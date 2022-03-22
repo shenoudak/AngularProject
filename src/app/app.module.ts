@@ -4,7 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import{CategoryModule}from'./category/category.module';
-
+import { JobModule } from './job/job.module';
+import{HttpClient, HttpClientModule}from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,9 @@ import{CategoryModule}from'./category/category.module';
     BrowserModule,
     AppRoutingModule,
     CategoryModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    JobModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

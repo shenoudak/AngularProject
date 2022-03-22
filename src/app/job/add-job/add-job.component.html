@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="row">
+        <form style="margin-top: 100px;"[formGroup]="addjob">
+            <div class="form-group ">
+                <label>اسم المهنه:</label>
+                <input type="text" class="form-control col-lg-6"formControlName="Title" [class.is-invalid]="addjob.get('Title')?.invalid && addjob.get('Title')?.touched">
+                <small class="text-danger"*ngIf="addjob.get('Title')?.invalid && addjob.get('Title')?.touched">*مطلوب</small>
+            </div>
+            <div class="form-group  ">
+                <label class="form-label ">الوصف:</label>
+                <textarea class="form-control col-lg-6" rows="3"formControlName="Describtion"[class.is-invalid]="addjob.get('Describtion')?.invalid && addjob.get('Describtion')?.touched"></textarea>
+                <small class="text-danger"*ngIf="addjob.get('Describtion')?.invalid && addjob.get('Describtion')?.touched">*مطلوب</small>
+              </div>
+              <input type="submit" value="حفظ"class="btn btn-primary col-lg-6">
+            </form>
+    </div>
+</div>
+
+

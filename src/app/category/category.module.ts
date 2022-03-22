@@ -4,6 +4,7 @@ import { AddCategoryComponent } from './add-category/add-category.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
 import { DeleteCategoryComponent } from './delete-category/delete-category.component';
+import { ShowCategoryComponent } from './show-category/show-category.component';
 
 
 
@@ -11,7 +12,8 @@ import { DeleteCategoryComponent } from './delete-category/delete-category.compo
   declarations: [
     AddCategoryComponent,
     EditCategoryComponent,
-    DeleteCategoryComponent
+    DeleteCategoryComponent,
+    ShowCategoryComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { DeleteCategoryComponent } from './delete-category/delete-category.compo
   exports:[
     AddCategoryComponent,
     EditCategoryComponent,
-    DeleteCategoryComponent
+    DeleteCategoryComponent,
+    ShowCategoryComponent
   ]
 })
 export class CategoryModule { }
