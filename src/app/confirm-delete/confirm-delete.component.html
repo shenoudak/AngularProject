@@ -1,0 +1,16 @@
+<div class="container ">
+    <div class="row">
+        <span class="col-10 text-danger" >you are sure that you want delete this</span>
+       <span class="col-2"> <button mat-icon-button color="accent" (click)="closeDialog()" ><mat-icon>close</mat-icon></button></span>
+    </div>
+     
+    <div class="row">
+       <span class="col-4"> <button mat-flat-button color="warn" [mat-dialog-close]="true">OK</button></span>
+        <span class="col-8"><button mat-flat-button color="primary" [mat-dialog-close]="false">Cancel</button></span> 
+    </div>
+    
+    
+</div>
+   
+
+  

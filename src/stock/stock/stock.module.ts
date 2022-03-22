@@ -8,12 +8,13 @@ import { ShowStockComponent } from 'src/app/show-stock/show-stock.component';
 import { StockMainComponent } from 'src/app/stock-main/stock-main.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditStockComponent } from 'src/app/edit-stock/edit-stock.component';
+import { ConfirmDeleteComponent } from 'src/app/confirm-delete/confirm-delete.component';
 @NgModule({
   declarations: [
     StockMainComponent,
     AddStockComponent,
     ShowStockComponent,
-    EditStockComponent
+    EditStockComponent,
   ],
   imports: [
     CommonModule,

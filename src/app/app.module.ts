@@ -12,6 +12,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { StockModule } from 'src/stock/stock/stock.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.component';
+import { CustomerModule } from 'src/Customer/customer/customer.module';
 
 
 
@@ -23,6 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
     SidenavComponent,
     HomeComponent,
     DashboardComponent,
+    ConfirmDeleteComponent
     
   ],
   imports: [
@@ -34,6 +37,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    CustomerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

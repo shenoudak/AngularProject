@@ -18,7 +18,7 @@
                 <td class="lg-2 col-md-2 col-sm-2">{{item.name}}</td>
                 <td class="lg-3 col-md-3 col-sm-3" >{{item.address}}</td>
                 <td class="lg-2 col-md-2 col-sm-2"><a class="btn btn-success"  (click)="NavigationToEdit(item.id)">edit</a></td>
-                <td class="lg-3 col-md-3 col-sm-3"><a class="btn  btn-danger">delete</a></td>
+                <td class="lg-3 col-md-3 col-sm-3"><a class="btn  btn-danger" (click)="deleteStock(item.id)">delete</a></td>
                 <td></td>
               </tr>
               <tr>
