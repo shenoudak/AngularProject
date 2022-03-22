@@ -1,7 +1,7 @@
 <mat-drawer-container >
-    <mat-drawer mode="side" opened='toogleSideNavBar'>
-        <app-sidenav></app-sidenav>
-    </mat-drawer>
+        <mat-drawer mode="side"  [(opened)]="toogle">
+            <app-sidenav></app-sidenav>
+        </mat-drawer>
         <mat-drawer-content>
             <app-header></app-header>
             <router-outlet></router-outlet>
