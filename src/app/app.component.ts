@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { OpenClosedDashboardService } from './sharedServics/open-closed-dashboard.service';
 
 
 @Component({
@@ -8,10 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   title = 'graduationProject';
-  
-  constructor(){}
+  toogle:any;
+  constructor(private toogleNavbarservice:OpenClosedDashboardService){}
   ngOnInit(): void {
-   
+   this.toogleNavbarservice.reciveToogle().subscribe(data=>{
+     console.log(data);
+     this.toogle=data;
+     console.log(data);
+   })
   }
   
 
