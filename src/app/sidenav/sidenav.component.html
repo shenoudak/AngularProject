@@ -15,15 +15,43 @@
             </a>
         </span>
         <span class="row">
-            <a mat-list-item routerLink="/dashboard" routerLinkActive="list-item-active">
-               <span class="col-2">
-                <mat-icon>account_box</mat-icon>
-               </span> 
-               <span class="col-10">
-                customer
+            <a  mat-list-item (click)="toogleCustomerList()" routerLinkActive="list-item-active">
+                <span class="col-2 ">
+                    <mat-icon>account_box</mat-icon>
+                </span>
+                <span class="col-8 d-flex ">
+                    Customer Manage
+                </span>
+    
+                <span class="col-2 d-flex justify-content-end" *ngIf="toogleListCustomer">
+                    <mat-icon class="arrowIcon"  >keyboard_arrow_right</mat-icon>
+                </span>
+               <span class="col-2 d-flex justify-content-end" *ngIf="!toogleListCustomer">
+                <mat-icon class="arrowIcon"  >keyboard_arrow_down</mat-icon>
+                
                </span>
+             
             </a>
-        </span>
+           </span>
+            <mat-nav-list [class.d-none]=toogleListCustomer>
+                <span class="row ">
+                    <a mat-list-item routerLink="/home/stock" routerLinkActive="list-item-active">
+                     <span class=" ms-4"> Customers </span>
+                     </a>
+                </span>
+                <span class="row ">
+                    <a mat-list-item routerLink="/s" routerLinkActive="list-item-active">
+                     <span class=" ms-4"> Classfication </span>
+                     </a>
+                </span>
+                <span class="row ">
+                    <a mat-list-item routerLink="/home/customer" routerLinkActive="list-item-active">
+                     <span class=" ms-4"> Discount </span>
+                     </a>
+                </span>
+               
+            </mat-nav-list>
+    
         <span class="row">
             <a mat-list-item routerLink="/sd" routerLinkActive="list-item-active">
                <span class="col-2">

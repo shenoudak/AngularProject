@@ -9,6 +9,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
+import {MatDialogModule} from '@angular/material/dialog';
 
 const materialComponents=
 [
@@ -21,7 +22,8 @@ const materialComponents=
   MatListModule,
   MatIconModule,
   MatSelectModule,
-  MatTableModule
+  MatTableModule,
+  MatDialogModule
 
 
 ]
