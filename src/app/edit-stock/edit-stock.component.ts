@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { StockService } from 'src/stock/stock/stock.service';
+import { Stock } from '../shared_classes_intefaces/stock';
 
 @Component({
   selector: 'app-edit-stock',
@@ -39,8 +40,11 @@ export class EditStockComponent implements OnInit {
        
      }
    );
-   
-  editData(){
-
-  }
+   stockObj:any;
+   editData(){
+    this.stockObj=new Stock(this.Number?.value,this.Name?.value,this.Address?.value);
+    this.stockService.update(this.stockId,this.stockObj).subscribe(res=>{
+      console.log(res);
+    },error=>{console.log(error)});
+   }
 }

@@ -24,6 +24,11 @@ export class StockService {
       return throwError(()=>error.message||"Server Problem");
     }));
   }
+  update(stockId:number,customerDiscount:Stock):Observable<Stock>{
+    return this.http.patch<Stock>(this._url+stockId,customerDiscount).pipe(catchError(error=>{
+      return throwError(()=>error.message||"Server Problem");
+    }));
+  }
   removeD(stockId:number):Observable<Stock>{
     return this.http.delete<Stock>(this._url+stockId).pipe(catchError(error=>{
       return throwError(()=>error.message||"Server Problem");
