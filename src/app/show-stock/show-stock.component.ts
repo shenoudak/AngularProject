@@ -10,8 +10,14 @@ import { ConfirmDeleteService } from '../sharedServics/confirm-delete.service';
 export class ShowStockComponent implements OnInit {
 
   constructor(private router:Router,private activateRoute:ActivatedRoute,private confirmDeleteService:ConfirmDeleteService,private stockService:StockService ) { }
-  stockList:any[]=[{id:1,name:"main",address:"assiut"},{id:2,name:"main",address:"assiut"},{id:3,name:"main",address:"assiut"}];
+  stockList:any[]=[]//[{ID:1,name:"main",address:"assiut"},{ID:2,name:"main",address:"assiut"},{ID:3,name:"main",address:"assiut"}];
   ngOnInit(): void {
+    this.stockService.getAll().subscribe((data)=>{
+      this.stockList=data;
+      console.log(data);
+    },error=>{
+      console.log(error);
+    })
   }
   navigateToAddStock(){
     this.router.navigate(['/home/stock/add'])
@@ -24,6 +30,13 @@ export class ShowStockComponent implements OnInit {
     this.confirmDeleteService.openConfirmDialog().afterClosed().subscribe(res=>{
       if(res==true){
         this.stockService.removeD(id).subscribe(data=>{
+          /*get All To Update Show-Stock*/ 
+          this.stockService.getAll().subscribe((data)=>{
+            this.stockList=data;
+            console.log(data);
+          },error=>{
+            console.log(error);
+          });
           console.log(data);
         },error=>{
           console.log(error);

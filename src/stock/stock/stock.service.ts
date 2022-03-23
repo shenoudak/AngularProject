@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Stock } from 'src/app/shared_classes_intefaces/stock';
@@ -6,7 +6,7 @@ import { Stock } from 'src/app/shared_classes_intefaces/stock';
   providedIn: 'root'
 })
 export class StockService {
-  _url:string="";
+  _url:string="https://localhost:44338/api/stock";
   constructor(private http:HttpClient) { 
   }
   getAll():Observable<Stock[]>{
@@ -15,12 +15,14 @@ export class StockService {
     }));
   }
   getByID(stockId:number):Observable<Stock>{
-    return this.http.get<Stock>(this._url+stockId).pipe(catchError(error=>{
+    return this.http.get<Stock>(this._url+'/'+stockId).pipe(catchError(error=>{
       return throwError(()=>error.message||"Server Problem");
     }));
   }
   insert(stock:Stock):Observable<Stock>{
-    return this.http.post<Stock>(this._url,stock).pipe(catchError(error=>{
+    const httpOptions={headers:new HttpHeaders({'Content-Type':'application/json','Accept': 'application/json;charset=UTF-8'})};
+    const body= JSON.stringify(stock);
+    return this.http.post<Stock>(this._url,body,httpOptions).pipe(catchError(error=>{
       return throwError(()=>error.message||"Server Problem");
     }));
   }
@@ -30,7 +32,7 @@ export class StockService {
     }));
   }
   removeD(stockId:number):Observable<Stock>{
-    return this.http.delete<Stock>(this._url+stockId).pipe(catchError(error=>{
+    return this.http.delete<Stock>(this._url+'/'+stockId).pipe(catchError(error=>{
       return throwError(()=>error.message||"Server Problem");
     }));
   }

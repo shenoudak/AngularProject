@@ -14,8 +14,8 @@ export class AddStockComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  get Number(){  
-    return this.registrationForm.get('Number');
+  get ID(){  
+    return this.registrationForm.get('ID');
    }
    get Name(){  
     return this.registrationForm.get('Name');
@@ -25,7 +25,7 @@ export class AddStockComponent implements OnInit {
    }
    registrationForm=this.fb.group(
      {
-      Number:[0,[Validators.required,Validators.pattern('^[0-9]+$')]],
+      ID:[0,[Validators.required,Validators.pattern('^[0-9]+$')]],
       Name:['',[Validators.required,Validators.minLength(5)]],
       Address:['',[Validators.required,Validators.minLength(5)]],
        
@@ -36,7 +36,7 @@ export class AddStockComponent implements OnInit {
   getDataToEdit(){
     this.registrationForm.patchValue(
       {
-        Number:"1",
+        ID:"1",
         Name:"shenouda karam",
         Address:"Assiut"
       }
@@ -45,9 +45,9 @@ export class AddStockComponent implements OnInit {
     }
     stock:any;
     SaveData(){
-      this.stock=new Stock(this.Number?.value,this.Name?.value,this.Address?.value);
+      this.stock=new Stock(this.ID?.value,this.Name?.value,this.Address?.value);
       this.stockService.insert(this.stock).subscribe(data=>{
-        console.log(data);
+        console.log('data');
       },error=>{
         console.log(error);
       });
