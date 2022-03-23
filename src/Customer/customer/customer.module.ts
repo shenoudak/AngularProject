@@ -6,13 +6,19 @@ import { ShowDiscountComponent } from './show-discount/show-discount.component';
 import { AddDiscountComponent } from './add-discount/add-discount.component';
 import { EditDiscountComponent } from './edit-discount/edit-discount.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ShowCustomerComponent } from './show-customer/show-customer.component';
+import { AddCustomerComponent } from './add-customer/add-customer.component';
+import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 
 
 @NgModule({
   declarations: [
     ShowDiscountComponent,
     AddDiscountComponent,
-    EditDiscountComponent
+    EditDiscountComponent,
+    ShowCustomerComponent,
+    AddCustomerComponent,
+    EditCustomerComponent
   ],
   imports: [
     CommonModule,

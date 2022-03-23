@@ -1,10 +1,10 @@
 export class Stock{
-    Number:number;
+    ID:number;
     Name:string;
     Address:string
-    constructor(Number:number,Name:string,Address:string){
+    constructor(ID:number,Name:string,Address:string){
         this.Name=Name;
-        this.Number=Number;
+        this.ID=ID;
         this.Address=Address;
     }
 }

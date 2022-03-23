@@ -16,10 +16,10 @@ export class ShowDiscountComponent implements OnInit {
   }
   navigateToAddDiscount()
   {
-    this.router.navigate(['/home/customer/add']);
+    this.router.navigate(['/home/customer/addDiscount']);
   }
   NavigationToEditDiscount(id:number){
-    this.router.navigate(['/home/customer/edit',{id:id}]);
+    this.router.navigate(['/home/customer/editDiscount',{id:id}]);
     console.log(id);
   }
   customerDiscountkList:any[]=[{ID:1,DiscountValue:"10%",Notes:"All Client",StartDate:"2020-10-1",EndDate:"2020-12-1"},{ID:1,DiscountValue:"15%",Notes:"AllClient",StartDate:"2020-12-1",EndDate:"2021-1-1"},{ID:1,DiscountValue:"20%",Notes:"All cLient",StartDate:"2021-02-4",EndDate:"2021-3-2"}];
