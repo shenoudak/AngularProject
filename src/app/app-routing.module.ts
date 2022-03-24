@@ -14,6 +14,8 @@ const routes: Routes =
   .then(mod=>mod.StockModule)},
   {path:'home/customer',loadChildren:()=>import('../Customer/customer/customer.module')
   .then(mod=>mod.CustomerModule)},
+  {path:'home/tax',loadChildren:()=>import('../taxes/taxes.module')
+  .then(mod=>mod.TaxesModule)},
 ];
 
 @NgModule({

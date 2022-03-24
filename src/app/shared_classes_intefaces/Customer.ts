@@ -1,11 +1,11 @@
 export class Customer{
     ID:number=1;
     Name:string;
-    BalanceOutstand:string;
+    BalanceOutstand:number;
     Phone:number;
     Address:string;
     TradeName:string;
-    constructor(name:string,balance:string,phone:number,address:string,tradeName:string){
+    constructor(name:string,balance:number,phone:number,address:string,tradeName:string){
         this.Name=name;
         this.BalanceOutstand=balance;
         this.Phone=phone;

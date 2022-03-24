@@ -1,0 +1,36 @@
+<div class="container-fluid pt-4">
+    <div class="d-flex justify-content-end">
+            <a routerLink="/home/stock/add" (click)="navigateToAddTax()" class="btn btn-primary">add Tax</a>
+    </div>
+    <div class="row">
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th class="lg-2 col-md-2 col-sm-2" scope="col">Name</th>
+                <th class="lg-2 col-md-2 col-sm-2" scope="col">Percentage</th>
+                <th class="lg-3 col-md-3 col-sm-3" scope="col">Description</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="table-active" *ngFor="let item of taxList ">
+               
+                <td class="lg-2 col-md-2 col-sm-2">{{item.Name}}</td>
+                <td class="lg-2 col-md-2 col-sm-2">{{item.Percentage}}</td>
+                <td class="lg-3 col-md-3 col-sm-3" >{{item.Description}}</td>
+                <td class="lg-2 col-md-2 col-sm-2"><a class="btn btn-success"  (click)="NavigationToEditTax(item.ID)">edit</a></td>
+                <td class="lg-3 col-md-3 col-sm-3"><a class="btn  btn-danger" (click)="deleteTax(item.ID)">delete</a></td>
+                <td></td>
+              </tr>
+              <tr>
+             
+            </tbody>
+          </table>
+    </div>
+</div>
+<router-outlet></router-outlet>
+
+
+
+
+

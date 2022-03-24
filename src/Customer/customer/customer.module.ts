@@ -9,6 +9,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShowCustomerComponent } from './show-customer/show-customer.component';
 import { AddCustomerComponent } from './add-customer/add-customer.component';
 import { EditCustomerComponent } from './edit-customer/edit-customer.component';
+import { ShowCustomerTypeComponent } from './show-customer-type/show-customer-type.component';
+import { AddCustomerTypeComponent } from './add-customer-type/add-customer-type.component';
+import { EditCustomerTypeComponent } from './edit-customer-type/edit-customer-type.component';
 
 
 @NgModule({
@@ -18,7 +21,10 @@ import { EditCustomerComponent } from './edit-customer/edit-customer.component';
     EditDiscountComponent,
     ShowCustomerComponent,
     AddCustomerComponent,
-    EditCustomerComponent
+    EditCustomerComponent,
+    ShowCustomerTypeComponent,
+    AddCustomerTypeComponent,
+    EditCustomerTypeComponent
   ],
   imports: [
     CommonModule,
