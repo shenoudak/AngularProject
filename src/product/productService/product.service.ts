@@ -1,12 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
-import { Customer } from 'src/app/shared_classes_intefaces/Customer';
+import { Product } from 'src/app/shared_classes_intefaces/peoduct';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CustomerService {
+export class ProductService {
 
   _url:string="";
   httpOptions = {
@@ -15,25 +15,25 @@ export class CustomerService {
     })
   }
   constructor(private http:HttpClient) { }
-  getAll():Observable<Customer[]>{
-    return this.http.get<Customer[]>(this._url)
+  getAll():Observable<Product[]>{
+    return this.http.get<Product[]>(this._url)
     .pipe(catchError(this.errorHandler));
    }
-   getByID(customerId:number):Observable<Customer>{
-     return this.http.get<Customer>(this._url+'/'+customerId)
+   getByID(productId:number):Observable<Product>{
+     return this.http.get<Product>(this._url+'/'+productId)
      .pipe(catchError(this.errorHandler));
    }
-   insert(customer:Customer):Observable<any>{
-     return this.http.post<Customer>(this._url,JSON.stringify(customer),this.httpOptions)
+   insert(product:Product):Observable<any>{
+     return this.http.post<Product>(this._url,JSON.stringify(product),this.httpOptions)
      .pipe(catchError(this.errorHandler));
    }
-   update(customerId:number,customer:Customer):Observable<any>{
-    return this.http.patch<Customer>(this._url+'/'+customerId,JSON.stringify(customer),this.httpOptions)
+   update(productId:number,product:Product):Observable<any>{
+    return this.http.patch<Product>(this._url+'/'+productId,JSON.stringify(product),this.httpOptions)
     .pipe(catchError(this.errorHandler));
   }
    
-   removeD(customerId:number):Observable<any>{
-     return this.http.delete<Customer>(this._url+'/'+customerId)
+   removeD(productId:number):Observable<any>{
+     return this.http.delete<Product>(this._url+'/'+productId)
      .pipe(catchError(this.errorHandler));
    }
    errorHandler(error:any) {
