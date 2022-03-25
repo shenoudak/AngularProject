@@ -18,6 +18,8 @@ const routes: Routes =
   .then(mod=>mod.TaxesModule)},
   {path:'home/product',loadChildren:()=>import('../product/product.module')
   .then(mod=>mod.ProductModule)},
+  {path:'home/expense',loadChildren:()=>import('../expence/expence.module')
+  .then(mod=>mod.ExpenceModule)},
 ];
 
 @NgModule({
