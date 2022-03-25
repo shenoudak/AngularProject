@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.component';
 import { CustomerModule } from 'src/Customer/customer/customer.module';
 import { TaxesModule } from 'src/taxes/taxes.module';
+import { ProductModule } from 'src/product/product.module';
 
 
 
@@ -40,6 +41,7 @@ import { TaxesModule } from 'src/taxes/taxes.module';
     HttpClientModule,
     CustomerModule,
     TaxesModule,
+    ProductModule
   ],
   providers: [],
   bootstrap: [AppComponent]

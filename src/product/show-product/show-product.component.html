@@ -1,0 +1,43 @@
+<div class="container-fluid pt-4">
+    <div class="d-flex justify-content-end">
+            <a routerLink="/home/stock/add" (click)="navigateToAddProduct()" class="btn btn-primary">add Product</a>
+    </div>
+    <div class="row">
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th class="lg-2 col-md-2 col-sm-2" scope="col">Name</th>
+                <th class="lg-2 col-md-2 col-sm-2" scope="col">Description</th>
+                <th class="lg-1 col-md-1 col-sm-1" scope="col">MiniAmount</th>
+                <th class="lg-2 col-md-2 col-sm-2" scope="col">Barcode</th>
+                <th class="lg-1 col-md-1 col-sm-1" scope="col">SellingPrice</th>
+                <th class="lg-1 col-md-1 col-sm-1" scope="col">PurchasingPrice</th>
+                <th class="lg-1 col-md-1 col-sm-1" scope="col">ExpiryPeriod</th>
+                <th class="lg-2 col-md-2 col-sm-2" scope="col">CategoryId</th>
+                
+              </tr> 
+            </thead>
+            <tbody>
+              <tr class="table-active" *ngFor="let item of productList ">
+                <td class="lg-2 col-md-2 col-sm-2">{{item.Name}}</td>
+                <td class="lg-2 col-md-2 col-sm-2" >{{item.Description}}</td>
+                <td class="lg-1 col-md-1 col-sm-1">{{item.MiniAmount}}</td>
+                <td class="lg-2 col-md-2 col-sm-2">{{item.Barcode}}</td>
+                <td class="lg-1 col-md-1 col-sm-1">{{item.SellingPrice}}</td>
+                <td class="lg-1 col-md-1 col-sm-1">{{item.PurchasingPrice}}</td>
+                <td class="lg-1 col-md-1 col-sm-1">{{item.ExpiryPeriod}}</td>
+                <td class="lg-2 col-md-2 col-sm-2">{{item.CategoryId}}</td>
+                <td class="lg-2 col-md-2 col-sm-2"><a class="btn btn-success"  (click)="NavigationToEditProduct(item.ID)">edit</a></td>
+                <td class="lg-3 col-md-3 col-sm-3"><a class="btn  btn-danger" (click)="deleteProduct(item.ID)">delete</a></td>
+                <td></td>
+              </tr>
+              <tr>
+             
+            </tbody>
+          </table>
+    </div>
+</div>
+<router-outlet></router-outlet>
+
+
+
