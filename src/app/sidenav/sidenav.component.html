@@ -180,6 +180,34 @@
                  </a>
             </span>
         </mat-nav-list>
+        <span class="row">
+            <a mat-list-item routerLink="/sd" (click)="toogleExpenseList()" routerLinkActive="list-item-active">
+                <span class="col-2">
+                    <mat-icon>commute</mat-icon>
+                </span>
+                <span class="col-8">Expense manage</span>
+                <span class="col-2" *ngIf="toogleListPurshase" >
+                    <mat-icon class="arrowIcon" >keyboard_arrow_right</mat-icon>
+                </span>
+                <span class="col-2" *ngIf="!toogleListPurshase">
+                    <mat-icon class="arrowIcon"  >keyboard_arrow_down</mat-icon>
+                </span>
+                
+             
+            </a>
+        </span>
+            <mat-nav-list [class.d-none]=toogleListExpense>
+                <span class="row ">
+                    <a mat-list-item routerLinkActive="list-item-active">
+                     <span class=" ms-4"> Expense </span>
+                     </a>
+                </span>
+                <span class="row ">
+                    <a mat-list-item routerLink="/home/expense" routerLinkActive="list-item-active">
+                     <span class=" ms-4"> Expense Type </span>
+                     </a>
+                </span>
+            </mat-nav-list>
 
         <span class="row">
             <a mat-list-item routerLink="/sd" (click)="toogleSalesList()" routerLinkActive="list-item-active">
@@ -200,6 +228,7 @@
              
             </a>
         </span>
+        
         <mat-nav-list [class.d-none]=toogleListSales>
             <span class="row ">
                 <a mat-list-item routerLink="/s" routerLinkActive="list-item-active">

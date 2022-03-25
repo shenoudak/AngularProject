@@ -16,6 +16,7 @@ import { ConfirmDeleteComponent } from './confirm-delete/confirm-delete.componen
 import { CustomerModule } from 'src/Customer/customer/customer.module';
 import { TaxesModule } from 'src/taxes/taxes.module';
 import { ProductModule } from 'src/product/product.module';
+import { ExpenceModule } from 'src/expence/expence.module';
 
 
 
@@ -41,7 +42,8 @@ import { ProductModule } from 'src/product/product.module';
     HttpClientModule,
     CustomerModule,
     TaxesModule,
-    ProductModule
+    ProductModule,
+    ExpenceModule
   ],
   providers: [],
   bootstrap: [AppComponent]
