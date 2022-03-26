@@ -12,15 +12,15 @@ import { ExpenseTypeService } from '../services/expense-type.service';
 export class ShowExpenseTypeComponent implements OnInit {
 
   constructor(private router:Router,private dialogService:ConfirmDeleteService,private expenseTypeService:ExpenseTypeService ) { }
-
+  expenseTypeList:ExpenseType[]=[];
   ngOnInit(): void {
+    this.expenseTypeService.getAll().subscribe(data=>{
+      this.expenseTypeList=data;
+    },error=>{
+      console.log(error);
+    })
   }
-  expenseTypeList:ExpenseType[]=
-  [
-    {ID:1,Name:'gomla',Details:'Gomla'},
-    {ID:2,Name:'gomla',Details:'Gomla'},
-    {ID:3,Name:'gomla',Details:'Gomla'}
-  ]
+ 
   navigateToAddExpenseType(){
     this.router.navigate(['/home/expense/addExpenseType']);
   }
@@ -33,6 +33,11 @@ export class ShowExpenseTypeComponent implements OnInit {
       if(res==true){
         this.expenseTypeService.removeD(id).subscribe(res=>{
           console.log('delete successfully');
+          this.expenseTypeService.getAll().subscribe(data=>{
+            this.expenseTypeList=data;
+          },error=>{
+            console.log(error);
+          })
         },error=>{
           console.log(error);
         });

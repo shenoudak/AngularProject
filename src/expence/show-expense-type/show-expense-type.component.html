@@ -13,10 +13,10 @@
             </thead>
             <tbody>
               <tr class="table-active" *ngFor="let item of expenseTypeList ">
-                <td class="lg-3 col-md-3 col-sm-3">{{item.Name}}</td>
-                <td class="lg-4 col-md-4 col-sm-4" >{{item.Details}}</td>
-               <td class="lg-2 col-md-2 col-sm-2"><a class="btn btn-success"  (click)="NavigationToEditExpenseType(item.ID)">edit</a></td>
-                <td class="lg-3 col-md-3 col-sm-3"><a class="btn  btn-danger" (click)="deleteExpenseType(item.ID)">delete</a></td>
+                <td class="lg-3 col-md-3 col-sm-3">{{item.name}}</td>
+                <td class="lg-4 col-md-4 col-sm-4" >{{item.details}}</td>
+               <td class="lg-2 col-md-2 col-sm-2"><a class="btn btn-success"  (click)="NavigationToEditExpenseType(item.id)">edit</a></td>
+                <td class="lg-3 col-md-3 col-sm-3"><a class="btn  btn-danger" (click)="deleteExpenseType(item.id)">delete</a></td>
                 <td></td>
               </tr>
               <tr>

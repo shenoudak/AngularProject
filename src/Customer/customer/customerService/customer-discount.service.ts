@@ -7,7 +7,7 @@ import { CustomerDiscount } from 'src/app/shared_classes_intefaces/customerDisco
   providedIn: 'root'
 })
 export class CustomerDiscountService {
-  _url:string="";
+  _url:string="https://localhost:44338/api/Discountforclients";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -27,7 +27,8 @@ export class CustomerDiscountService {
      .pipe(catchError(this.errorHandler));
    }
    update(discountId:number,customerDiscount:CustomerDiscount):Observable<any>{
-    return this.http.patch<CustomerDiscount>(this._url+'/'+discountId,JSON.stringify(customerDiscount),this.httpOptions)
+     console.log(JSON.stringify(customerDiscount));
+    return this.http.put<CustomerDiscount>(this._url+'/'+discountId,JSON.stringify(customerDiscount),this.httpOptions)
     .pipe(catchError(this.errorHandler));
   }
    
