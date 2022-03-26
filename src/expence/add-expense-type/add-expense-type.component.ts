@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ExpenseType } from 'src/app/shared_classes_intefaces/expenseType';
 import { ExpenseTypeService } from '../services/expense-type.service';
 
@@ -10,7 +11,7 @@ import { ExpenseTypeService } from '../services/expense-type.service';
 })
 export class AddExpenseTypeComponent implements OnInit {
 
-  constructor(private fb:FormBuilder,private expenseTypeService:ExpenseTypeService) { }
+  constructor(private fb:FormBuilder,private router:Router,private expenseTypeService:ExpenseTypeService) { }
   ngOnInit(): void {
  }
  get Name(){  
@@ -27,12 +28,14 @@ export class AddExpenseTypeComponent implements OnInit {
   );
   expenseType:any;
    SaveData(){
-     this.expenseType=new ExpenseType(1,this.Name?.value,this.Details?.value);
+     this.expenseType=new ExpenseType(this.Name?.value,this.Details?.value);
 
      this.expenseTypeService.insert(this.expenseType).subscribe(data=>{
        console.log(data);
+       this.router.navigate(['/home/expense']);
      },error=>{
        console.log(error);
+       
      });
      
      console.log(this.expenseType);

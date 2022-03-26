@@ -8,7 +8,7 @@ import { ExpenseType } from 'src/app/shared_classes_intefaces/expenseType';
 })
 export class ExpenseTypeService {
 
-  _url:string="";
+  _url:string="https://localhost:44338/api/expenseTypes";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'

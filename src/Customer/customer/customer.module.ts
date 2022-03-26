@@ -12,6 +12,7 @@ import { EditCustomerComponent } from './edit-customer/edit-customer.component';
 import { ShowCustomerTypeComponent } from './show-customer-type/show-customer-type.component';
 import { AddCustomerTypeComponent } from './add-customer-type/add-customer-type.component';
 import { EditCustomerTypeComponent } from './edit-customer-type/edit-customer-type.component';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -30,7 +31,10 @@ import { EditCustomerTypeComponent } from './edit-customer-type/edit-customer-ty
     CommonModule,
     CustomerRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
   ]
+  ,
+  providers: [DatePipe],
 })
 export class CustomerModule { }

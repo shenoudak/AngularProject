@@ -16,12 +16,12 @@
             <tbody>
               <tr class="table-active" *ngFor="let item of customerDiscountkList ">
                
-                <td class="lg-2 col-md-2 col-sm-2">{{item.DiscountValue}}</td>
-                <td class="lg-2 col-md-2 col-sm-2">{{item.Notes}}</td>
-                <td class="lg-3 col-md-3 col-sm-3" >{{item.StartDate}}</td>
-                <td class="lg-3 col-md-3 col-sm-3" >{{item.EndDate}}</td>
-                <td class="lg-2 col-md-2 col-sm-2"><a class="btn btn-success"  (click)="NavigationToEditDiscount(item.ID)">edit</a></td>
-                <td class="lg-3 col-md-3 col-sm-3"><a class="btn  btn-danger" (click)="deleteDiscount(item.ID)">delete</a></td>
+                <td class="lg-2 col-md-2 col-sm-2">{{item.discountValue}}</td>
+                <td class="lg-2 col-md-2 col-sm-2">{{item.notes}}</td>
+                <td class="lg-3 col-md-3 col-sm-3" >{{item.startDate}}</td>
+                <td class="lg-3 col-md-3 col-sm-3" >{{item.endDate}}</td>
+                <td class="lg-2 col-md-2 col-sm-2"><a class="btn btn-success"  (click)="NavigationToEditDiscount(item.id)">edit</a></td>
+                <td class="lg-3 col-md-3 col-sm-3"><a class="btn  btn-danger" (click)="deleteDiscount(item.id)">delete</a></td>
                 <td></td>
               </tr>
               <tr>

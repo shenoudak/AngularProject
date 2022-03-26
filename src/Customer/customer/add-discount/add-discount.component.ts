@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CustomerDiscount } from 'src/app/shared_classes_intefaces/customerDiscount';
 import { CustomerDiscountService } from '../customerService/customer-discount.service';
 
@@ -10,9 +11,10 @@ import { CustomerDiscountService } from '../customerService/customer-discount.se
 })
 export class AddDiscountComponent implements OnInit {
 
-  constructor(private fb:FormBuilder,private customerDiscountService:CustomerDiscountService) { }
+  constructor(private fb:FormBuilder,private router:Router,private customerDiscountService:CustomerDiscountService) { }
 
   ngOnInit(): void {
+    
   }
   get DiscountValue(){  
     return this.registrationForm.get('DiscountValue');
@@ -37,9 +39,10 @@ export class AddDiscountComponent implements OnInit {
    );
    customerDiscount:any;
     SaveData(){
-      this.customerDiscount=new CustomerDiscount(this.DiscountValue?.value,this.StartDate?.value,this.EndDate?.value,this.Notes?.value);
+      this.customerDiscount=new CustomerDiscount(this.DiscountValue?.value,this.Notes?.value,this.StartDate?.value,this.EndDate?.value);
       this.customerDiscountService.insert(this.customerDiscount).subscribe(data=>{
         console.log(data);
+        this.router.navigate(['/home/customer/showDiscount']);
       },error=>{
         console.log(error);
       });

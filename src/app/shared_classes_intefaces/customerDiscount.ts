@@ -1,17 +1,17 @@
 export class CustomerDiscount
 {
-    ID:number=1;
-    DiscountValue:string;
-    Notes:string;
-    StartDate:string;
-    EndDate:string;
+    id:number=0;
+    discountValue:string;
+    notes:string;
+    startDate:string;
+    endDate:string;
 
-    constructor(DiscountValue:string,Notes:string,StartDate:string,EndDate:string){
+    constructor(discountValue:string,notes:string,startDate:string,endDate:string){
         
-        this.DiscountValue=DiscountValue;
-        this.Notes=Notes;
-        this.StartDate=StartDate;
-        this.EndDate=EndDate;
+        this.discountValue=discountValue;
+        this.notes=notes;
+        this.startDate=startDate;
+        this.endDate=endDate;
     }
 
 }

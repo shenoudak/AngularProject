@@ -1,11 +1,10 @@
 export class ExpenseType{
-    ID:number;
-    Name:string;
-    Details:string;
-    constructor(id:number,name:string,details:string)
+    id:number=0;
+    name:string;
+    details:string;
+    constructor(name:string,details:string)
     {
-        this.ID=id;
-        this.Name=name;
-        this.Details=details;
+        this.name=name;
+        this.details=details;
     }
 }
