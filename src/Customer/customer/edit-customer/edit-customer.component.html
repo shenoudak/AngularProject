@@ -40,7 +40,7 @@
             </div>
             <div class="form-group mb-3">
                 <select class="custom-select"  formControlName="TypeId" >
-                    <!-- <option selected value={{customerTypeObj.id}}>{{customerTypeObj.typeName}}</option> -->
+                    <!-- <option selected value={{customerTypeObj.id}}>{{customerTypeObj.typeName}}</option>  -->
                     <option value={{item.id}} *ngFor="let item of customerTypesList">{{item.typeName}}</option>
                 </select>
                 </div>
