@@ -8,7 +8,7 @@ import { Customer } from 'src/app/shared_classes_intefaces/Customer';
 })
 export class CustomerService {
 
-  _url:string="";
+  _url:string="https://localhost:44338/api/clients";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -28,7 +28,8 @@ export class CustomerService {
      .pipe(catchError(this.errorHandler));
    }
    update(customerId:number,customer:Customer):Observable<any>{
-    return this.http.patch<Customer>(this._url+'/'+customerId,JSON.stringify(customer),this.httpOptions)
+     console.log(JSON.stringify(customer));
+    return this.http.put<Customer>(this._url+'/'+customerId,JSON.stringify(customer),this.httpOptions)
     .pipe(catchError(this.errorHandler));
   }
    

@@ -39,9 +39,9 @@
                 <input type="text" formControlName="TradeName" class="mb-3 form-control ">
             </div>
             <div class="form-group mb-3">
-                <select class="custom-select"  formControlName="UserTypes" >
-                    <option>UserType</option>
-                    <option *ngFor="let item of userTypesList">{{item.TypeName}</option>
+                <select class="custom-select"  formControlName="TypeId" >
+                    <option value='0'>User Type</option>
+                    <option value={{item.id}} *ngFor="let item of customerTypesList">{{item.typeName}}</option>
                 </select>
                 </div>
         </form>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Customer } from 'src/app/shared_classes_intefaces/Customer';
 import { CustomerType } from 'src/app/shared_classes_intefaces/customerType';
 import { CustomerTypeService } from '../customerService/customer-type.service';
@@ -12,11 +13,12 @@ import { CustomerService } from '../customerService/customer.service';
 })
 export class AddCustomerComponent implements OnInit {
 
-  constructor(private fb:FormBuilder,private customerService:CustomerService,private customerTypeService:CustomerTypeService) { }
-  userTypesList:CustomerType[]=[];
+  constructor(private fb:FormBuilder,private customerService:CustomerService,private customerTypeService:CustomerTypeService,private router:Router) { }
+  customerTypesList:CustomerType[]=[];
   ngOnInit(): void {
     this.customerTypeService.getAll().subscribe(data=>{
-      this.userTypesList=data;
+      this.customerTypesList=data;
+      console.log(this.customerTypesList);
     },error=>{
       console.log(error);
     })
@@ -37,8 +39,8 @@ export class AddCustomerComponent implements OnInit {
    get TradeName(){  
     return this.registrationForm.get('TradeName');
    }
-   get UserTypes(){  
-    return this.registrationForm.get('UserTypes');
+   get TypeId(){  
+    return this.registrationForm.get('TypeId');
    }
    registrationForm=this.fb.group(
      {
@@ -47,15 +49,17 @@ export class AddCustomerComponent implements OnInit {
       Phone:['',[Validators.required,Validators.pattern('^[0-9]+$')]],
       Address:['',],
       TradeName:['',],
-      UserTypes:[''],
+      TypeId:[''],
      }
    );
    customer:any;
     SaveData(){
-      this.customer=new Customer(this.Name?.value,this.BalanceOutstand?.value,this.Phone?.value,this.Address?.value,this.TradeName?.value);
+      //parseInt(this.TypeId?.value);
+      this.customer=new Customer(this.Name?.value,this.BalanceOutstand?.value,this.Phone?.value,this.Address?.value,this.TradeName?.value,this.TypeId?.value);
 
       this.customerService.insert(this.customer).subscribe(data=>{
         console.log(data);
+        this.router.navigate(['/home/customer']);
       },error=>{
         console.log(error);
       });
