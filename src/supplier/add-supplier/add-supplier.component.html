@@ -1,0 +1,42 @@
+<div class="container">
+<div class="row">
+<form [formGroup]="addSupplier">
+    <div class="form-group">
+      <label >الاسم:</label>
+      <input type="text" class="form-control" formControlName="Name"[class.is-invalid]="addSupplier.get('Name')?.invalid && addSupplier.get('Name')?.touched">
+      <small  class="text-danger"*ngIf="addSupplier.get('Name')?.invalid && addSupplier.get('Name')?.touched"class="alert alert-danger">*الاسم مطلوب</small>
+    </div>
+    <div class="form-group">
+      <label >الموبايل:</label>
+      <input type="tel" class="form-control"formControlName="Phone"[class.is-invalid]="addSupplier.get('Phone')?.invalid && addSupplier.get('Phone')?.touched" >
+      <div *ngIf="addSupplier.get('Phone')?.touched && addSupplier.get('Phone')?.invalid" class="alert alert-danger">
+        <small *ngIf="addSupplier.get('Phone')?.errors?.['required']">*مطلوب</small>
+        <small *ngIf="addSupplier.get('Phone')?.errors?.['pattern']">    لابد ان يتكون من 11 رقم </small>
+      </div>
+    </div>
+
+    <div class="form-group">
+        <label >العنوان:</label>
+        <input type="text" class="form-control" formControlName="Address"[class.is-invalid]="addSupplier.get('Address')?.invalid && addSupplier.get('Address')?.touched" >
+        <small  class="text-danger"*ngIf="addSupplier.get('Address')?.invalid && addSupplier.get('Address')?.touched"class="alert alert-danger">*العنوان مطلوب</small>
+    </div>
+    <div class="form-group">
+        <label >الفلوس:</label>
+        <input type="number" class="form-control" formControlName="DebitBlance"[class.is-invalid]="addSupplier.get('DebitBlance')?.invalid && addSupplier.get('DebitBlance')?.touched" >
+        <small  class="text-danger"*ngIf="addSupplier.get('DebitBlance')?.invalid && addSupplier.get('DebitBlance')?.touched"class="alert alert-danger">*الفلوس  مطلوب</small>
+      </div >
+      <div class="form-group">
+        <label  class="form-label mt-4">النوع:</label>
+        <select class="form-select"formControlName="TypeId"[class.is-invalid]="addSupplier.get('TypeId')?.invalid && addSupplier.get('TypeId')?.touched" >
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+        <small  class="text-danger"*ngIf="addSupplier.get('TypeId')?.invalid && addSupplier.get('TypeId')?.touched"class="alert alert-danger">*النوع مطلوب</small>
+      </div>
+    <button type="submit" class=" mt-3 btn btn-primary">حفظ</button>
+  </form>
+</div>
+</div>
