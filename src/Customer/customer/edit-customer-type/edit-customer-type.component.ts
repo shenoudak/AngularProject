@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CustomerType } from 'src/app/shared_classes_intefaces/customerType';
 import { CustomerTypeService } from '../customerService/customer-type.service';
 
@@ -11,16 +11,19 @@ import { CustomerTypeService } from '../customerService/customer-type.service';
 })
 export class EditCustomerTypeComponent implements OnInit {
 
-  constructor(private fb:FormBuilder,private customerTypeService:CustomerTypeService,private activatedRoute:ActivatedRoute) { }
+  constructor(private fb:FormBuilder,private customerTypeService:CustomerTypeService,private activatedRoute:ActivatedRoute,private router:Router) { }
   customerTypeId:any;
-  customerType:any;
+  customerType:CustomerType={}as CustomerType;
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(parms=>{
       this.customerTypeId=parms.get('id');
-      console.log(this.customerTypeId);
-       // this.customerTypeService.getByID(this.customerTypeId).subscribe(data=>{
-    //   this.customerType=data;
-    // })
+       console.log(this.customerTypeId);
+        this.customerTypeService.getByID(this.customerTypeId).subscribe(data=>{
+       this.customerType=data;
+       console.log(this.customerType);
+       this.registrationForm.get('TypeName')?.patchValue(this.customerType.typeName);
+       this.registrationForm.get('Description')?.patchValue(this.customerType.description);
+     })
  })}
  
  get TypeName(){  
@@ -36,9 +39,12 @@ export class EditCustomerTypeComponent implements OnInit {
     }
   );
   editData(){
-     this.customerType=new CustomerType(1,this.TypeName?.value,this.Description?.value);
-     this.customerTypeService.insert(this.customerType).subscribe(data=>{
+    
+     this.customerType=new CustomerType(this.TypeName?.value,this.Description?.value);
+     this.customerType.id=this.customerTypeId;
+     this.customerTypeService.update(this.customerTypeId,this.customerType).subscribe(data=>{
        console.log(data);
+      this.router.navigate(['/home/customer/customerType']);
      },error=>{
        console.log(error);
      });

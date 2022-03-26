@@ -6,7 +6,7 @@ import { Stock } from 'src/app/shared_classes_intefaces/stock';
   providedIn: 'root'
 })
 export class StockService {
-  _url:string="https://localhost:44338/api/stock";
+  _url:string="https://localhost:44338/api/stocks";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'

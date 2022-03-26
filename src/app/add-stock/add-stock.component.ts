@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { StockService } from 'src/stock/stock/stock.service';
 import {  Stock } from '../shared_classes_intefaces/stock';
 
@@ -10,13 +11,10 @@ import {  Stock } from '../shared_classes_intefaces/stock';
 })
 export class AddStockComponent implements OnInit {
 
-  constructor(private fb:FormBuilder,private stockService:StockService) { }
+  constructor(private fb:FormBuilder,private stockService:StockService,private router:Router) { }
 
   ngOnInit(): void {
   }
-  get ID(){  
-    return this.registrationForm.get('ID');
-   }
    get Name(){  
     return this.registrationForm.get('Name');
    }
@@ -25,7 +23,6 @@ export class AddStockComponent implements OnInit {
    }
    registrationForm=this.fb.group(
      {
-      ID:[0,[Validators.required,Validators.pattern('^[0-9]+$')]],
       Name:['',[Validators.required,Validators.minLength(5)]],
       Address:['',[Validators.required,Validators.minLength(5)]],
        
@@ -36,7 +33,6 @@ export class AddStockComponent implements OnInit {
   getDataToEdit(){
     this.registrationForm.patchValue(
       {
-        ID:"1",
         Name:"shenouda karam",
         Address:"Assiut"
       }
@@ -45,9 +41,10 @@ export class AddStockComponent implements OnInit {
     }
     stock:any;
     SaveData(){
-      this.stock=new Stock(this.ID?.value,this.Name?.value,this.Address?.value);
+      this.stock=new Stock(this.Name?.value,this.Address?.value);
       this.stockService.insert(this.stock).subscribe(data=>{
         console.log('data');
+        this.router.navigate(['/home/stock']);
       },error=>{
         console.log(error);
       });

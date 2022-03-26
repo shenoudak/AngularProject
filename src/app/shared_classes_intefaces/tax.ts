@@ -1,13 +1,12 @@
 export class Tax{
-    ID:number;
-    Name:string;
-    Percentage:number;
-    Description:string;
-    constructor(id:number,Name:string,description:string,percentage:number)
+    id:number=0;
+    name:string;
+    percentage:number;
+    description:string;
+    constructor(name:string,description:string,percentage:number)
     {
-        this.ID=id;
-        this.Name=Name;
-        this.Percentage=percentage;
-        this.Description=description;
+        this.name=name;
+        this.percentage=percentage;
+        this.description=description;
     }
 }

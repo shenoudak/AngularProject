@@ -13,10 +13,10 @@
             </thead>
             <tbody>
               <tr class="table-active" *ngFor="let item of customerTypeList ">
-                <td class="lg-3 col-md-3 col-sm-3">{{item.TypeName}}</td>
-                <td class="lg-4 col-md-4 col-sm-4" >{{item.Description}}</td>
-               <td class="lg-2 col-md-2 col-sm-2"><a class="btn btn-success"  (click)="NavigationToEditCustomerType(item.ID)">edit</a></td>
-                <td class="lg-3 col-md-3 col-sm-3"><a class="btn  btn-danger" (click)="deleteCustomerType(item.ID)">delete</a></td>
+                <td class="lg-3 col-md-3 col-sm-3">{{item.typeName}}</td>
+                <td class="lg-4 col-md-4 col-sm-4" >{{item.description}}</td>
+               <td class="lg-2 col-md-2 col-sm-2"><a class="btn btn-success"  (click)="NavigationToEditCustomerType(item.id)">edit</a></td>
+                <td class="lg-3 col-md-3 col-sm-3"><a class="btn  btn-danger" (click)="deleteCustomerType(item.id)">delete</a></td>
                 <td></td>
               </tr>
               <tr>

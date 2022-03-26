@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CustomerType } from 'src/app/shared_classes_intefaces/customerType';
 import { CustomerTypeService } from '../customerService/customer-type.service';
 
@@ -10,7 +11,7 @@ import { CustomerTypeService } from '../customerService/customer-type.service';
 })
 export class AddCustomerTypeComponent implements OnInit {
 
-  constructor(private fb:FormBuilder,private customerTypeService:CustomerTypeService) { }
+  constructor(private fb:FormBuilder,private customerTypeService:CustomerTypeService,private router:Router) { }
    ngOnInit(): void {
   }
   get TypeName(){  
@@ -27,10 +28,12 @@ export class AddCustomerTypeComponent implements OnInit {
    );
    customerType:any;
     SaveData(){
-      this.customerType=new CustomerType(1,this.TypeName?.value,this.Description?.value);
+      this.customerType=new CustomerType(this.TypeName?.value,this.Description?.value);
 
       this.customerTypeService.insert(this.customerType).subscribe(data=>{
         console.log(data);
+        this.router.navigate(['/home/customer/customerType']);
+        
       },error=>{
         console.log(error);
       });

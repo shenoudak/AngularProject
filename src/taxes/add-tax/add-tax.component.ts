@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Tax } from 'src/app/shared_classes_intefaces/tax';
 import { TaxService } from '../taxService/tax.service';
 
@@ -10,7 +11,7 @@ import { TaxService } from '../taxService/tax.service';
 })
 export class AddTaxComponent implements OnInit {
 
-  constructor(private fb:FormBuilder,private taxService:TaxService) { }
+  constructor(private fb:FormBuilder,private taxService:TaxService,private router:Router) { }
   taxList:Tax[]=[];
   ngOnInit(): void {
     this.taxService.getAll().subscribe(data=>{
@@ -39,10 +40,12 @@ export class AddTaxComponent implements OnInit {
    );
    tax:any;
     SaveData(){
-      this.tax=new Tax(1,this.Name?.value,this.Percentage?.value,this.Description?.value);
+      this.tax=new Tax(this.Name?.value,this.Description?.value,this.Percentage?.value);
 
       this.taxService.insert(this.tax).subscribe(data=>{
         console.log(data);
+        this.router.navigate(['/home/tax'])
+        
       },error=>{
         console.log(error);
       });

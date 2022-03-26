@@ -11,13 +11,14 @@ import { TaxService } from '../taxService/tax.service';
 export class ShowTaxComponent implements OnInit {
 
   constructor(private router:Router,private dialogService:ConfirmDeleteService,private taxService:TaxService ) { }
-  taxList:any[]=
-  [
-    {ID:1,Name:'shenouda',Percentage:"10%",Description:"D1"},
-    {ID:2,Name:'Romany',Percentage:"20%",Description:"D2"},
-    {ID:3,Name:'Atef',Percentage:"30%",Description:"D3"},
-  ];
+  taxList:any[]=[];
   ngOnInit(): void {
+    this.taxService.getAll().subscribe((data)=>{
+      this.taxList=data;
+      console.log(data);
+    },error=>{
+      console.log(error);
+    })
   }
   navigateToAddTax(){
     this.router.navigate(['/home/tax/addTax']);
@@ -31,8 +32,15 @@ export class ShowTaxComponent implements OnInit {
       if(res==true){
         this.taxService.removeD(id).subscribe(res=>{
           console.log('delete successfully');
+          this.taxService.getAll().subscribe((data)=>{
+            this.taxList=data;
+            console.log(data);
+          },error=>{
+            console.log(error);
+          })
         },error=>{
           console.log(error);
+         
         });
       }
     });
