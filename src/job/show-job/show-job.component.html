@@ -1,0 +1,28 @@
+
+  <div class="container">
+    <div class="row">
+      <a class="btn btn-primary mb-3"(click)="NavigationToAdd()">اضافة وظيفة</a>
+      <table class="table table-dark table-striped">
+      <thead>
+          <tr>
+            <th >اسم المهنة :</th>
+            <th >الوصف:</th>
+            <th ></th>
+            <th></th>
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-active"*ngFor="let job of Job">
+            <td>{{job.jobTitle}}</td>
+            <td>{{job.jobDecribtion}}</td>
+           <td><a class="btn btn-success" (click)="NavigationToEdit(job.id)">تعديل</a></td> 
+            <td><a class="btn btn-danger" (click)="NavigationToDelete(job.id)">حذف</a></td>
+          </tr>
+        </tbody>
+   </table>
+    </div>
+</div>
+
+
+
