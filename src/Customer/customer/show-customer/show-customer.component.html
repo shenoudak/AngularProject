@@ -6,23 +6,28 @@
         <table class="table table-hover">
             <thead>
               <tr>
-                <th class="lg-2 col-md-2 col-sm-2" scope="col">DiscountValue</th>
-                <th class="lg-2 col-md-2 col-sm-2" scope="col">Notes</th>
-                <th class="lg-3 col-md-3 col-sm-3" scope="col">StartDate</th>
-                <th class="lg-3 col-md-3 col-sm-3" scope="col">EndDate</th>
+                <th class="lg-1 col-md-1 col-sm-1" scope="col">Name</th>
+                <th class="lg-1 col-md-1 col-sm-1" scope="col">balanceOutstand</th>
+                <th class="lg-1 col-md-1 col-sm-1" scope="col">phone</th>
+                <th class="lg-2 col-md-2 col-sm-2" scope="col">address</th>
+                <th class="lg-1 col-md-1 col-sm-1" scope="col">tradeName</th>
+                <th class="lg-1 col-md-1 col-sm-1" scope="col">tradeType</th>
+                <th class="lg-2 col-md-2 col-sm-2"></th>
+                <th class="lg-3 col-md-3 col-sm-3"></th>
                 
               </tr>
             </thead>
             <tbody>
-              <tr class="table-active" *ngFor="let item of customerList ">
+              <tr class="table-active" *ngFor="let item of customerList;let ind=index " >
                
-                <td class="lg-2 col-md-2 col-sm-2">{{item.Name}}</td>
-                <td class="lg-2 col-md-2 col-sm-2">{{item.BalanceOutstand}}</td>
-                <td class="lg-3 col-md-3 col-sm-3" >{{item.Phone}}</td>
-                <td class="lg-3 col-md-3 col-sm-3" >{{item.Address}}</td>
-                <td class="lg-3 col-md-3 col-sm-3" >{{item.TradeName}}</td>
-                <td class="lg-2 col-md-2 col-sm-2"><a class="btn btn-success"  (click)="NavigationToEditCustomer(item.ID)">edit</a></td>
-                <td class="lg-3 col-md-3 col-sm-3"><a class="btn  btn-danger" (click)="deleteCustomer(item.ID)">delete</a></td>
+                <td class="lg-1 col-md-1 col-sm-1">{{item.name}}</td>
+                <td class="lg-1 col-md-1 col-sm-1">{{item.balanceOutstand}}</td>
+                <td class="lg-1 col-md-1 col-sm-1" >{{item.phone}}</td>
+                <td class="lg-2 col-md-2 col-sm-2" >{{item.address}}</td>
+                <td class="lg-1 col-md- col-sm-1" >{{item.tradeName}}</td>
+                <td class="lg-1 col-md-1 col-sm-1" >{{customerTypeName[ind]}}</td>
+                <td class="lg-2 col-md-2 col-sm-2"><a class="btn btn-success"  (click)="NavigationToEditCustomer(item.id)">edit</a></td>
+                <td class="lg-3 col-md-3 col-sm-3"><a class="btn  btn-danger" (click)="deleteCustomer(item.id)">delete</a></td>
                 <td></td>
               </tr>
               <tr>

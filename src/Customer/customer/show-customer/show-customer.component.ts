@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmDeleteService } from 'src/app/sharedServics/confirm-delete.service';
+import { CustomerType } from 'src/app/shared_classes_intefaces/customerType';
+import { CustomerTypeService } from '../customerService/customer-type.service';
 import { CustomerService } from '../customerService/customer.service';
 
 @Component({
@@ -9,14 +11,23 @@ import { CustomerService } from '../customerService/customer.service';
   styleUrls: ['./show-customer.component.scss']
 })
 export class ShowCustomerComponent implements OnInit {
-
-  constructor(private router:Router,private dialogService:ConfirmDeleteService,private customerService:CustomerService ) { }
-  customerList:any[]=
-  [
-    {Name:'shenouda',BalanceOutstand:"10%",Phone:"01289654123",Address:"Assiut",TradeName:"Romany"},
-    {Name:'Romany',BalanceOutstand:"10%",Phone:"01289654123",Address:"Assiut",TradeName:"Romany"},
-    {Name:'Atef',BalanceOutstand:"10%",Phone:"01289654123",Address:"Assiut",TradeName:"Romany"},];
+  customerType:CustomerType={} as CustomerType;
+  constructor(private router:Router,private customerTypeService:CustomerTypeService,private dialogService:ConfirmDeleteService,private customerService:CustomerService ) { }
+  customerList:any[]=[];
+  customerTypeName:any[]=[];
   ngOnInit(): void {
+    this.customerService.getAll().subscribe(data=>{
+      this.customerList=data;
+      for(let element of this.customerList){
+         this.customerTypeService.getByID(element.typeId).subscribe(res=>{
+         this.customerType=res;
+         this.customerTypeName.push(this.customerType.typeName);
+       })
+      }
+      console.log(this.customerList);
+    },error=>{
+      console.log(error);
+    })
   }
   navigateToAddCustomer(){
     this.router.navigate(['/home/customer/addCustomer']);
@@ -30,6 +41,9 @@ export class ShowCustomerComponent implements OnInit {
       if(res==true){
         this.customerService.removeD(id).subscribe(res=>{
           console.log('delete successfully');
+          this.customerService.getAll().subscribe(data=>{
+            this.customerList=data;
+          },error=>{console.log(error)});
         },error=>{
           console.log(error);
         });

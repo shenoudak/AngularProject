@@ -38,7 +38,13 @@
                 <label class="mb-2">TradeName</label>
                 <input type="text" formControlName="TradeName" class="mb-3 form-control ">
             </div>
-        </form>
+            <div class="form-group mb-3">
+                <select class="custom-select"  formControlName="TypeId" >
+                    <!-- <option selected value={{customerTypeObj.id}}>{{customerTypeObj.typeName}}</option> -->
+                    <option value={{item.id}} *ngFor="let item of customerTypesList">{{item.typeName}}</option>
+                </select>
+                </div>
+                </form>
         <div class="col-12 d-flex justify-content-center">
             <button class="btn btn-primary" [disabled]="registrationForm.pristine" (click)="EditData()">Save</button>
         </div>
