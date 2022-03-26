@@ -8,7 +8,7 @@ import { CustomerType } from 'src/app/shared_classes_intefaces/customerType';
 })
 export class CustomerTypeService {
 
-  _url:string="";
+  _url:string="https://localhost:44338/api/TraderTypes";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -20,7 +20,7 @@ export class CustomerTypeService {
     .pipe(catchError(this.errorHandler));
    }
    getByID(customerTypeId:number):Observable<CustomerType>{
-     return this.http.get<CustomerType>(this._url+customerTypeId)
+     return this.http.get<CustomerType>(this._url+'/'+customerTypeId)
      .pipe(catchError(this.errorHandler));
    }
    insert(customerType:CustomerType):Observable<any>{
@@ -28,7 +28,7 @@ export class CustomerTypeService {
      .pipe(catchError(this.errorHandler));
    }
    update(customerTypeId:number,customerType:CustomerType):Observable<any>{
-    return this.http.patch<CustomerType>(this._url+'/'+customerTypeId,JSON.stringify(customerType),this.httpOptions)
+    return this.http.put<CustomerType>(this._url+'/'+customerTypeId,JSON.stringify(customerType),this.httpOptions)
     .pipe(catchError(this.errorHandler));
   }
    

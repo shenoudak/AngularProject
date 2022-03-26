@@ -27,6 +27,7 @@ export class ShowStockComponent implements OnInit {
     console.log(id);
   }
   deleteStock(id:number){
+    console.log(id);
     this.confirmDeleteService.openConfirmDialog().afterClosed().subscribe(res=>{
       if(res==true){
         this.stockService.removeD(id).subscribe(data=>{

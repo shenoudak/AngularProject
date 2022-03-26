@@ -8,7 +8,7 @@ import { Tax } from 'src/app/shared_classes_intefaces/tax';
 })
 export class TaxService {
 
-  _url:string="";
+  _url:string="https://localhost:44338/api/taxes";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -20,7 +20,7 @@ export class TaxService {
     .pipe(catchError(this.errorHandler));
    }
    getByID(taxId:number):Observable<Tax>{
-     return this.http.get<Tax>(this._url+taxId)
+     return this.http.get<Tax>(this._url+'/'+taxId)
      .pipe(catchError(this.errorHandler));
    }
    insert(tax:Tax):Observable<any>{
@@ -28,7 +28,7 @@ export class TaxService {
      .pipe(catchError(this.errorHandler));
    }
    update(taxId:number,tax:Tax):Observable<any>{
-    return this.http.patch<Tax>(this._url+'/'+taxId,JSON.stringify(tax),this.httpOptions)
+    return this.http.put<Tax>(this._url+'/'+taxId,JSON.stringify(tax),this.httpOptions)
     .pipe(catchError(this.errorHandler));
   }
    
