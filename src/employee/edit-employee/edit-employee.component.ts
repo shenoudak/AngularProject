@@ -19,29 +19,8 @@ export class EditEmployeeComponent implements OnInit {
   stockList:Stock[]=[];
   jobList:IJob[]=[];
   hasAccessChecked:boolean=false;
- // stockObj:Stock={}as Stock;
-  //jobObj:IJob= {} as IJob;
   employee:Employee={}as Employee;
   employeeId:any;
-  // getEmployee(id:number){
-  //   this.employeeService.getByID(this.employeeId).subscribe(data=>{
-  //     this.employee=data;
-  //     console.log(this.employee);
-  //     this.hasAccessChecked=this.employee.haveAccess==1?true:false;
-  //     this.stockService.getAll().subscribe(data=>{
-  //       this.stockList=data;}
-  //       ,error=>{
-  //         console.log(error);
-  //       });
-  //       this.jobService.showJob().subscribe(data=>{
-  //         this.jobList=data;
-  //         }
-  //         ,error=>{
-  //           console.log(error);
-  //         });
-  //     },error=>{console.log(error);
-  //     });
-  // }
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(parms=>{
       this.employeeId=parms.get('id');

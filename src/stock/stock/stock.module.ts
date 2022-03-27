@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { StockRoutingModule } from './stock-routing.module';
 import { AddStockComponent } from '../../app/add-stock/add-stock.component';
@@ -29,5 +29,7 @@ import { EditTransferOperationComponent } from './edit-transfer-operation/edit-t
     FormsModule,
     ReactiveFormsModule,
   ]
+  ,
+  providers: [DatePipe],
 })
 export class StockModule { }

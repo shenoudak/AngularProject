@@ -1,1 +1,40 @@
-<p>show-transfer-operation works!</p>
+<div class="container-fluid pt-4">
+    <div class="d-flex justify-content-end">
+        <a routerLink="/home/stock/add" (click)="navigateToAddTranferOperation()" class="btn btn-primary">add Transfer
+            Operation</a>
+    </div>
+    <div class="row">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="lg-2 col-md-2 col-sm-2" scope="col">Date</th>
+                    <th class="lg-2 col-md-2 col-sm-2" scope="col">notes</th>
+                    <th class="lg-2 col-md-2 col-sm-2" scope="col">employee Name</th>
+                    <th class="lg-1 col-md-1 col-sm-1" scope="col">from stock </th>
+                    <th class="lg-1 col-md-1 col-sm-1" scope="col">to stock </th>
+                    <th class="lg-2 col-md-2 col-sm-2"></th>
+                    <th class="lg-2 col-md-2 col-sm-2"></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table-active" *ngFor="let item of transferOperationList;let ind=index ">
+
+                    <td class="lg-2 col-md-2 col-sm-2">{{item.date}}</td>
+                    <td class="lg-2 col-md-2 col-sm-2">{{item.notes}}</td>
+                    <td class="lg-2 col-md-2 col-sm-2">{{employeeNamesList[ind]}}</td>
+                    <td class="lg-1 col-md-1 col-sm-1">{{fromStockNamesList[ind]}}</td>
+                    <td class="lg-1 col-md-1 col-sm-1">{{toStockNamesList[ind]}}</td>
+                    <td class="lg-2 col-md-2 col-sm-2"><a class="btn btn-success"
+                            (click)="NavigationToEditTransferOperation(item.id)">edit</a></td>
+                    <td class="lg-2 col-md-2 col-sm-2"><a class="btn  btn-danger"
+                            (click)="deleteTransferOperation(item.id)">delete</a></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <!-- {{item.haveAccess}} -->
+            </tbody>
+        </table>
+    </div>
+</div>
+<router-outlet></router-outlet>

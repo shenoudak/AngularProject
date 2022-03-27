@@ -54,11 +54,11 @@ export class ShowEmployeeComponent implements OnInit {
   navigateToAddEmployee(){
     this.router.navigate(['/home/employee/addEmployee']);
   }
-  NavigationToEditCustomer(id:number){
+  NavigationToEditEmployee(id:number){
     this.router.navigate(['/home/employee/editEmployee',{id:id}]);
     console.log(id);
   }
-  deleteCustomer(id:number){
+  deleteEmployee(id:number){
     this.dialogService.openConfirmDialog().afterClosed().subscribe(res=>{
       if(res==true){
         this.employeeService.removeD(id).subscribe(res=>{
