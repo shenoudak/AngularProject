@@ -59,6 +59,8 @@ const routes: Routes =
   {path:'showPayment',component:ShowPaymentMethodComponent},
   {path:'addPayment',component:AddPaymentMethodComponent},
   {path:'editPayment/:{id}',component:EditPaymentMethodComponent},
+  {path:'home/employee',loadChildren:()=>import('../employee/employee.module')
+  .then(mod=>mod.EmployeeModule)},
 ];
 
 @NgModule({

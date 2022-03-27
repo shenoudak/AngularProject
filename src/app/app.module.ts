@@ -23,6 +23,7 @@ import { JobModule } from 'src/job/job.module';
 import { PaymentMethodModule } from 'src/payment-method/payment-method.module';
 import { StockProductModule } from 'src/stock-product/stock-product.module';
 import { SupplierModule } from 'src/supplier/supplier.module';
+import { EmployeeModule } from 'src/employee/employee.module';
 
 
 
@@ -55,7 +56,8 @@ import { SupplierModule } from 'src/supplier/supplier.module';
     JobModule,
     PaymentMethodModule,
     StockProductModule,
-    SupplierModule
+    SupplierModule,
+    EmployeeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

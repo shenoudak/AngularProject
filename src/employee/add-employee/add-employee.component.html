@@ -1,0 +1,86 @@
+<div class="container-fluid ">
+    {{registrationForm.value|json}}
+
+    <div class="row mx-auto">
+        <form [formGroup]='registrationForm'>
+            <div class="form-group mb-3">
+                <label class="mb-2">Name</label>
+                <input type="text" formControlName="Name" [class.is-invalid]="Name?.invalid&&Name?.touched"
+                    class="form-control ">
+                <div *ngIf="Name?.invalid&&Name?.touched">
+                    <small class="text-danger " *ngIf="Name?.errors?.['required']">Name is required</small>
+                    <small class="text-danger" *ngIf="Name?.errors?.['minlength']">Name length 5</small>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label class="mb-2">Address</label>
+                <input type="text" formControlName="Address" [class.is-invalid]="Address?.invalid&&Address?.touched"
+                    class="form-control ">
+                <div *ngIf="Address?.invalid&&Address?.touched">
+                    <small class="text-danger " *ngIf="Address?.errors?.['required']">Address is required</small>
+                    <small class="text-danger" *ngIf="Address?.errors?.['minlength']">Address length 5</small>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label class="mb-2">NationalId</label>
+                <input type="text" formControlName="NationalId" class=" form-control"
+                    [class.is-invalid]="NationalId?.invalid&&NationalId?.touched" />
+                <div *ngIf="NationalId?.invalid&&NationalId?.touched">
+                    <small class="text-danger " *ngIf="NationalId?.errors?.['required']">NationalId is required</small>
+                    <small class="text-danger" *ngIf="NationalId?.errors?.['pattern']">Accept only digit Number</small>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label class="mb-2">Phone</label>
+                <input type="text" formControlName="Phone" class=" form-control"
+                    [class.is-invalid]="Phone?.invalid&&Phone?.touched" />
+                <div *ngIf="Phone?.invalid&&Phone?.touched">
+                    <small class="text-danger " *ngIf="Phone?.errors?.['required']">Phone is required</small>
+                    <small class="text-danger" *ngIf="Phone?.errors?.['pattern']">Accept only digit Number</small>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label class="mb-2">Salary</label>
+                <input type="text" formControlName="Salary" class=" form-control"
+                    [class.is-invalid]="Salary?.invalid&&Salary?.touched" />
+                <div *ngIf="Salary?.invalid&&Salary?.touched">
+                    <small class="text-danger " *ngIf="Salary?.errors?.['required']">Salary is required</small>
+                    <small class="text-danger" *ngIf="Salary?.errors?.['pattern']">Accept only digit Number</small>
+                </div>
+            </div>
+            <div class="form-check form-check-inline">
+                <label class="form-check-label" for="inlineCheckbox1">HaveAccess</label>
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" formControlName="HaveAccess"
+                    value="option1">
+            </div>
+            <div class="form-group mb-3">
+                <label class="mb-2"> select Stock Name </label>
+                <select default="JobTitle" class="custom-select" #selectedValue formControlName="StockId"
+                    (change)="checkSelectedValue(selectedValue.value)"
+                    [class.is-invalid]="StockId?.invalid&&StockId?.touched ">
+                    <!-- <option value=0>Stock Name</option> -->
+
+                    <option value={{item.id}} *ngFor="let item of stockList">{{item.name}}</option>
+                </select>
+                <div *ngIf="StockId?.invalid&&StockId?.touched&&checkSelectedValue">
+                    <small class="text-danger " *ngIf="StockId?.errors?.['required']">StockName is required</small>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label class="mb-2" > select job Title </label>
+                <select default="JobTitle" class="custom-select" formControlName="JobId"
+                    [class.is-invalid]="JobId?.invalid&&JobId?.touched">
+                    <!-- <option value='0' selected>Job Title</option> -->
+
+                    <option value={{item.id}} *ngFor="let item of jobList">{{item.jobTitle}}</option>
+                </select>
+                <div *ngIf="JobId?.invalid&&JobId?.touched&&checkSelectedValue">
+                    <small class="text-danger " *ngIf="JobId?.errors?.['required']">Job Title is required</small>
+                </div>
+            </div>
+        </form>
+        <div class="col-12 d-flex justify-content-center">
+            <button class="btn btn-primary" [disabled]="registrationForm.pristine" (click)="SaveData()">Save</button>
+        </div>
+    </div>
+</div>
