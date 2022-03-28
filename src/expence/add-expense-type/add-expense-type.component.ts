@@ -32,7 +32,7 @@ export class AddExpenseTypeComponent implements OnInit {
 
      this.expenseTypeService.insert(this.expenseType).subscribe(data=>{
        console.log(data);
-       this.router.navigate(['/home/expense']);
+       this.router.navigate(['home/expense/showExpenseType']);
      },error=>{
        console.log(error);
        

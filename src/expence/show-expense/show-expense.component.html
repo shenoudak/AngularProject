@@ -1,0 +1,45 @@
+<div class="container-fluid pt-4">
+    <div class="d-flex justify-content-end">
+        <a routerLink="/home/stock/add" (click)="navigateToAddExpense()" class="btn btn-primary">add Expense
+            </a>
+    </div>
+    <div class="row">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th class="lg-1 col-md-2 col-sm-1" scope="col">Date</th>
+                    <th class="lg-1 col-md-2 col-sm-1" scope="col">notes</th>
+                    <th class="lg-1 col-md-2 col-sm-1" scope="col">Value</th>
+                    <th class="lg-1 col-md-1 col-sm-1" scope="col">Check Number </th>
+                    <th class="lg-1 col-md-1 col-sm-1" scope="col">Stock Name </th>
+                    <th class="lg-1 col-md-1 col-sm-1" scope="col">Employee Name </th>
+                    <th class="lg-1 col-md-1 col-sm-1" scope="col">Trader Type </th>
+                    <th class="lg-1 col-md-1 col-sm-1" scope="col">PaymentMethod Type </th>
+                    <th class="lg-2 col-md-2 col-sm-2"></th>
+                    <th class="lg-2 col-md-2 col-sm-2"></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="table-active" *ngFor="let item of expenseList;let ind=index ">
+
+                    <td class="lg-1 col-md-1 col-sm-1">{{item.date}}</td>
+                    <td class="lg-1 col-md-1 col-sm-1">{{item.notes}}</td>
+                    <td class="lg-1 col-md-1 col-sm-1">{{item.value}}</td>
+                    <td class="lg-1 col-md-1 col-sm-1">{{item.checkNumber}}</td>
+                    <td class="lg-1 col-md-1 col-sm-1">{{stockNamesList[ind]}}</td>
+                    <td class="lg-1 col-md-1 col-sm-1">{{employeeNamesList[ind]}}</td>
+                    <td class="lg-1 col-md-1 col-sm-1">{{customerTypeNamesList[ind]}}</td>
+                    <td class="lg-1 col-md-1 col-sm-1">{{paymentMethodList[ind]}}</td>
+                    <td class="lg-2 col-md-2 col-sm-2"><a class="btn btn-success"
+                            (click)="NavigationToEditExpense(item.id)">edit</a></td>
+                    <td class="lg-2 col-md-2 col-sm-2"><a class="btn  btn-danger"
+                            (click)="deleteExpense(item.id)">delete</a></td>
+                    <td></td>
+                </tr>
+                <tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<router-outlet></router-outlet>
