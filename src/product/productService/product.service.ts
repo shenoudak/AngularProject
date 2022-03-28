@@ -8,7 +8,7 @@ import { Product } from 'src/app/shared_classes_intefaces/peoduct';
 })
 export class ProductService {
 
-  _url:string="";
+  _url:string="https://localhost:44338/api/products";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -28,7 +28,7 @@ export class ProductService {
      .pipe(catchError(this.errorHandler));
    }
    update(productId:number,product:Product):Observable<any>{
-    return this.http.patch<Product>(this._url+'/'+productId,JSON.stringify(product),this.httpOptions)
+    return this.http.put<Product>(this._url+'/'+productId,JSON.stringify(product),this.httpOptions)
     .pipe(catchError(this.errorHandler));
   }
    

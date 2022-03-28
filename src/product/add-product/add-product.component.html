@@ -57,12 +57,11 @@
                 <input type="text" formControlName="Description" class="mb-3 form-control ">
             </div>
             <div class="form-group mb-3">
-                <select class="custom-select" formControlName="CatName" >
-                    <option>CatName</option>
-                    <option *ngFor="let item of categoryList">{{item}}</option>
+                <select class="custom-select selectOp" formControlName="CatId" >
+                    <option value={{item.id}} *ngFor="let item of categoryList">{{item.name}}</option>
                 </select>
-                <div *ngIf="CatName?.invalid&&CatName?.touched">
-                    <small class="text-danger " *ngIf="CatName?.errors?.['required']">CatName is required</small>
+                <div *ngIf="CatId?.invalid&&CatId?.touched">
+                    <small class="text-danger " *ngIf="CatId?.errors?.['required']">Category Name is required</small>
                 </div>
                 </div>
         </form>

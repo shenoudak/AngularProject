@@ -57,9 +57,9 @@ export class EditDiscountComponent implements OnInit {
   );
   customerDiscountObj: any;
   editData() {
-    this.customerDiscountObj = new CustomerDiscount(this.DiscountValue?.value,  this.Notes?.value,this.StartDate?.value, this.EndDate?.value);
-   // console.log(this.customerDiscountID);
-   // this.customerDiscountObj.id = this.customerDiscountID;
+    this.customerDiscountObj = new CustomerDiscount(this.DiscountValue?.value,this.Notes?.value,this.StartDate?.value, this.EndDate?.value);
+    console.log(this.customerDiscountID);
+    this.customerDiscountObj.id = this.customerDiscountID;
     this.customerDiscountService.update(this.customerDiscountID, this.customerDiscountObj).subscribe(res => {
       console.log(res);
       this.router.navigate(['/home/customer/showDiscount']);

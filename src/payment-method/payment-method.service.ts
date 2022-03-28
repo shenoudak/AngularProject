@@ -9,7 +9,7 @@ import { IPayment } from './IPayment';
 export class PaymentMethodService {
 
   constructor(private http:HttpClient) { }
-  private _url="";
+  private _url="https://localhost:44338/api/paymentMethods";
   //#region Add Payment Method
   addPaymentMethod(data: any): Observable<any> {
     return this.http.post(this._url, data)

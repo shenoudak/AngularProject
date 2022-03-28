@@ -19,16 +19,16 @@
             </thead>
             <tbody>
               <tr class="table-active" *ngFor="let item of productList ">
-                <td class="lg-2 col-md-2 col-sm-2">{{item.Name}}</td>
-                <td class="lg-2 col-md-2 col-sm-2" >{{item.Description}}</td>
-                <td class="lg-1 col-md-1 col-sm-1">{{item.MiniAmount}}</td>
-                <td class="lg-2 col-md-2 col-sm-2">{{item.Barcode}}</td>
-                <td class="lg-1 col-md-1 col-sm-1">{{item.SellingPrice}}</td>
-                <td class="lg-1 col-md-1 col-sm-1">{{item.PurchasingPrice}}</td>
-                <td class="lg-1 col-md-1 col-sm-1">{{item.ExpiryPeriod}}</td>
-                <td class="lg-2 col-md-2 col-sm-2">{{item.CategoryId}}</td>
-                <td class="lg-2 col-md-2 col-sm-2"><a class="btn btn-success"  (click)="NavigationToEditProduct(item.ID)">edit</a></td>
-                <td class="lg-3 col-md-3 col-sm-3"><a class="btn  btn-danger" (click)="deleteProduct(item.ID)">delete</a></td>
+                <td class="lg-2 col-md-2 col-sm-2">{{item.name}}</td>
+                <td class="lg-2 col-md-2 col-sm-2" >{{item.description}}</td>
+                <td class="lg-1 col-md-1 col-sm-1">{{item.miniAmount}}</td>
+                <td class="lg-2 col-md-2 col-sm-2">{{item.barcode}}</td>
+                <td class="lg-1 col-md-1 col-sm-1">{{item.sellingPrice}}</td>
+                <td class="lg-1 col-md-1 col-sm-1">{{item.purchasingPrice}}</td>
+                <td class="lg-1 col-md-1 col-sm-1">{{item.expiryPeriod}}</td>
+                <td class="lg-2 col-md-2 col-sm-2">{{item.categoryId}}</td>
+                <td class="lg-2 col-md-2 col-sm-2"><a class="btn btn-success"  (click)="NavigationToEditProduct(item.id)">edit</a></td>
+                <td class="lg-3 col-md-3 col-sm-3"><a class="btn  btn-danger" (click)="deleteProduct(item.id)">delete</a></td>
                 <td></td>
               </tr>
               <tr>

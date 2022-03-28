@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import {  Router } from '@angular/router';
 import { Product } from 'src/app/shared_classes_intefaces/peoduct';
+import { CategoryService } from 'src/category/category.service';
 import { ProductService } from '../productService/product.service';
 
 @Component({
@@ -10,15 +12,14 @@ import { ProductService } from '../productService/product.service';
 })
 export class AddProductComponent implements OnInit {
 
-  constructor(private fb:FormBuilder,private productService:ProductService) { }
-  productList:Product[]=[];//Category
-  categoryList=['Cat1','Cat2','Cat3'];
+  constructor(private fb:FormBuilder,private router:Router,private productService:ProductService,private categoryService:CategoryService) { }
+  categoryList:any[]=[];//Category
   ngOnInit(): void {
-  /*  this.categoryService.getAll().subscribe(data=>{
-      this.productList=data;
+   this.categoryService.showCategory().subscribe(data=>{
+      this.categoryList=data;
     },error=>{
       console.log(error);
-    })*/
+    })
   }
   get Name(){  
     return this.registrationForm.get('Name');
@@ -42,8 +43,8 @@ export class AddProductComponent implements OnInit {
    get ExpiryPeriod(){  
     return this.registrationForm.get('ExpiryPeriod');
    }
-   get CatName(){  
-    return this.registrationForm.get('CatName');
+   get CatId(){  
+    return this.registrationForm.get('CatId');
    }
    registrationForm=this.fb.group(
      {
@@ -55,15 +56,15 @@ export class AddProductComponent implements OnInit {
       PurchasingPrice:['',[Validators.required,Validators.pattern('^[0-9]+$')]],
       ExpiryPeriod:['',[Validators.required,Validators.pattern('^[0-9]+$')]],
       Barcode:['',],
-      CatName:['',Validators.required],
+      CatId:['',Validators.required],
      }
    );
-   product:any;
+   product:Product={}as Product;
     SaveData(){
-      this.product=new Product(1,this.Name?.value,this.Description?.value,this.Barcode?.value,this.MiniAmount?.value,this.ExpiryPeriod?.value,this.SellingPrice?.value,this.PurchasingPrice?.value,1);
-
+      this.product=new Product(this.Name?.value,this.Description?.value,this.Barcode?.value,this.MiniAmount?.value,this.SellingPrice?.value,this.PurchasingPrice?.value,this.ExpiryPeriod?.value,this.CatId?.value);
       this.productService.insert(this.product).subscribe(data=>{
         console.log(data);
+        this.router.navigate(['/home/product'])
       },error=>{
         console.log(error);
       });
