@@ -11,11 +11,13 @@ import { CustomerDiscountService } from '../customerService/customer-discount.se
 export class ShowDiscountComponent implements OnInit {
 
   constructor(private router:Router,private dialogService:ConfirmDeleteService,private customerDiscountService:CustomerDiscountService) { }
+  displayedColumns: string[] = ['discountValue','notes','startDate','endDate','actions'];
+  dataSource:any=[];
   customerDiscountkList:any[]=[]
   ngOnInit(): void {
     this.customerDiscountService.getAll().subscribe(data=>{
-      this.customerDiscountkList=data;
-      console.log(this.customerDiscountkList);
+      this.dataSource=data;
+      console.log(this.dataSource);
     })
   }
   navigateToAddDiscount()
@@ -32,7 +34,7 @@ export class ShowDiscountComponent implements OnInit {
         this.customerDiscountService.removeD(id).subscribe(res=>{
           console.log('delete successfully');
           this.customerDiscountService.getAll().subscribe(data=>{
-            this.customerDiscountkList=data;
+            this.dataSource=data;
           },error=>{
             console.log(error);
           })

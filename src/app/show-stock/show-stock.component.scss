@@ -1,0 +1,21 @@
+.demo-table {
+  width: 100%;
+}
+   .mat-row .mat-cell {
+   border-bottom: 1px solid transparent;
+   border-top: 1px solid transparent;
+   cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+   background-color:  #6c6d70 !important;
+   color: white;
+ }
+ .mat-header-cell{
+  background-color:  #2c3344 !important;
+  color: white;
+ }
+
+ .demo-row-is-clicked {
+   font-weight: bold;
+}

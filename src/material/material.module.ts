@@ -10,7 +10,11 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
-
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatInputModule} from '@angular/material/input';
 const materialComponents=
 [
   MatButtonToggleModule,
@@ -23,9 +27,13 @@ const materialComponents=
   MatIconModule,
   MatSelectModule,
   MatTableModule,
-  MatDialogModule
-
-
+  MatDialogModule,
+  MatFormFieldModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatRadioModule,
+  MatFormFieldModule,
+  MatInputModule
 ]
 
 @NgModule({

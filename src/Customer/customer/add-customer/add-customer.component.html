@@ -38,8 +38,8 @@
                 <label class="mb-2">TradeName</label>
                 <input type="text" formControlName="TradeName" class="mb-3 form-control ">
             </div>
-            <div class="form-group mb-3">
-                <select class="custom-select"  formControlName="TypeId" >
+            <div class="form-group mb-3 dropdown">
+                <select class="custom-select selectOp rounded btn-secondary"  formControlName="TypeId" >
                     <option value='0'>User Type</option>
                     <option value={{item.id}} *ngFor="let item of customerTypesList">{{item.typeName}}</option>
                 </select>

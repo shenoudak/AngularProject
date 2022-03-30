@@ -1,4 +1,4 @@
-<div class="container-fluid pt-4">
+<!-- <div class="container-fluid pt-4">
     <div class="d-flex justify-content-end">
             <a routerLink="/home/stock/add" (click)="navigateToAddDiscount()" class="btn btn-primary">add Discount</a>
     </div>
@@ -29,9 +29,46 @@
             </tbody>
           </table>
     </div>
-</div>
+</div> -->
 
-<router-outlet></router-outlet>
+<div class="container-fluid pt-4">
+  <div class="d-flex justify-content-end mb-4">
+    <button class="btn btn-success rounded" (click)="navigateToAddDiscount()"><mat-icon>add</mat-icon></button>
+  </div>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+    <ng-container matColumnDef="discountValue">
+      <th mat-header-cell *matHeaderCellDef>Discount Value</th>
+      <td mat-cell *matCellDef=" let element">{{element.discountValue}}</td>
+    </ng-container>
+    <ng-container matColumnDef="notes">
+      <th mat-header-cell *matHeaderCellDef>notes</th>
+      <td mat-cell *matCellDef="let element">{{element.notes}}</td>
+    </ng-container>
+    <ng-container matColumnDef="startDate">
+      <th mat-header-cell *matHeaderCellDef>Star tDate</th>
+      <td mat-cell *matCellDef="let element">{{element.startDate|date:'shortDate'}}</td>
+    </ng-container>
+    <ng-container matColumnDef="endDate">
+      <th mat-header-cell *matHeaderCellDef>End Date</th>
+      <td mat-cell *matCellDef="let element">{{element.endDate|date:'shortDate'}}</td>
+    </ng-container>
+    <ng-container  matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions </th>
+      <td mat-cell  *matCellDef="let element">
+        <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary"
+        (click)="NavigationToEditDiscount(element.id)">
+        <mat-icon aria-label="Edit" >edit</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn"
+        (click)="deleteDiscount(element.id)">
+        <mat-icon aria-label="Delete">delete</mat-icon>
+      </button>
+    </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
 
 
 

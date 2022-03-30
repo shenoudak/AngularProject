@@ -13,6 +13,7 @@ import { ShowCustomerTypeComponent } from './show-customer-type/show-customer-ty
 import { AddCustomerTypeComponent } from './add-customer-type/add-customer-type.component';
 import { EditCustomerTypeComponent } from './edit-customer-type/edit-customer-type.component';
 import { DatePipe } from '@angular/common';
+import { MaterialModule } from 'src/material/material.module';
 
 
 @NgModule({
@@ -32,7 +33,7 @@ import { DatePipe } from '@angular/common';
     CustomerRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-
+    MaterialModule
   ]
   ,
   providers: [DatePipe],

@@ -6,6 +6,7 @@ import { ShowTaxComponent } from './show-tax/show-tax.component';
 import { AddTaxComponent } from './add-tax/add-tax.component';
 import { EditTaxComponent } from './edit-tax/edit-tax.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from 'src/material/material.module';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TaxesRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    MaterialModule
   ]
 })
 export class TaxesModule { }

@@ -12,13 +12,15 @@ import { CustomerService } from '../customerService/customer.service';
 })
 export class ShowCustomerComponent implements OnInit {
   customerType:CustomerType={} as CustomerType;
+  displayedColumns: string[] = ['name', 'balanceOutstand','phone','address','tradeName','customerType',"actions"];
+  dataSource:any=[];
   constructor(private router:Router,private customerTypeService:CustomerTypeService,private dialogService:ConfirmDeleteService,private customerService:CustomerService ) { }
   customerList:any[]=[];
   customerTypeName:any[]=[];
   ngOnInit(): void {
     this.customerService.getAll().subscribe(data=>{
-      this.customerList=data;
-      for(let element of this.customerList){
+      this.dataSource=data;
+      for(let element of this.dataSource){
          this.customerTypeService.getByID(element.typeId).subscribe(res=>{
          this.customerType=res;
          this.customerTypeName.push(this.customerType.typeName);
@@ -42,7 +44,7 @@ export class ShowCustomerComponent implements OnInit {
         this.customerService.removeD(id).subscribe(res=>{
           console.log('delete successfully');
           this.customerService.getAll().subscribe(data=>{
-            this.customerList=data;
+            this.dataSource=data;
           },error=>{console.log(error)});
         },error=>{
           console.log(error);

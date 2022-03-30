@@ -1,0 +1,195 @@
+<app-header-purchase-bill></app-header-purchase-bill>
+
+ 
+{{selectedvalue}}
+
+  
+<!-- 
+<form>
+    <h4>mat-select</h4>
+    <mat-form-field appearance="fill">
+      <mat-label>Favorite food</mat-label>
+      <mat-select [(ngModel)]="selectedValue" name="food">
+        <mat-option *ngFor="let food of foods" [value]="food.value">
+          {{food.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <p> Selected food: {{selectedValue}} </p>
+    <h4>native html select</h4>
+    <mat-form-field appearance="fill">
+      <mat-label>Favorite car</mat-label>
+      <select matNativeControl [(ngModel)]="selectedCar" name="car">
+        <option value="" selected></option>
+        <option *ngFor="let car of cars" [value]="car.value">
+          {{car.viewValue}}
+        </option>
+      </select>
+    </mat-form-field>
+    <p> Selected car: {{selectedCar}} </p>
+  </form> -->
+  <div class="container-fluid bg-gray ">
+    <form>
+
+        <div class="row p-4 ">
+            <!-- <button class="col-2" mat-mini-fab disabled color="warn">1</button> -->
+            <span class="col-lg-3 col-md-3 col-ms-3  ">
+                <mat-form-field >
+                <mat-label class="ml-3">Select Supplier</mat-label>
+            <mat-select disableRipple>
+              <mat-option value="1">Option 1</mat-option>
+              <mat-option value="2">Option 2</mat-option>
+              <mat-option value="3">Option 3</mat-option>
+            </mat-select>
+          </mat-form-field>
+         </span>
+         <span class="col-lg-3 col-md-3 col-ms-3  ">
+            <mat-form-field>
+                <mat-label class="ml-3"> Select Stock</mat-label>
+                <mat-select [(value)]="selectedvalue" disableRipple>
+                    <mat-option value="1">Option 1</mat-option>
+                    <mat-option value="2">Option 2</mat-option>
+                    <mat-option value="3">Option 3</mat-option>
+                  </mat-select>
+              </mat-form-field>
+         </span>
+         <span class="col-lg-3 col-md-3 col-ms-3 p-3 " >
+            <mat-radio-group  name="flavors"> 
+                <mat-radio-button class="mx-4" value="vanilla">Cash</mat-radio-button>
+                <mat-radio-button  class="mx-4" value="strawberry">No</mat-radio-button>
+              </mat-radio-group>   
+         </span>
+         <span class="col-lg-3 col-md-3 col-ms-3 " >
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Choose a date</mat-label>
+                <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" disabled>
+                <mat-datepicker-toggle matSuffix [for]="picker" ></mat-datepicker-toggle>
+                <mat-datepicker #picker disabled="false"></mat-datepicker>
+              </mat-form-field>
+         </span>
+         
+         
+        </div>
+     <ng-template>
+        <div >
+            <div class="row p-4   mx-4">
+            <!-- <button class="col-2" mat-mini-fab disabled color="warn">1</button> -->
+            <span class="col-lg-4 col-md-4 col-ms-4  ">
+                <mat-form-field class="example-form-field" >
+                    <mat-label>barCode</mat-label>
+                    <input matInput type="text" [(ngModel)]="value" name="us">
+                    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  </mat-form-field>
+         </span>
+        
+         <span class="col-lg-4 col-md-4 col-ms-4  " >
+            <mat-form-field>
+                <mat-label class="ml-3"> Select product</mat-label>
+                <mat-select [(value)]="selectedvalue" disableRipple>
+                    <mat-option value="1">Option 1</mat-option>
+                    <mat-option value="2">Option 2</mat-option>
+                    <mat-option value="3">Option 3</mat-option>
+                  </mat-select>
+              </mat-form-field>
+         </span>
+         <span class="col-lg-4 col-md- col-ms-4  ">
+            <span class="col-lg-3 col-md-3 col-ms-3  ">
+                <mat-form-field class="example-form-field" >
+                    <mat-label>Quantity</mat-label>
+                    <input matInput type="number" [(ngModel)]="quantity" min="1" name="Quantity">
+                    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  </mat-form-field>
+         </span>
+         </span>
+         <!-- <span class="col-lg-3 col-md-3 col-ms-3 " >
+           
+         </span> -->
+         
+         
+        </div >
+        <div class="row p-4   mx-4">
+            <!-- <button class="col-2" mat-mini-fab disabled color="warn">1</button> -->
+            <span class="col-lg-4 col-md-4 col-ms-4  ">
+                <mat-form-field class="example-form-field" >
+                    <mat-label>Price</mat-label>
+                    <input matInput type="number" [(ngModel)]="value" name="Price">
+                    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="Price=''">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  </mat-form-field>
+         </span>
+        
+         <span class="col-lg-4 col-md-4 col-ms-4  ">
+            <mat-form-field class="example-form-field" >
+                <mat-label>Discount</mat-label>
+                <input matInput type="number" [(ngModel)]="value" name="Discount">
+                <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="discount=''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+     </span>
+         <span class="col-lg-4 col-md- col-ms-4  ">
+           
+                
+                    <mat-label>Total : </mat-label>
+                    <button class="btn btn-danger" disabled  > 1110</button>
+                   
+         
+         </span>
+         <!-- <span class="col-lg-3 col-md-3 col-ms-3 " >
+           
+         </span> -->
+         
+         
+        </div>
+     </div>
+     </ng-template>
+    
+  </form>
+  </div>
+  <div class="demo-button-container">
+    <button mat-raised-button (click)="addData()" class="demo-button">
+      Add data
+    </button>
+    <button
+        mat-raised-button
+        [disabled]="!dataToDisplay.length"
+        (click)="removeData()"
+        class="demo-button">
+      Remove data
+    </button>
+  </div>
+  
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef>No.</th>
+      <td mat-cell *matCellDef="let element">{{element.position}}</td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">{{element.name}}</td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef>Weight</th>
+      <td mat-cell *matCellDef="let element">{{element.weight}}</td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef>Symbol</th>
+      <td mat-cell *matCellDef="let element">{{element.symbol}}</td>
+    </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  

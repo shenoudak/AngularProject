@@ -1,4 +1,4 @@
-<div class="container-fluid pt-4">
+<!-- <div class="container-fluid pt-4">
     <div class="d-flex justify-content-end">
             <a routerLink="/home/stock/add" (click)="navigateToAddCustomer()" class="btn btn-primary">add Customer Type</a>
     </div>
@@ -24,9 +24,38 @@
             </tbody>
           </table>
     </div>
-</div>
-<router-outlet></router-outlet>
+</div> -->
 
+<div class="container-fluid pt-4">
+  <div class="d-flex justify-content-end mb-4">
+    <button class="btn btn-success rounded" (click)="navigateToAddCustomerType()"><mat-icon>add</mat-icon></button>
+  </div>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+    <ng-container matColumnDef="typeName">
+      <th mat-header-cell *matHeaderCellDef>Type Name</th>
+      <td mat-cell *matCellDef=" let element">{{element.typeName}}</td>
+    </ng-container>
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>description</th>
+      <td mat-cell *matCellDef="let element">{{element.description}}</td>
+    </ng-container>
+    <ng-container  matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions </th>
+      <td mat-cell  *matCellDef="let element">
+        <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary"
+        (click)="NavigationToEditCustomerType(element.id)">
+        <mat-icon aria-label="Edit" >edit</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn"
+        (click)="deleteCustomerType(element.id)">
+        <mat-icon aria-label="Delete">delete</mat-icon>
+      </button>
+    </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
 
 
 

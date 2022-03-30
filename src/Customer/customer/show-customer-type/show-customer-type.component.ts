@@ -12,18 +12,20 @@ import { CustomerTypeService } from '../customerService/customer-type.service';
 export class ShowCustomerTypeComponent implements OnInit {
 
   constructor(private router:Router,private dialogService:ConfirmDeleteService,private customerTypeService:CustomerTypeService ) { }
+  displayedColumns: string[] = ['typeName','description','actions'];
+  dataSource:any=[];
   customerTypeList:CustomerType[]=[];
   ngOnInit(): void 
   {
     this.customerTypeService.getAll().subscribe(data=>{
-      this.customerTypeList=data;
-      console.log(this.customerTypeList);
+      this.dataSource=data;
+      console.log(this.dataSource);
     },error=>{
       console.log(error);
     })
   }
  
-  navigateToAddCustomer(){
+  navigateToAddCustomerType(){
     this.router.navigate(['/home/customer/addCustomerType']);
   }
   NavigationToEditCustomerType(id:any){
@@ -36,7 +38,7 @@ export class ShowCustomerTypeComponent implements OnInit {
       if(res==true){
         this.customerTypeService.removeD(id).subscribe(res=>{
           this.customerTypeService.getAll().subscribe(data=>{
-            this.customerTypeList=data;
+            this.dataSource=data;
           })
           console.log('delete successfully');
         },error=>{

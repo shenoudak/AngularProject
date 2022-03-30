@@ -11,10 +11,12 @@ import { TaxService } from '../taxService/tax.service';
 export class ShowTaxComponent implements OnInit {
 
   constructor(private router:Router,private dialogService:ConfirmDeleteService,private taxService:TaxService ) { }
+  displayedColumns: string[] = ['name','percentage','description','actions'];
+  dataSource:any=[];
   taxList:any[]=[];
   ngOnInit(): void {
     this.taxService.getAll().subscribe((data)=>{
-      this.taxList=data;
+      this.dataSource=data;
       console.log(data);
     },error=>{
       console.log(error);
@@ -33,7 +35,7 @@ export class ShowTaxComponent implements OnInit {
         this.taxService.removeD(id).subscribe(res=>{
           console.log('delete successfully');
           this.taxService.getAll().subscribe((data)=>{
-            this.taxList=data;
+            this.dataSource=data;
             console.log(data);
           },error=>{
             console.log(error);

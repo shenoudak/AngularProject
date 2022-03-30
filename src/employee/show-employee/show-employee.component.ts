@@ -14,7 +14,8 @@ import { EmployeeService } from '../services/employee.service';
   styleUrls: ['./show-employee.component.scss']
 })
 export class ShowEmployeeComponent implements OnInit {
-
+  displayedColumns: string[] = ['name','address','nationalId','phone','salary','have_Access','stockName','JobTitle',"actions"];
+  dataSource:any=[];
   constructor(private router:Router,private dialogService:ConfirmDeleteService,private employeeService:EmployeeService,private jobService:JobService,private stockService:StockService ) { }
   employeeList:Employee[]=[];
   stock:Stock={} as Stock;
@@ -25,9 +26,9 @@ export class ShowEmployeeComponent implements OnInit {
   isCheckedPro:boolean=false;
   ngOnInit(): void {
     this.employeeService.getAll().subscribe(data=>{
-      this.employeeList=data;
+      this.dataSource=data;
       console.log(data);
-      for(let element of this.employeeList){
+      for(let element of this.dataSource){
         if(element.haveAccess===1)
         this.isCheckedList.push(true);
          this.stockService.getByID(element.stockId).subscribe(res=>{
@@ -64,7 +65,7 @@ export class ShowEmployeeComponent implements OnInit {
         this.employeeService.removeD(id).subscribe(res=>{
           console.log('delete successfully');
           this.employeeService.getAll().subscribe(data=>{
-            this.employeeList=data;
+            this.dataSource=data;
           },error=>{console.log(error)});
         },error=>{
           console.log(error);

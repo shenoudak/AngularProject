@@ -14,7 +14,8 @@ import { StockService } from '../stock.service';
   styleUrls: ['./show-transfer-operation.component.scss']
 })
 export class ShowTransferOperationComponent implements OnInit {
-
+  displayedColumns: string[] = ['date','notes','employeeName','fromStock','toStock','actions'];
+  dataSource:any=[];
   constructor(private router:Router,private dialogService:ConfirmDeleteService,private transferOperationService:TransferOperationService,private employeeService:EmployeeService,private stockService:StockService ) { }
   transferOperationList:TransferOperation[]=[];
   fromStock:Stock={} as Stock;
@@ -25,9 +26,9 @@ export class ShowTransferOperationComponent implements OnInit {
   toStockNamesList:any[]=[];
   ngOnInit(): void {
     this.transferOperationService.getAll().subscribe(data=>{
-      this.transferOperationList=data;
+      this.dataSource=data;
       console.log(data);
-      for(let element of this.transferOperationList){
+      for(let element of this.dataSource){
          this.stockService.getByID(element.fromStockId).subscribe(res=>{
          this.fromStock=res;
          this.fromStockNamesList.push(this.fromStock.name);
@@ -67,7 +68,7 @@ export class ShowTransferOperationComponent implements OnInit {
         this.transferOperationService.removeD(id).subscribe(res=>{
           console.log('delete successfully');
           this.transferOperationService.getAll().subscribe(data=>{
-            this.transferOperationList=data;
+            this.dataSource=data;
           },error=>{console.log(error)});
         },error=>{
           console.log(error);

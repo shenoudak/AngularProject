@@ -1,4 +1,4 @@
-<div class="container-fluid pt-4">
+<!-- <div class="container-fluid pt-4">
     <div class="d-flex justify-content-end">
         <a routerLink="/home/stock/add" (click)="navigateToAddTranferOperation()" class="btn btn-primary">add Transfer
             Operation</a>
@@ -32,9 +32,49 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <!-- {{item.haveAccess}} -->
-            </tbody>
+                    < {{item.haveAccess}}  </tbody>
         </table>
     </div>
-</div>
-<router-outlet></router-outlet>
+</div> -->
+<div class="container-fluid pt-4">
+    <div class="d-flex justify-content-end mb-4">
+      <button class="btn btn-success rounded" (click)="navigateToAddTranferOperation()"><mat-icon>add</mat-icon></button>
+    </div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+      <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>date</th>
+        <td mat-cell *matCellDef=" let element">{{element.date|date:'shortDate'}}</td>
+      </ng-container>
+      <ng-container matColumnDef="notes">
+        <th mat-header-cell *matHeaderCellDef>notes</th>
+        <td mat-cell *matCellDef="let element">{{element.notes}}</td>
+      </ng-container>
+      <ng-container matColumnDef="employeeName">
+        <th mat-header-cell *matHeaderCellDef>Emp Name</th>
+        <td mat-cell *matCellDef="let element; let i = index">{{employeeNamesList[i]}}</td>
+      </ng-container>
+      <ng-container matColumnDef="fromStock">
+        <th mat-header-cell *matHeaderCellDef>From Stock</th>
+        <td mat-cell *matCellDef="let element; let i = index">{{fromStockNamesList[i]}}</td>
+      </ng-container>
+      <ng-container matColumnDef="toStock">
+        <th mat-header-cell *matHeaderCellDef>To Stock</th>
+        <td mat-cell *matCellDef="let element; let i = index">{{toStockNamesList[i]}}</td>
+      </ng-container>
+      <ng-container  matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions </th>
+        <td mat-cell  *matCellDef="let element">
+          <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary"
+          (click)="NavigationToEditTransferOperation(element.id)">
+          <mat-icon aria-label="Edit" >edit</mat-icon>
+        </button>
+        <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn"
+          (click)="deleteTransferOperation(element.id)">
+          <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+      </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>

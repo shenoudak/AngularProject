@@ -41,6 +41,8 @@ const routes: Routes =
   .then(mod=>mod.ProductModule)},
   {path:'home/expense',loadChildren:()=>import('../expence/expence.module')
   .then(mod=>mod.ExpenceModule)},
+  {path:'home/purchase',loadChildren:()=>import('../purchase/purchase.module')
+  .then(mod=>mod.PurchaseModule)},
   {path:'showStockProduct',component:ShowStockProductComponent},
   {path:'AddStockProduct',component:AddStockComponent},
   {path:'EditStockProduct/:{id}',component:EditStockProductComponent},
