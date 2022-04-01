@@ -8,7 +8,7 @@ import { PurchaseBill } from 'src/app/shared_classes_intefaces/purchaseBill';
 })
 export class PurchaseBillService {
 
-  _url:string="";
+  _url:string="https://localhost:44338/api/purchaseBills";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
@@ -24,6 +24,7 @@ export class PurchaseBillService {
      .pipe(catchError(this.errorHandler));
    }
    insert(purchaseBill:PurchaseBill):Observable<any>{
+     console.log(JSON.stringify(purchaseBill));
      return this.http.post<PurchaseBill>(this._url,JSON.stringify(purchaseBill),this.httpOptions)
      .pipe(catchError(this.errorHandler));
    }

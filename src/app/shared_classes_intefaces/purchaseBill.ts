@@ -13,9 +13,35 @@ export class PurchaseBill{
     stockId:number;
     taxId:number;
     payMethodId:number;
-    suplierId:number;
-    purchaseproducts:PurchaseProduct[];
-    constructor(billCode:string,date:string,billType:string, discount:number,paidup:number,checkNumber:string, billTotal:number,remaining:number,stockId:number,taxId:number,payMethodId:number,suplierId:number,purchaseproducts:PurchaseProduct)
+    supplierId:number;
+    purchaseproducts:PurchaseProduct[]=[];
+     /*
+     {
+    "billCode": "80000",
+    "date": "2020-10-20T00:00:00",
+    "billType": "cash",
+    "discount": 10,
+    "paidup": 20,
+    "checkNumber": "2030",
+    "billTotal": 2500,
+    "remaining": 200,
+    "stockId": 3,
+    "taxId": 1,
+    "payMethodId": 2,
+    "supplierId": 1,
+    "purchaseProducts": [
+        {
+            "id":0,
+            "amount":20,
+            "discount":10,
+            "totalPrice":1000,
+            "productId":1
+
+
+        }
+    ]
+      */
+    constructor(billCode:string,date:string,billType:string, discount:number,paidup:number,checkNumber:string, billTotal:number,remaining:number,stockId:number,taxId:number,payMethodId:number,supplierId:number)
     {
         this.billCode=billCode;
         this.date=date;
@@ -28,7 +54,7 @@ export class PurchaseBill{
         this.stockId=stockId;
         this.taxId=taxId;
         this.payMethodId=payMethodId;
-        this.suplierId=suplierId;
-        this.purchaseproducts=[];
+        this.supplierId=supplierId;
+       // this.purchaseproducts=purchaseproducts;
     }
 }

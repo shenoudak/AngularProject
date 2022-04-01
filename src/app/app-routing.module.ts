@@ -33,6 +33,8 @@ const routes: Routes =
   {path:'sidenav',component:SidenavComponent},
   {path:'home/stock',loadChildren:()=>import('../stock/stock/stock.module')
   .then(mod=>mod.StockModule)},
+  {path:'home/purchase',loadChildren:()=>import('../purchase/purchase.module')
+  .then(mod=>mod.PurchaseModule)},
   {path:'home/customer',loadChildren:()=>import('../Customer/customer/customer.module')
   .then(mod=>mod.CustomerModule)},
   {path:'home/tax',loadChildren:()=>import('../taxes/taxes.module')
@@ -41,8 +43,10 @@ const routes: Routes =
   .then(mod=>mod.ProductModule)},
   {path:'home/expense',loadChildren:()=>import('../expence/expence.module')
   .then(mod=>mod.ExpenceModule)},
-  {path:'home/purchase',loadChildren:()=>import('../purchase/purchase.module')
-  .then(mod=>mod.PurchaseModule)},
+  {path:'home/sales',loadChildren:()=>import('../sales/sales.module')
+  .then(mod=>mod.SalesModule)},
+  
+  
   {path:'showStockProduct',component:ShowStockProductComponent},
   {path:'AddStockProduct',component:AddStockComponent},
   {path:'EditStockProduct/:{id}',component:EditStockProductComponent},

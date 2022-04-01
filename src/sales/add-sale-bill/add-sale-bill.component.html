@@ -1,0 +1,325 @@
+<!-- {{registerBill.value|json}} -->
+<app-header-sales-bill [parentData]="header"></app-header-sales-bill>
+<form [formGroup]='registerBill'>
+    <div class="container" ng-app="invoice">
+        <section class="row" ng-controller="InvoiceController">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Customers</th>
+                        <th class="text-center">Stocks</th>
+                        <th class="text-center">Bill Type</th>
+                        <th class="text-center">Date</th>
+                        <th class="text-center">BillCode</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr ng-repeat="item in invoice.items">
+                        <td><select class="form-select" aria-label="Default select example" formControlName="ClientId"
+                                [class.is-invalid]="ClientId?.invalid&&ClientId?.touched">
+                                <!-- <option selected>Products</option> -->
+                                <option value={{item.id}} *ngFor="let item of customerList">{{item.name}}</option>
+                            </select>
+                            <div *ngIf="ClientId?.invalid&&ClientId?.touched">
+                                <small class="text-danger " *ngIf="ClientId?.errors?.['required']">Client Name is
+                                    required</small>
+                            </div>
+                        </td>
+                        <td><select class="form-select" aria-label="Default select example" formControlName="StockId"
+                                [class.is-invalid]="StockId?.invalid&&StockId?.touched">
+                                <!-- <option selected>Products</option> -->
+                                <option value={{item.id}} *ngFor="let item of stockList">{{item.name}}</option>
+                            </select>
+                            <div *ngIf="StockId?.invalid&&StockId?.touched">
+                                <small class="text-danger " *ngIf="StockId?.errors?.['required']">Stock Name is
+                                    required</small>
+                            </div>
+                        </td>
+                        <td>
+                            <mat-radio-group formControlName="BillType"
+                                [class.is-invalid]="BillType?.invalid&&BillType?.touched">
+                                <mat-radio-button class="mx-4" value="Cash">Cash</mat-radio-button>
+                                <mat-radio-button class="mx-4" value="Debit">Debit</mat-radio-button>
+                            </mat-radio-group>
+                            <div *ngIf="BillType?.invalid&&BillType?.touched">
+                                <small class="text-danger " *ngIf="BillType?.errors?.['required']">BillType is
+                                    required</small>
+                            </div>
+                        </td>
+                        <td>
+                            <mat-form-field class="example-full-width" appearance="fill">
+                                <mat-label>Choose a date</mat-label>
+                                <input matInput [max]="maxDate" [matDatepicker]="picker" formControlName="Date"
+                                    [class.is-invalid]="Date?.invalid&&Date?.touched">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker disabled="true"></mat-datepicker>
+                            </mat-form-field>
+                            <div *ngIf="Date?.invalid&&Date?.touched">
+                                <small class="text-danger " *ngIf="Date?.errors?.['required']">Date is required</small>
+                            </div>
+                        </td>
+                        <td>
+                            <!-- <input type="number" formControlName="BillCode" min="0" max="100"
+                                [class.is-invalid]="BillCode?.invalid&&BillCode?.touched" name="BillCode"
+                                class="form-control" />
+                            <div *ngIf="BillCode?.invalid&&BillCode?.touched">
+                                <small class="text-danger " *ngIf="BillCode?.errors?.['required']"> Bill Code is
+                                    required</small>
+                            </div> -->
+                            <button mat-stroked-button formControlName="BillCode" >{{randomNumber}}</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+
+                            <button mat-mini-fab disableRipple (click)="showPurchaseProductForm()">+</button>
+
+                        </td>
+                    </tr>
+
+
+
+                </tbody>
+            </table>
+        </section>
+    </div>
+    <div class="p-4 mb-4">
+        <div *ngIf="tooglePurchaseProductForm;then thenBlock;else elseBlock"></div>
+    </div>
+    <div class="container" ng-app="invoice">
+        <section class="row" ng-controller="InvoiceController">
+            <table class="table table-hover">
+                <thead>
+                    <tr class="text-center">
+                        <th>Bill Discount</th>
+                        <th>Taxes</th>
+                        <th>Tax Price</th>
+                        <th>Bill Total</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr ng-repeat="item in invoice.items">
+                        <td><input type="number" formControlName="BillDiscount" min="0" max="100"  (blur)="CalculateTotalBill()"
+                                [class.is-invalid]="BillDiscount?.invalid&&BillDiscount?.touched" 
+                                class="form-control" />
+                            <div *ngIf="BillDiscount?.invalid&&BillDiscount?.touched">
+                                <small class="text-danger " *ngIf="BillDiscount?.errors?.['required']"> Bill Discount is
+                                    required</small>
+                            </div>
+                        </td>
+                        <td>
+                            <select class="form-select" aria-label="Default select example" formControlName="TaxId"
+                                [class.is-invalid]="TaxId?.invalid&&TaxId?.touched"  (change)="taxChanged()" >
+                                <!-- <option selected>Products</option> -->
+                                <option value={{item.id}}  *ngFor="let item of taxList">{{item.name}}</option>
+                            </select>
+                            <div *ngIf="TaxId?.invalid&&TaxId?.touched">
+                                <small class="text-danger " *ngIf="TaxId?.errors?.['required']">Tax Name is
+                                    required</small>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="button" disabled value={{taxValue}} class="form-control" />
+                            <!-- <button mat-stroked-button disabled>{{taxValue}}</button> -->
+                            <!-- <input type="button" formControlName="TaxPrice" class="form-control" /> -->
+
+                        </td>
+                        <td>
+                            <input type="button" formControlName="BillTotal"   class="form-control"  />
+                        </td>
+                        <!-- <td><input type="number" formControlName="BillTotal" min="0" max="100"
+                                [class.is-invalid]="BillTotal?.invalid&&BillTotal?.touched" name="BillTotal"
+                                class="form-control" />
+                            <div *ngIf="BillTotal?.invalid&&BillTotal?.touched">
+                                <small class="text-danger " *ngIf="BillTotal?.errors?.['required']"> Bill Total is
+                                    required</small>
+                            </div>
+                        </td> -->
+                    </tr>
+                    <tr>
+                        <td>
+                            <p></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p></p>
+                        </td>
+                    </tr>
+                </tbody>
+
+                <thead class="p-4">
+                    <tr class="text-center">
+                        <th class="text-center">Payment Method</th>
+                        <th>Check Number</th>
+                        <th>Paid Up</th>
+                        <th>Remaining</th>
+                    </tr>
+                </thead>
+
+                <tbody class="mb-4">
+
+                    <tr ng-repeat="item in invoice.items">
+                        <td><select class="form-select" aria-label="Default select example"
+                                formControlName="PaymentMethodId"
+                                [class.is-invalid]="PaymentMethodId?.invalid&&PaymentMethodId?.touched">
+                                <!-- <option selected>Products</option> -->
+                                <option value={{item.id}} *ngFor="let item of paymentMList">{{item.name}}</option>
+                            </select>
+                            <div *ngIf="PaymentMethodId?.invalid&&PaymentMethodId?.touched">
+                                <small class="text-danger " *ngIf="PaymentMethodId?.errors?.['required']">Payment Method
+                                    is
+                                    required</small>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="number" formControlName="CheckNumber" min="0"  [maxlength]="9" [class.is-invalid]="CheckNumber?.invalid&&CheckNumber?.touched" class="form-control" />
+                            <div *ngIf="CheckNumber?.invalid&&CheckNumber?.touched">
+                                <small class="text-danger " *ngIf="CheckNumber?.errors?.['required']"> Check Number is
+                                    required</small>
+                            </div>
+                        </td>
+                        <td><input type="number" formControlName="PaidUp" (change)="isMaxTotalBill()" min="0"
+                                [class.is-invalid]="PaidUp?.invalid&&PaidUp?.touched&&isMaxTotalBill()" class="form-control" />
+                            <div *ngIf="PaidUp?.invalid&&PaidUp?.touched||isMaxTotalBill()">
+                                <small class="text-danger " *ngIf="PaidUp?.errors?.['required']"> Paid Up is
+                                    required</small>
+                                    <small class="text-danger " *ngIf="isMaxTotalBill()"> Paid Up is Larger than
+                                        Total Bill</small>
+                            </div>
+                        </td>
+                        <td>
+                            <input type="button" disabled value={{remainingPart}} class="form-control"  />
+                            <!-- <input type="number" formControlName="Remaining" min="0" max="100"
+                                [class.is-invalid]="Remaining?.invalid&&Remaining?.touched" class="form-control" />
+                            <div *ngIf="Remaining?.invalid&&Remaining?.touched">
+                                <small class="text-danger " *ngIf="Remaining?.errors?.['required']"> Remaining Number is
+                                    required</small>
+                            </div> -->
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </section>
+    </div>
+  
+
+</form>
+<div class="text-center">
+    <button class="btn btn-success " (click)="addSaleBill()" [disabled]="Date?.invalid ||BillType?.invalid|| 
+    PaidUp?.invalid  || CheckNumber?.invalid|| StockId?.invalid||ClientId?.invalid||PaymentMethodId?.invalid||TaxId?.invalid||productlengthEqualZero||isMaxTotalBill()">Save Bill</button>
+    <!-- ||(Date?.invalid ||BillType?.invalid|| 
+    PaidUp?.invalid  || CheckNumber?.invalid|| StockId?.invalid||SupplierId?.invalid||PaymentMethodId?.invalid||TaxId?.invalid)&&(productlengthEqualZero)" -->
+</div>
+<!-- {{registrationForm.value|json}} -->
+
+<ng-template #elseBlock>
+    <form [formGroup]='registrationForm'>
+        <div class="container" ng-app="invoice">
+            <section class="row" ng-controller="InvoiceController">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Products</th>
+                            <th class="text-center">Qty</th>
+                            <th class="text-center">Discount</th>
+                            <th class="text-center">Price</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr ng-repeat="item in invoice.items">
+                            <td><select class="form-select" aria-label="Default select example" formControlName="ProdId"
+                                    [class.is-invalid]="Amount?.invalid&&Amount?.touched">
+                                    <!-- <option selected>Products</option> -->
+                                    <option value={{item.id}} *ngFor="let item of productList">{{item.name}}</option>
+                                </select>
+                                <div *ngIf="ProdId?.invalid&&ProdId?.touched">
+                                    <small class="text-danger " *ngIf="ProdId?.errors?.['required']">Product Name is
+                                        required</small>
+                                </div>
+                            </td>
+                            <td><input type="number" min="1" formControlName="Amount"
+                                    [class.is-invalid]="Amount?.invalid&&Amount?.touched" class="form-control" />
+                                <div *ngIf="Amount?.invalid&&Amount?.touched">
+                                    <small class="text-danger " *ngIf="Amount?.errors?.['required']">Amount is
+                                        required</small>
+                                </div>
+                            </td>
+                            <td><input type="number" formControlName="Discount" min="1" max="100"
+                                    [class.is-invalid]="Discount?.invalid&&Discount?.touched" name="Discount"
+                                    class="form-control" />
+                                <div *ngIf="Discount?.invalid&&Discount?.touched">
+                                    <small class="text-danger " *ngIf="Discount?.errors?.['required']">Discount is
+                                        required</small>
+                                </div>
+                            </td>
+                            <td><input type="number" formControlName="Price" min="1"
+                                    [class.is-invalid]="Price?.invalid&&Price?.touched" class="form-control" />
+                                <div *ngIf="Price?.invalid&&Price?.touched">
+                                    <small class="text-danger " *ngIf="Price?.errors?.['required']">Price is
+                                        required</small>
+                                </div>
+                            </td>
+
+                            <td><button type="button" class="btn btn-danger" (click)="reset()">Reset</button></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td colspan="2"><button type="button"
+                                    [disabled]="Amount?.invalid ||Price?.invalid|| Discount?.invalid  || ProdId?.invalid"
+                                    (click)="addProductToList()" class="btn btn-primary" ng-click="add()">Add
+                                    item</button></td>
+
+
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </form>
+</ng-template>
+<ng-template #thenBlock>
+
+    <div class="container">
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+            <ng-container matColumnDef="productName">
+                <th mat-header-cell *matHeaderCellDef>product Name</th>
+                <td mat-cell *matCellDef="let element;let i=index">{{productList[i].name}}</td>
+            </ng-container>
+            <ng-container matColumnDef="amount">
+                <th mat-header-cell *matHeaderCellDef>amount</th>
+                <td mat-cell *matCellDef=" let element">{{element.amountToSell}}</td>
+            </ng-container>
+            <ng-container matColumnDef="discount">
+                <th mat-header-cell *matHeaderCellDef>discount</th>
+                <td mat-cell *matCellDef="let element">{{element.discount+'%'}}</td>
+            </ng-container>
+            <ng-container matColumnDef="totalPrice">
+                <th mat-header-cell *matHeaderCellDef>totalPrice</th>
+                <td mat-cell *matCellDef="let element">{{element.totalPrice}}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Actions </th>
+                <td mat-cell *matCellDef="let element;let i=index">
+                    <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn"
+                        (click)="deletePurchaseProduct(i)">
+                        <mat-icon aria-label="Delete">delete</mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+    </div>
+</ng-template>

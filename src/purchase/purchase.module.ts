@@ -6,12 +6,14 @@ import { ShowPurchaseBillComponent } from './show-purchase-bill/show-purchase-bi
 import { HeaderPurchaseBillComponent } from './header-purchase-bill/header-purchase-bill.component';
 import { MaterialModule } from 'src/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddBillComponent } from './add-bill/add-bill.component';
 
 
 @NgModule({
   declarations: [
     ShowPurchaseBillComponent,
-    HeaderPurchaseBillComponent
+    HeaderPurchaseBillComponent,
+    AddBillComponent
   ],
   imports: [
     CommonModule,
@@ -21,5 +23,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MaterialModule,
    
   ]
+  
 })
 export class PurchaseModule { }

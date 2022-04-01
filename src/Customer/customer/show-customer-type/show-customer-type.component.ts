@@ -35,6 +35,7 @@ export class ShowCustomerTypeComponent implements OnInit {
   deleteCustomerType(id:any){
     console.log(id);
     this.dialogService.openConfirmDialog().afterClosed().subscribe(res=>{
+      console.log(id);
       if(res==true){
         this.customerTypeService.removeD(id).subscribe(res=>{
           this.customerTypeService.getAll().subscribe(data=>{

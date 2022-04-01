@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AddBillComponent } from './add-bill/add-bill.component';
 import { ShowPurchaseBillComponent } from './show-purchase-bill/show-purchase-bill.component';
 
 const routes: Routes = 
 [
-  {path:'',component:ShowPurchaseBillComponent}
+  {path:'home/purchase/preview',component:ShowPurchaseBillComponent},
+  {path:'add',component:AddBillComponent},
 ];
 
 @NgModule({

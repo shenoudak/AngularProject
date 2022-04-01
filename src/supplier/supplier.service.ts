@@ -7,7 +7,7 @@ import { ISupplier } from './ISupplier';
   providedIn: 'root'
 })
 export class SupplierService {
-private _url="";
+private _url="https://localhost:44338/api/suppliers";
   constructor(private http:HttpClient) { }
   //show All Supplier
   GetAllSupplier():Observable<ISupplier[]>{

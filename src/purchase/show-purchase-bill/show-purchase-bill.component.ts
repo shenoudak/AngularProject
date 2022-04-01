@@ -1,7 +1,14 @@
-import { DataSource } from '@angular/cdk/collections';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { Observable, ReplaySubject } from 'rxjs';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PurchaseBill } from 'src/app/shared_classes_intefaces/purchaseBill';
+import { PurchaseProduct } from 'src/app/shared_classes_intefaces/purchaseProduct';
+import { PaymentMethodService } from 'src/payment-method/payment-method.service';
+import { ProductService } from 'src/product/productService/product.service';
+import { StockService } from 'src/stock/stock/stock.service';
+import { SupplierService } from 'src/supplier/supplier.service';
+import { TaxService } from 'src/taxes/taxService/tax.service';
+import { PurchaseBillService } from '../services/purchase-bill.service';
 
 @Component({
   selector: 'app-show-purchase-bill',
@@ -9,89 +16,50 @@ import { Observable, ReplaySubject } from 'rxjs';
   styleUrls: ['./show-purchase-bill.component.scss']
 })
 export class ShowPurchaseBillComponent implements OnInit {
-  minDate: Date;
-  maxDate: Date;
-  value = '';
-  quantity='';
-  discount='';
-  Price='';
-  constructor(private fb:FormBuilder) {
-    const today = new Date();
-    const month = today.getMonth();
-    const year = today.getFullYear();
-    const day=today.getDay();
-    const currentYear = new Date().getFullYear();
-    this.minDate = new Date(currentYear - 20, 0, 1);
-    this.maxDate = new Date(year , month, day+1);
+  constructor(private fb:FormBuilder,private activateRoute:ActivatedRoute,private paymentMethodService:PaymentMethodService,private taxService:TaxService,private supplierService:SupplierService,private router:Router,private purchaseProductService:PurchaseBillService,private purchaseBillService:PurchaseBillService,private productService:ProductService) {
+   
   }
+  purchaseProductList:PurchaseProduct[]=[];
+  purchaseCode:any;
+  taxValue:any=0;
+  discount:any;
+  purchaseBill:PurchaseBill={} as PurchaseBill;
+  purchaseBillId:any;
+  purchaseBillTotalPrice:any;
+  productNamesList:any[]=[];
+  productTotalPriceList:any[]=[];
+  date:any;
   ngOnInit(): void {
-  }
+    this.activateRoute.paramMap.subscribe(params=>{
+      this.purchaseBillId=params.get('id');
+       this.purchaseBillService.getByID(this.purchaseBillId).subscribe(data=>{
+       this.purchaseBill=data;
+       console.log(data);
+       this.purchaseCode=this.purchaseBill.billCode;
+       this.purchaseBillTotalPrice=this.purchaseBill.billTotal;
+       this.discount=this.purchaseBillTotalPrice*this.purchaseBill.discount*0.1;
+       this.date=data.date;
+      this.taxService.getByID(this.purchaseBill.taxId).subscribe(data=>{
+       // this.taxValue=(this.totalPriceOfPurchase* data.percentage)*.01;
+      }
 
- 
-  selectedvalue:string='';
-  registrationForm=this.fb.group(
-    {
-    start:[''],
-     end:[''],
-    }
-  );
-  ///////////////////////////
+       
+      )
+       for(let element of this.purchaseBill.purchaseproducts){
+         console.log(element);
+         this.purchaseProductList.push(element);
+         this.productService.getByID(element.productId).subscribe(data=>{
+           this.productNamesList.push(data.name);
+          
+         },error=>console.log(error));
+       }
+       console.log(this.productNamesList);
+       
+
+      },error=>console.log(error));
+     
+    },error=>console.log(error));
+  }
+}
  
   
-  /////////////////////////
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataToDisplay = [...ELEMENT_DATA];
-
-  dataSource = new ExampleDataSource(this.dataToDisplay);
-
-  addData() {
-    const randomElementIndex = Math.floor(Math.random() * ELEMENT_DATA.length);
-    this.dataToDisplay = [...this.dataToDisplay, ELEMENT_DATA[randomElementIndex]];
-    this.dataSource.setData(this.dataToDisplay);
-  }
-
-  removeData() {
-    this.dataToDisplay = this.dataToDisplay.slice(0, -1);
-    this.dataSource.setData(this.dataToDisplay);
-  }
-}
-
-class ExampleDataSource extends DataSource<PeriodicElement> {
-  private _dataStream = new ReplaySubject<PeriodicElement[]>();
-
-  constructor(initialData: PeriodicElement[]) {
-    super();
-    this.setData(initialData);
-  }
-
-  connect(): Observable<PeriodicElement[]> {
-    return this._dataStream;
-  }
-
-  disconnect() {}
-
-  setData(data: PeriodicElement[]) {
-    this._dataStream.next(data);
-  }
-  //////////////////////////
-}
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
-

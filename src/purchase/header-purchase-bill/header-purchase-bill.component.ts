@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-header-purchase-bill',
@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderPurchaseBillComponent implements OnInit {
 
+  @Input()parentData:any;
   constructor() { }
 
   ngOnInit(): void {

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { PurchaseModule } from 'src/purchase/purchase.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,6 +24,7 @@ import { PaymentMethodModule } from 'src/payment-method/payment-method.module';
 import { StockProductModule } from 'src/stock-product/stock-product.module';
 import { SupplierModule } from 'src/supplier/supplier.module';
 import { EmployeeModule } from 'src/employee/employee.module';
+import { SalesModule } from 'src/sales/sales.module';
 
 
 
@@ -57,7 +58,9 @@ import { EmployeeModule } from 'src/employee/employee.module';
     PaymentMethodModule,
     StockProductModule,
     SupplierModule,
-    EmployeeModule
+    EmployeeModule,
+    PurchaseModule,
+    SalesModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
