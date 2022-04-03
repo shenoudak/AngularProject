@@ -30,11 +30,14 @@ export class AddSaleBillComponent implements OnInit {
     listTest:any[]=[];
     //minDate: Date;
     maxDate: Date;
+    dateToDay:any;
     //purchaseproducts:PurchaseProduct[];
     purchaseProList: any[] = [];
     constructor(private fb: FormBuilder, private paymentMethodService: PaymentMethodService, private taxService: TaxService, private customerService: CustomerService, private stockService: StockService, private router: Router, private productService: ProductService, private saleBillService: SaleBillService) {
       const currentYear = new Date().getFullYear();
       const today = new Date();
+      this.dateToDay=today;
+     // this.registerBill.get("Date")?.patchValue(this.dateToDay);
       const month = today.getMonth();
       const year = today.getFullYear();
       const day = today.getDay();
@@ -183,7 +186,9 @@ export class AddSaleBillComponent implements OnInit {
     }
     
     saleBill: SaleBill={} as SaleBill;
+    saleBillId:any;
     addSaleBill() {
+      this.registerBill.get('Date')?.patchValue(this.dateToDay);
       this.saleBill = new SaleBill(
         this.BillCode?.value+"",
         this.Date?.value,
@@ -203,7 +208,9 @@ export class AddSaleBillComponent implements OnInit {
       console.log(this.saleBill.saleBillProducts);
       this.saleBill.saleBillProducts=this.purchaseProList;
       this.saleBillService.insert(this.saleBill).subscribe(data=>{
+        this.saleBillId=data.id;
         console.log(data);
+        this.router.navigate(['/home/sales/preview',{id:this.saleBillId}])
       },error=>console.log(error))
      // console.log(this.purchaseBill.purchaseproducts);
       //console.log(this.purchaseProList);

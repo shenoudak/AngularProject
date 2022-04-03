@@ -62,13 +62,13 @@ export class AddEmployeeComponent implements OnInit {
    }
    registrationForm=this.fb.group(
      {
-      Name:['',[Validators.required]],
-      NationalId:['',[Validators.required,Validators.pattern('^[0-9]+$')]],
+      Name:['',[Validators.required,Validators.minLength(5),Validators.pattern('[a-zA-Z ]*')]],
+      NationalId:['',[Validators.required,Validators.pattern('^[0-9]+$'),Validators.minLength(14),Validators.maxLength(14)]],
       Phone:['',[Validators.required,Validators.pattern('^[0-9]+$')]],
       Salary:['',[Validators.required,Validators.pattern('^[0-9]+$')]],
-      Address:['',[Validators.required]],
+      Address:['',[Validators.required,Validators.minLength(5)],],
       Photo:['',],
-      HaveAccess:[''],
+      HaveAccess:[false],
       StockId:['',[Validators.required]],
       JobId:['',[Validators.required]],
      }
@@ -83,9 +83,9 @@ export class AddEmployeeComponent implements OnInit {
    haveAccessValue:number=0;
    employee:any;
     SaveData(){
-      this.haveAccessValue=this.HaveAccess?.value==true?1:0;
+      //this.haveAccessValue=this.HaveAccess?.value==true?1:0;
       //parseInt(this.TypeId?.value);
-      this.employee=new Employee(this.Name?.value,this.Address?.value,this.NationalId?.value,this.Phone?.value,this.Salary?.value,"",this.haveAccessValue,this.StockId?.value,this.JobId?.value);
+      this.employee=new Employee(this.Name?.value,this.Address?.value,this.NationalId?.value,this.Phone?.value,this.Salary?.value,"",this.HaveAccess?.value,this.StockId?.value,this.JobId?.value);
 
       this.employeeService.insert(this.employee).subscribe(data=>{
         console.log(data);

@@ -30,11 +30,13 @@ export class AddBillComponent implements OnInit {
   listTest:any[]=[];
   //minDate: Date;
   maxDate: Date;
+  dateToDay:any;
   //purchaseproducts:PurchaseProduct[];
   purchaseProList: any[] = [];
   constructor(private fb: FormBuilder, private paymentMethodService: PaymentMethodService, private taxService: TaxService, private supplierService: SupplierService, private stockService: StockService, private router: Router, private productService: ProductService, private purchaseBillService: PurchaseBillService) {
     const currentYear = new Date().getFullYear();
     const today = new Date();
+    this.dateToDay=today;
     const month = today.getMonth();
     const year = today.getFullYear();
     const day = today.getDay();
@@ -182,6 +184,7 @@ export class AddBillComponent implements OnInit {
   purchaseBill: PurchaseBill={} as PurchaseBill;
   purchaseBillId:any;
   addPurchaseBill() {
+    this.registerBill.get('Date')?.patchValue(this.dateToDay);
     this.purchaseBill = new PurchaseBill(
       this.BillCode?.value+"",
       this.Date?.value,

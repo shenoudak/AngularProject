@@ -6,12 +6,14 @@ import { AddSaleBillComponent } from './add-sale-bill/add-sale-bill.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/material/material.module';
 import { HeaderSalesBillComponent } from './header-sales-bill/header-sales-bill.component';
+import { PreviewSaleBillComponent } from './preview-sale-bill/preview-sale-bill.component';
 
 
 @NgModule({
   declarations: [
     AddSaleBillComponent,
-    HeaderSalesBillComponent
+    HeaderSalesBillComponent,
+    PreviewSaleBillComponent
   ],
   imports: [
     CommonModule,

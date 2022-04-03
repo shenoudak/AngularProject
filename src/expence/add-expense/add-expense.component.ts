@@ -1,15 +1,16 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CustomerType } from 'src/app/shared_classes_intefaces/customerType';
 import { Employee } from 'src/app/shared_classes_intefaces/employee';
 import { Expense } from 'src/app/shared_classes_intefaces/expense';
+import { ExpenseType } from 'src/app/shared_classes_intefaces/expenseType';
 import { Stock } from 'src/app/shared_classes_intefaces/stock';
-import { CustomerTypeService } from 'src/Customer/customer/customerService/customer-type.service';
 import { EmployeeService } from 'src/employee/services/employee.service';
-import { IPayment } from 'src/payment-method/IPayment';
 import { PaymentMethodService } from 'src/payment-method/payment-method.service';
 import { StockService } from 'src/stock/stock/stock.service';
+import { ExpenseTypeService } from '../services/expense-type.service';
 import { ExpenseService } from '../services/expense.service';
 
 @Component({
@@ -19,13 +20,16 @@ import { ExpenseService } from '../services/expense.service';
 })
 export class AddExpenseComponent implements OnInit {
 
-  constructor(private fb: FormBuilder,private expenseService:ExpenseService, private paymentMethodService: PaymentMethodService,private stockService:StockService, private employeeService: EmployeeService, private router: Router,private customerTypeService:CustomerTypeService) { }
+  constructor(private fb: FormBuilder, private datePipe:DatePipe,private expenseService: ExpenseService, private paymentMethodService: PaymentMethodService, private stockService: StockService, private employeeService: EmployeeService, private router: Router, private expenseTypeService: ExpenseTypeService) { }
   stockList: Stock[] = [];
   employeeList: Employee[] = [];
-  customerTypeList: CustomerType[] = [];
- paymentMethodList: any[] = [];
+  expenseTypeList: ExpenseType[] = [];
+  paymentMethodList: any[] = [];
+  myDateToDay: any;
   ngOnInit(): void {
+    this.myDateToDay = new Date();
     this.stockService.getAll().subscribe(data => {
+
       this.stockList = data;
       console.log(this.stockList);
     }, error => {
@@ -37,18 +41,18 @@ export class AddExpenseComponent implements OnInit {
       }, error => {
         console.log(error);
       });
-      this.customerTypeService.getAll().subscribe(data => {
-        this.customerTypeList = data;
-        console.log(this.customerTypeList);
-      }, error => {
-        console.log(error);
-      });
-      this.paymentMethodService.showPaymentMethod().subscribe(data => {
-        this.paymentMethodList = data;
-        console.log(this.paymentMethodList);
-      }, error => {
-        console.log(error);
-      });
+    this.expenseTypeService.getAll().subscribe(data => {
+      this.expenseTypeList = data;
+      console.log(this.expenseTypeList);
+    }, error => {
+      console.log(error);
+    });
+    this.paymentMethodService.showPaymentMethod().subscribe(data => {
+      this.paymentMethodList = data;
+      console.log(this.paymentMethodList);
+    }, error => {
+      console.log(error);
+    });
   }
   get Date() {
     return this.registrationForm.get('Date');
@@ -68,8 +72,8 @@ export class AddExpenseComponent implements OnInit {
   get EmployeeId() {
     return this.registrationForm.get('EmployeeId');
   }
-  get CustomerTypeId() {
-    return this.registrationForm.get('CustomerTypeId');
+  get ExpenseTypeId() {
+    return this.registrationForm.get('ExpenseTypeId');
   }
   get PaymentMethodId() {
     return this.registrationForm.get('PaymentMethodId');
@@ -79,18 +83,21 @@ export class AddExpenseComponent implements OnInit {
     {
       Date: ['', [Validators.required]],
       Notes: ['',],
-      Value: ['', [Validators.required,Validators.pattern('^[0-9]+$')]],
-      CheckNumber: ['', [Validators.required,Validators.pattern('^[0-9]+$')]],
+      Value: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      CheckNumber: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
       EmployeeId: ['', [Validators.required]],
       StockId: ['', [Validators.required]],
-      CustomerTypeId: ['', [Validators.required]],
+      ExpenseTypeId: ['', [Validators.required]],
       PaymentMethodId: ['', [Validators.required]],
     }
   );
-  expense: Expense={} as Expense;
+  expense: Expense = {} as Expense;
+  changeDataFormat:any;
   SaveData() {
-    this.expense = new Expense(this.Date?.value, this.Notes?.value,this.Value?.value,this.CheckNumber?.value,this.StockId?.value, this.EmployeeId?.value, this.CustomerTypeId?.value, this.PaymentMethodId?.value);
-
+    this.changeDataFormat = this.datePipe.transform(this.myDateToDay, 'yyyy-MM-dd')
+     this.registrationForm.get('Date')?.patchValue(this.changeDataFormat);
+    this.expense = new Expense(this.Date?.value, this.Notes?.value, this.Value?.value, this.CheckNumber?.value, this.StockId?.value, this.EmployeeId?.value, this.ExpenseTypeId?.value, this.PaymentMethodId?.value);
+    console.log(this.expense);
     this.expenseService.insert(this.expense).subscribe(data => {
       console.log(data);
       this.router.navigate(['/home/expense']);

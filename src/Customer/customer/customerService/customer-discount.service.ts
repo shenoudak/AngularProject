@@ -7,7 +7,7 @@ import { CustomerDiscount } from 'src/app/shared_classes_intefaces/customerDisco
   providedIn: 'root'
 })
 export class CustomerDiscountService {
-  _url:string="https://localhost:44338/api/Discountforclients";
+  _url:string="https://localhost:44338/api/Discounts";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'

@@ -1,32 +1,4 @@
-<!-- <div class="container-fluid pt-4">
-    <div class="d-flex justify-content-end">
-            <a routerLink="/home/stock/add" (click)="navigateToAddStock()" class="btn btn-primary">add Stock</a>
-    </div>
-    <div class="row">
-        <table class="table table-hover">
-            <thead>
-              <tr>
-                <th class="lg-3 col-md-3 col-sm-3" scope="col">Name</th>
-                <th class="lg-4 col-md-4 col-sm-4" scope="col">Address</th>
-                <th class="lg-2 col-md-2 col-sm-2" scope="col"></th>
-                <th class="lg-3 col-md-3 col-sm-3" scope="col"></th>
-                
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="table-active" *ngFor="let item of stockList ">
-                <td class="lg-3 col-md-3 col-sm-3">{{item.name}}</td>
-                <td class="lg-4 col-md-4 col-sm-4" >{{item.address}}</td>
-                <td class="lg-2 col-md-2 col-sm-2"><a class="btn btn-success"  (click)="NavigationToEdit(item.id)">edit</a></td>
-                <td class="lg-3 col-md-3 col-sm-3"><a class="btn  btn-danger" (click)="deleteStock(item.id)">delete</a></td>
-                <td></td>
-              </tr>
-              <tr>
-             
-            </tbody>
-          </table>
-    </div>
-</div> -->
+
 <div class="container-fluid pt-4">
   <div class="d-flex justify-content-end mb-4">
     <button class="btn btn-success rounded" (click)="navigateToAddStock()"><mat-icon>add</mat-icon></button>
@@ -57,4 +29,3 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 </div>
-<router-outlet></router-outlet>

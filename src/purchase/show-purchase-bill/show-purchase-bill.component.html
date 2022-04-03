@@ -1,8 +1,9 @@
-<div class="card">
-  <div class="card-header bg-black"></div>
+<app-header-purchase-bill [parentData]="header"></app-header-purchase-bill>
+ <div class="card" id="htmlData" #content>
+   <div class="card-header bg-red"></div> 
   <div class="card-body">
 
-    <div class="container mx-auto">
+    <div style="border: 3px solid;" class="container p-3  mx-auto">
       <div class="row">
         <div class="col-xl-12">
           <i class="far fa-building text-danger fa-6x float-start" ></i>
@@ -12,9 +13,9 @@
 
       <div class="row">
         <div class="col-xl-12">
-
+<div></div>
           <ul class="list-unstyled float-end ">
-            <li style="font-size: 30px; color: red;" class="mb-3">Logan Comapny</li>
+            <li style="font-size: 30px; color: red;" class="mb-3">Logaan Comapany</li>
             <li>123, Mobark Street</li>
             <li>123-456-789</li>
             <li>LoganStore20@gmail.com</li>
@@ -31,49 +32,44 @@
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">Description</th>
-              <th scope="col">Amount</th>
+              <th scope="col">Product Name</th>
+              <th scope="col">Price</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let element of productNamesList;let i=index;">
+            <tr *ngFor="let element of purchaseProductList;let i=index;">
               <td>{{productNamesList[i]}}</td>
-              <td><i class="fas fa-dollar-sign"></i> {{purchaseProductList[i].totalPrice}}</td>
+              <td><i class="fas fa-dollar-sign"></i> {{element.totalPrice}}</td>
             </tr>
-            <!-- <tr>
-              <td>JBL Speaker</td>
-              <td><i class="fas fa-dollar-sign"></i> 300,00</td>
+            <tr class="mt-4">
+              <td class="text-end">
+                <ul class="list-unstyled float-end me-0">
+                  <li><h3 class="float-start" >Total Amount</h3></li>
+                  <li><h3 class="float-start" >Discount</h3></li>
+                  <li><h3 class="float-start" >Adding Tax</h3></li>
+                  </ul>
+              </td>
+              <td class="text-start">
+                <ul class="list-unstyled  me-0">
+                  <li><h3 >{{calacTotalOfPro}}</h3></li>
+                  <li><h3 >{{discount}}</h3></li>
+                  <li><h3 >{{taxValue}} </h3></li>
+                  </ul>
+              </td>
             </tr>
+            <tr></tr>
             <tr>
-              <td>Macbook Air</td>
-              <td><i class="fas fa-dollar-sign"></i> 1000,00</td>
+              <td class="text-end">
+                <h1 class="text-danger">Total :</h1>
+              </td>
+              <td class="text-start">
+                <h1 class="text-danger">{{TotalBillADT}}</h1>
+              </td>
             </tr>
-            <tr>
-              <td>Iphone 11 PRO</td>
-              <td><i class="fas fa-dollar-sign"></i> 5000,00</td>
-            </tr> -->
           </tbody>
         </table>
 
       </div>
-      <div class="row">
-        <div class="col-xl-8">
-          <ul class="list-unstyled float-end me-0">
-            <li><span class="me-3 float-start">Total Amount:</span><i class="fas fa-dollar-sign"></i> 6850,00</li>
-            <li> <span class="me-5">Discount:</span><i class="fas fa-dollar-sign"></i> {{discount}}</li>
-            <li><span class="float-start" style="margin-right: 35px;">Tax : </span><i class="fas fa-dollar-sign"></i> {{taxValue}}</li>
-            </ul>
-        </div>
-      </div>
-      <hr>
-    <div class="row">
-      <div class="col-xl-8" style="margin-left:60px">
-        <p class="float-end" style="font-size: 30px; color: red; font-weight: 400;font-family: Arial, Helvetica, sans-serif;">Total:
-          <span><i class="fas fa-dollar-sign"></i> {{purchaseBillTotalPrice}}</span></p>
-      </div>
-
-    </div>
-
     <div class="row mt-2 mb-5">
       <p class="fw-bold">Date: <span class="text-muted">{{date|date:'medium'}}</span></p>
       <p class="fw-bold mt-3">Signature: <i>shenouda karam</i></p>
@@ -84,5 +80,93 @@
 
 
   </div>
+  <div class="card-footer bg-red"></div>
+</div>  
+<!-- <button mat-stroked-button (click)="openPDF()">Export To PDF</button> -->
+<!-- <div class="card">
+  <div class="card-header bg-black"></div>
+  <div class="card-body">
+
+    <div class="container">
+     
+
+      <div class="row">
+        <div class="col-xl-12">
+
+          <ul class="list-unstyled float-end">
+            <li style="font-size: 30px; color: red;">Company</li>
+            <li>123, Elm Street</li>
+            <li>123-456-789</li>
+            <li>mail@mail.com</li>
+            </ul>
+        </div>
+      </div>
+
+      <div class="row text-center">
+        <h3 class="text-uppercase text-center mt-3" style="font-size: 40px;">Invoice</h3>
+        <p>123456789</p>
+      </div>
+
+      <div class="row mx-3">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Description</th>
+              <th scope="col">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Samsung TV</td>
+              <td><i class="fas fa-dollar-sign"></i> 500,00</td>
+            </tr>
+            <tr>
+              <td>JBL Speaker</td>
+              <td><i class="fas fa-dollar-sign"></i> 300,00</td>
+            </tr>
+            <tr>
+              <td>Macbook Air</td>
+              <td><i class="fas fa-dollar-sign"></i> 1000,00</td>
+            </tr>
+            <tr>
+              <td>Iphone 11 PRO</td>
+              <td><i class="fas fa-dollar-sign"></i> 5000,00</td>
+            </tr>
+            <tr class="mt-4">
+              <td class="text-end">
+                <ul class="list-unstyled float-end me-0">
+                  <li><h3 class="float-start" >Total Amount</h3></li>
+                  <li><h3 class="float-start" >Discount</h3> </li>
+                  <li><h3 class="float-start" >Shippment</h3></li>
+                  </ul>
+              </td>
+              <td class="text-start">
+                <ul class="list-unstyled  me-0">
+                  <li><h3 >2000</h3></li>
+                  <li><h3 >3000</h3></li>
+                  <li><h3 >4000 </h3></li>
+                  </ul>
+              </td>
+            </tr>
+            <tr></tr>
+            <tr>
+              <td class="text-end">
+                <h1 class="text-danger">Total :</h1>
+              </td>
+              <td class="text-start">
+                <h1>10000</h1>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    <div class="row mt-2 mb-5">
+      <p class="fw-bold">Date: <span class="text-muted">23 June 20221</span></p>
+      <p class="fw-bold mt-3">Signature:</p>
+    </div>
+
+    </div>
+  </div>
   <div class="card-footer bg-black"></div>
-</div>
+</div> -->

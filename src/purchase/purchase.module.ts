@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { PurchaseRoutingModule } from './purchase-routing.module';
 import { ShowPurchaseBillComponent } from './show-purchase-bill/show-purchase-bill.component';
 import { HeaderPurchaseBillComponent } from './header-purchase-bill/header-purchase-bill.component';
@@ -23,6 +22,5 @@ import { AddBillComponent } from './add-bill/add-bill.component';
     MaterialModule,
    
   ]
-  
 })
 export class PurchaseModule { }

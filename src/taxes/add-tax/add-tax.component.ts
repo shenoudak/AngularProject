@@ -14,6 +14,7 @@ export class AddTaxComponent implements OnInit {
   constructor(private fb:FormBuilder,private taxService:TaxService,private router:Router) { }
   taxList:Tax[]=[];
   ngOnInit(): void {
+     
     this.taxService.getAll().subscribe(data=>{
       this.taxList=data;
     },error=>{

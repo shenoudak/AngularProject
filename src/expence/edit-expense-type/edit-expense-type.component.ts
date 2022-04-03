@@ -11,15 +11,16 @@ import { ExpenseTypeService } from '../services/expense-type.service';
 })
 export class EditExpenseTypeComponent implements OnInit {
 
-  constructor(private fb: FormBuilder,private router:Router, private expenseTypeService: ExpenseTypeService, private activatedRoute: ActivatedRoute) { }
+  constructor(private fb: FormBuilder, private router: Router, private expenseTypeService: ExpenseTypeService, private activatedRoute: ActivatedRoute) { }
   expenseTypeId: any;
-  expenseType: ExpenseType={} as ExpenseType;
+  expenseType: ExpenseType = {} as ExpenseType;
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(parms => {
       this.expenseTypeId = parms.get('id');
       console.log(this.expenseTypeId);
       this.expenseTypeService.getByID(this.expenseTypeId).subscribe(data => {
         this.expenseType = data;
+        console.log(this.expenseType);
         this.registrationForm.get('Name')?.patchValue(this.expenseType.name);
         this.registrationForm.get('Details')?.patchValue(this.expenseType.details);
       }, error => {
@@ -39,20 +40,17 @@ export class EditExpenseTypeComponent implements OnInit {
       Details: ['', [Validators.required, Validators.minLength(5)]],
     }
   );
-  expenseTypeObj:any;
+  expenseTypeObj: any;
   SaveData() {
-    this.expenseType = new ExpenseType(this.Name?.value, this.Details?.value);
-
-    this.expenseTypeService.insert(this.expenseType).subscribe(data => {
+    this.expenseTypeObj = new ExpenseType(this.Name?.value, this.Details?.value);
+    this.expenseTypeObj.id = this.expenseTypeId;
+    console.log(this.expenseTypeObj);
+    this.expenseTypeService.update(this.expenseTypeId, this.expenseTypeObj).subscribe(data => {
       console.log(data);
       this.router.navigate(['home/expense/showExpenseType']);
     }, error => {
       console.log(error);
     });
-
     console.log(this.expenseType);
   }
-
-
-
 }

@@ -7,7 +7,7 @@ import { SaleBill } from 'src/app/shared_classes_intefaces/saleBill';
   providedIn: 'root'
 })
 export class SaleBillService {
-
+//https://localhost:44338/api/SaleBills/id/1/SaleProducts
   _url:string="https://localhost:44338/api/saleBills";
   httpOptions = {
     headers: new HttpHeaders({
@@ -23,6 +23,10 @@ export class SaleBillService {
      return this.http.get<SaleBill>(this._url+'/'+saleBillId)
      .pipe(catchError(this.errorHandler));
    }
+   getSaleProducts(saleBillId:number):Observable<any>{
+    return this.http.get<any>(this._url+'/id/'+saleBillId+'/SaleProducts')
+    .pipe(catchError(this.errorHandler));
+  }
    insert(saleBill:SaleBill):Observable<any>{
      console.log(JSON.stringify(saleBill));
      return this.http.post<SaleBill>(this._url,JSON.stringify(saleBill),this.httpOptions)

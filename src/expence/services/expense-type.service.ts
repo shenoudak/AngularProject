@@ -28,7 +28,7 @@ export class ExpenseTypeService {
      .pipe(catchError(this.errorHandler));
    }
    update(expenseTypeId:number,expenseType:ExpenseType):Observable<any>{
-    return this.http.patch<ExpenseType>(this._url+'/'+expenseTypeId,JSON.stringify(expenseType),this.httpOptions)
+    return this.http.put<ExpenseType>(this._url+'/'+expenseTypeId,JSON.stringify(expenseType),this.httpOptions)
     .pipe(catchError(this.errorHandler));
   }
    

@@ -23,22 +23,14 @@ export class AddStockComponent implements OnInit {
    }
    registrationForm=this.fb.group(
      {
-      Name:['',[Validators.required,Validators.minLength(5)]],
+      Name:['',[Validators.required,Validators.minLength(5),Validators.pattern('[a-zA-Z ]*')]],
       Address:['',[Validators.required,Validators.minLength(5)]],
        
      }
    );
    
     
-  getDataToEdit(){
-    this.registrationForm.patchValue(
-      {
-        Name:"shenouda karam",
-        Address:"Assiut"
-      }
 
-    )
-    }
     stock:any;
     SaveData(){
       this.stock=new Stock(this.Name?.value,this.Address?.value);
@@ -50,7 +42,6 @@ export class AddStockComponent implements OnInit {
       });
       
       console.log(this.stock);
-     // this.stockService.insert()
     }
 
 

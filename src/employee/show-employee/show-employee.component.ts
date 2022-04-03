@@ -29,8 +29,9 @@ export class ShowEmployeeComponent implements OnInit {
       this.dataSource=data;
       console.log(data);
       for(let element of this.dataSource){
-        if(element.haveAccess===1)
-        this.isCheckedList.push(true);
+        //if(element.haveAccess===1)
+        this.isCheckedList.push(element.haveAccess);
+        //console.log(element.haveAccess);
          this.stockService.getByID(element.stockId).subscribe(res=>{
          this.stock=res;
          this.stockNamesList.push(this.stock.name);

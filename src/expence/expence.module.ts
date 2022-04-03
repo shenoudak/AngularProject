@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ShowExpenseComponent } from './show-expense/show-expense.component';
 import { AddExpenseComponent } from './add-expense/add-expense.component';
 import { EditExpenseComponent } from './edit-expense/edit-expense.component';
+import { MaterialModule } from 'src/material/material.module';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { EditExpenseComponent } from './edit-expense/edit-expense.component';
     CommonModule,
     ExpenceRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ]
   ,
   providers: [DatePipe],

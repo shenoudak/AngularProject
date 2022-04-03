@@ -1,6 +1,8 @@
 <div class="container-fluid ">
-    {{registrationForm.value|json}}
+    <!-- {{registrationForm.value|json}} -->
     <div class="row mx-auto">
+        <h1 class="text-primary">Edit Expense Type</h1>
+        <hr>
         <form [formGroup]='registrationForm'>
             <div class="form-group mb-3">
                 <label class="mb-2">Name</label>
@@ -23,7 +25,7 @@
            
         </form>
         <div class="col-12 d-flex justify-content-center">
-            <button class="btn btn-primary" [disabled]="registrationForm.pristine" (click)="SaveData()">Save</button>
+            <button class="btn btn-primary" [disabled]="Name?.invalid||Details?.invalid"(click)="SaveData()">Save</button>
         </div>
     </div>
 </div>

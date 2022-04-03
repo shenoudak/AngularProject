@@ -5,22 +5,21 @@
         <section class="row" ng-controller="InvoiceController">
             <table class="table table-hover">
                 <thead>
-                    <tr>
+                    <tr class="text-center">
                         <th>Customers</th>
-                        <th class="text-center">Stocks</th>
-                        <th class="text-center">Bill Type</th>
-                        <th class="text-center">Date</th>
-                        <th class="text-center">BillCode</th>
+                        <th >Stocks</th>
+                        <th >Bill Type</th>
+                        <th >Date</th>
+                        <th >BillCode</th>
                     </tr>
                 </thead>
 
                 <tbody>
 
-                    <tr ng-repeat="item in invoice.items">
+                    <tr ng-repeat="item in invoice.items" class="text-center">
                         <td><select class="form-select" aria-label="Default select example" formControlName="ClientId"
                                 [class.is-invalid]="ClientId?.invalid&&ClientId?.touched">
-                                <!-- <option selected>Products</option> -->
-                                <option value={{item.id}} *ngFor="let item of customerList">{{item.name}}</option>
+                                       <option value={{item.id}} *ngFor="let item of customerList">{{item.name}}</option>
                             </select>
                             <div *ngIf="ClientId?.invalid&&ClientId?.touched">
                                 <small class="text-danger " *ngIf="ClientId?.errors?.['required']">Client Name is
@@ -29,7 +28,7 @@
                         </td>
                         <td><select class="form-select" aria-label="Default select example" formControlName="StockId"
                                 [class.is-invalid]="StockId?.invalid&&StockId?.touched">
-                                <!-- <option selected>Products</option> -->
+                               
                                 <option value={{item.id}} *ngFor="let item of stockList">{{item.name}}</option>
                             </select>
                             <div *ngIf="StockId?.invalid&&StockId?.touched">
@@ -48,7 +47,7 @@
                                     required</small>
                             </div>
                         </td>
-                        <td>
+                        <!-- <td>
                             <mat-form-field class="example-full-width" appearance="fill">
                                 <mat-label>Choose a date</mat-label>
                                 <input matInput [max]="maxDate" [matDatepicker]="picker" formControlName="Date"
@@ -59,6 +58,10 @@
                             <div *ngIf="Date?.invalid&&Date?.touched">
                                 <small class="text-danger " *ngIf="Date?.errors?.['required']">Date is required</small>
                             </div>
+                        </td> -->
+                        <td>
+                            <input type="button"  value={{dateToDay|date}} class="form-control" />
+
                         </td>
                         <td>
                             <!-- <input type="number" formControlName="BillCode" min="0" max="100"
@@ -68,6 +71,7 @@
                                 <small class="text-danger " *ngIf="BillCode?.errors?.['required']"> Bill Code is
                                     required</small>
                             </div> -->
+                            
                             <button mat-stroked-button formControlName="BillCode" >{{randomNumber}}</button>
                         </td>
                     </tr>
@@ -212,7 +216,7 @@
 
 </form>
 <div class="text-center">
-    <button class="btn btn-success " (click)="addSaleBill()" [disabled]="Date?.invalid ||BillType?.invalid|| 
+    <button class="btn btn-success mb-4" (click)="addSaleBill()" [disabled]="BillType?.invalid|| 
     PaidUp?.invalid  || CheckNumber?.invalid|| StockId?.invalid||ClientId?.invalid||PaymentMethodId?.invalid||TaxId?.invalid||productlengthEqualZero||isMaxTotalBill()">Save Bill</button>
     <!-- ||(Date?.invalid ||BillType?.invalid|| 
     PaidUp?.invalid  || CheckNumber?.invalid|| StockId?.invalid||SupplierId?.invalid||PaymentMethodId?.invalid||TaxId?.invalid)&&(productlengthEqualZero)" -->

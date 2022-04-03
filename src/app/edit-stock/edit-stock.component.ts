@@ -46,8 +46,7 @@ export class EditStockComponent implements OnInit {
   // asd:string="asd";
    registrationForm=this.fb.group(
      {
-     // Number:[0,[Validators.required,Validators.pattern('^[0-9]+$')]],
-      Name:['',[Validators.required,Validators.minLength(5)]],
+      Name:['',[Validators.required,Validators.minLength(5),Validators.pattern('[a-zA-Z ]*')]],
       Address:['',[Validators.required,Validators.minLength(5)]],
        
      }

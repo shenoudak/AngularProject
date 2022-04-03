@@ -18,8 +18,8 @@ export class ShowStockComponent implements OnInit {
   dataSource:any=[];
   ngOnInit(): void {
     this.stockService.getAll().subscribe((data)=>{
-      this.dataSource=data;
-      //this.dataSource=this.stockList;
+      this.stockList=data;
+      this.dataSource=this.stockList;
       console.log(data);
     },error=>{
       console.log(error);
@@ -37,9 +37,9 @@ export class ShowStockComponent implements OnInit {
     this.confirmDeleteService.openConfirmDialog().afterClosed().subscribe(res=>{
       if(res==true){
         this.stockService.removeD(id).subscribe(data=>{
-          /*get All To Update Show-Stock*/ 
           this.stockService.getAll().subscribe((data)=>{
             this.stockList=data;
+            this.dataSource=this.stockList;
             console.log(data);
           },error=>{
             console.log(error);

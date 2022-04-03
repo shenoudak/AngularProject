@@ -24,6 +24,7 @@ export class ExpenseService {
      .pipe(catchError(this.errorHandler));
    }
    insert(expense:Expense):Observable<any>{
+     console.log(JSON.stringify(expense));
      return this.http.post<Expense>(this._url,JSON.stringify(expense),this.httpOptions)
      .pipe(catchError(this.errorHandler));
    }

@@ -1,31 +1,33 @@
 <div class="container-fluid pt-4">
-    <div class="d-flex justify-content-end">
-            <a routerLink="/home/stock/add" (click)="navigateToAddExpenseType()" class="btn btn-primary">add Expense Type </a>
-    </div>
-    <div class="row">
-        <table class="table table-hover">
-            <thead>
-              <tr>
-                <th class="lg-2 col-md-2 col-sm-2" scope="col">Name</th>
-                <th class="lg-3 col-md-3 col-sm-3" scope="col">Details</th>
-                
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="table-active" *ngFor="let item of expenseTypeList ">
-                <td class="lg-3 col-md-3 col-sm-3">{{item.name}}</td>
-                <td class="lg-4 col-md-4 col-sm-4" >{{item.details}}</td>
-               <td class="lg-2 col-md-2 col-sm-2"><a class="btn btn-success"  (click)="NavigationToEditExpenseType(item.id)">edit</a></td>
-                <td class="lg-3 col-md-3 col-sm-3"><a class="btn  btn-danger" (click)="deleteExpenseType(item.id)">delete</a></td>
-                <td></td>
-              </tr>
-              <tr>
-             
-            </tbody>
-          </table>
-    </div>
+  <div class="d-flex justify-content-end mb-4">
+    <button class="btn btn-success rounded" (click)="navigateToAddExpenseType()"><mat-icon>add</mat-icon></button>
+  </div>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name</th>
+      <td mat-cell *matCellDef="let element">{{element.name}}</td>
+    </ng-container>
+    <ng-container matColumnDef="details">
+      <th mat-header-cell *matHeaderCellDef>Details</th>
+      <td mat-cell *matCellDef="let element">{{element.details}}</td>
+    </ng-container>
+    <ng-container  matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions </th>
+      <td mat-cell  *matCellDef="let element">
+        <button mat-icon-button matTooltip="Click to Edit" class="iconbutton" color="primary"
+        (click)="NavigationToEditExpenseType(element.id)">
+        <mat-icon aria-label="Edit" >edit</mat-icon>
+      </button>
+      <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn"
+        (click)="deleteExpenseType(element.id)">
+        <mat-icon aria-label="Delete">delete</mat-icon>
+      </button>
+    </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
 </div>
-<router-outlet></router-outlet>
 
 
 

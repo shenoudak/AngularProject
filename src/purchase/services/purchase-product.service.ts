@@ -37,6 +37,7 @@ export class PurchaseProductService {
      return this.http.delete<PurchaseProduct>(this._url+'/'+purchaseProductId)
      .pipe(catchError(this.errorHandler));
    }
+   
    errorHandler(error:any) {
     let errorMessage = '';
     if(error.error instanceof ErrorEvent) {
