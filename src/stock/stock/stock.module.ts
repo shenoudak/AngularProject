@@ -12,6 +12,9 @@ import { ConfirmDeleteComponent } from 'src/app/confirm-delete/confirm-delete.co
 import { ShowTransferOperationComponent } from './show-transfer-operation/show-transfer-operation.component';
 import { AddTransferOperationComponent } from './add-transfer-operation/add-transfer-operation.component';
 import { EditTransferOperationComponent } from './edit-transfer-operation/edit-transfer-operation.component';
+import { AddJobComponent } from './add-job/add-job.component';
+import { EditJobComponent } from './edit-job/edit-job.component';
+import { ShowJobComponent } from './show-job/show-job.component';
 @NgModule({
   declarations: [
     StockMainComponent,
@@ -21,6 +24,9 @@ import { EditTransferOperationComponent } from './edit-transfer-operation/edit-t
     ShowTransferOperationComponent,
     AddTransferOperationComponent,
     EditTransferOperationComponent,
+    AddJobComponent,
+    EditJobComponent,
+    ShowJobComponent,
   ],
   imports: [
     CommonModule,

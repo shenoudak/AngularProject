@@ -1,5 +1,3 @@
-import { CategoryModule } from "../category/category.module";
-
 export interface IExpired{
     ID:number;
     Amount:number;

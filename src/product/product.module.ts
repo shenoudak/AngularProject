@@ -7,13 +7,19 @@ import { AddProductComponent } from './add-product/add-product.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from 'src/material/material.module';
+import { AddCategoryComponent } from './add-category/add-category.component';
+import { EditCategoryComponent } from './edit-category/edit-category.component';
+import { ShowCategoryComponent } from './show-category/show-category.component';
 
 
 @NgModule({
   declarations: [
     ShowProductComponent,
     AddProductComponent,
-    EditProductComponent
+    EditProductComponent,
+    AddCategoryComponent,
+    EditCategoryComponent,
+    ShowCategoryComponent
   ],
   imports: [
     CommonModule,

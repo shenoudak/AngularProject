@@ -54,7 +54,7 @@ export class ShowPurchaseBillComponent implements OnInit {
        this.purchaseBillTotalPrice=this.purchaseBill.billTotal;
        this.discount=this.purchaseBillTotalPrice*this.purchaseBill.discount*0.01;
        this.date=this.purchaseBill.date;
-      this.taxService.getByID(this.purchaseBill.taxId).subscribe(data=>{
+       this.taxService.getByID(this.purchaseBill.taxId).subscribe(data=>{
         this.taxValue=(this.calacTotalOfPro* data.percentage)*.01;
         this.TotalBillADT=this.calacTotalOfPro+this.taxValue-this.discount;
       },error=>{

@@ -47,17 +47,26 @@ export class EditDiscountComponent implements OnInit {
   get Notes() {
     return this.registrationForm.get('Notes');
   }
+  get Title() {
+    return this.registrationForm.get('Title');
+  }
+  get UnitCount() {
+    return this.registrationForm.get('UnitCount');
+  }
+  
   registrationForm = this.fb.group(
     {
       DiscountValue: [0, [Validators.required, Validators.pattern('^[0-9]+$')]],
       Notes: [''],
       StartDate: ['', [Validators.required]],
-      EndDate: ['', [Validators.required]]
+      EndDate: ['', [Validators.required]],
+      Title: ['', [Validators.required]],
+      UnitCount: ['', [Validators.required]]
     }
   );
   customerDiscountObj: any;
   editData() {
-    this.customerDiscountObj = new CustomerDiscount(this.DiscountValue?.value,this.Notes?.value,this.StartDate?.value, this.EndDate?.value);
+    this.customerDiscountObj = new CustomerDiscount(this.DiscountValue?.value,this.Notes?.value,this.StartDate?.value, this.EndDate?.value,this.Title?.value,this.UnitCount?.value);
     console.log(this.customerDiscountID);
     this.customerDiscountObj.id = this.customerDiscountID;
     this.customerDiscountService.update(this.customerDiscountID, this.customerDiscountObj).subscribe(res => {

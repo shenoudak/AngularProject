@@ -6,7 +6,7 @@ import { ShowPurchaseBillComponent } from './show-purchase-bill/show-purchase-bi
 const routes: Routes = 
 [
   {path:'home/purchase/preview',component:ShowPurchaseBillComponent},
-  {path:'add',component:AddBillComponent},
+  {path:'home/purchase/add',component:AddBillComponent},
 ];
 
 @NgModule({

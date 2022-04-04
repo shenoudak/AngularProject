@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/shared_classes_intefaces/peoduct';
-import { CategoryService } from 'src/category/category.service';
+import { CategoryService } from '../productService/category.service';
 import { ProductService } from '../productService/product.service';
 
 @Component({
@@ -33,7 +33,7 @@ export class EditProductComponent implements OnInit {
        this.registrationForm.get('ExpiryPeriod')?.patchValue(this.product.expiryPeriod);
        this.registrationForm.get('MiniAmount')?.patchValue(this.product.miniAmount);
        this.registrationForm.get('CatId')?.patchValue(this.product.categoryId);
-       this.categoryService.showCategory().subscribe(data=>{
+       this.categoryService.getAll().subscribe(data=>{
          this.categoryList=data;
        },error=>{
          console.log(error);

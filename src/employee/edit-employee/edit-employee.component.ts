@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Employee } from 'src/app/shared_classes_intefaces/employee';
+import { Job } from 'src/app/shared_classes_intefaces/job';
 import { Stock } from 'src/app/shared_classes_intefaces/stock';
-import { IJob } from 'src/job/IJob';
-import { JobService } from 'src/job/job.service';
+import { JobService } from 'src/stock/stock/services/job.service';
 import { StockService } from 'src/stock/stock/stock.service';
 import { EmployeeService } from '../services/employee.service';
 
@@ -17,7 +17,7 @@ export class EditEmployeeComponent implements OnInit {
 
   constructor(private fb:FormBuilder,private activatedRoute:ActivatedRoute,private employeeService:EmployeeService,private stockService:StockService,private jobService:JobService,private router:Router) { }
   stockList:Stock[]=[];
-  jobList:IJob[]=[];
+  jobList:Job[]=[];
   hasAccessChecked:boolean=false;
   employee:Employee={}as Employee;
   employeeId:any;
@@ -33,7 +33,7 @@ export class EditEmployeeComponent implements OnInit {
           ,error=>{
             console.log(error);
           });
-          this.jobService.showJob().subscribe(data=>{
+          this.jobService.getAll().subscribe(data=>{
             this.jobList=data;
             }
             ,error=>{

@@ -27,6 +27,10 @@ export class SaleBillService {
     return this.http.get<any>(this._url+'/id/'+saleBillId+'/SaleProducts')
     .pipe(catchError(this.errorHandler));
   }
+  getSaleProductsByBillCod(saleBillCode:number):Observable<any>{
+    return this.http.get<any>(this._url+'/code/'+saleBillCode+'/SaleProducts')
+    .pipe(catchError(this.errorHandler));
+  }
    insert(saleBill:SaleBill):Observable<any>{
      console.log(JSON.stringify(saleBill));
      return this.http.post<SaleBill>(this._url,JSON.stringify(saleBill),this.httpOptions)

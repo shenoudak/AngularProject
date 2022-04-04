@@ -1,42 +1,4 @@
-<!-- <div class="container-fluid pt-4">
-    <div class="d-flex justify-content-end">
-            <a routerLink="/home/stock/add" (click)="navigateToAddProduct()" class="btn btn-primary">add Product</a>
-    </div>
-    <div class="row">
-        <table class="table table-hover">
-            <thead>
-              <tr>
-                <th class="lg-2 col-md-2 col-sm-2" scope="col">Name</th>
-                <th class="lg-2 col-md-2 col-sm-2" scope="col">Description</th>
-                <th class="lg-1 col-md-1 col-sm-1" scope="col">MiniAmount</th>
-                <th class="lg-2 col-md-2 col-sm-2" scope="col">Barcode</th>
-                <th class="lg-1 col-md-1 col-sm-1" scope="col">SellingPrice</th>
-                <th class="lg-1 col-md-1 col-sm-1" scope="col">PurchasingPrice</th>
-                <th class="lg-1 col-md-1 col-sm-1" scope="col">ExpiryPeriod</th>
-                <th class="lg-2 col-md-2 col-sm-2" scope="col">CategoryId</th>
-                
-              </tr> 
-            </thead>
-            <tbody>
-              <tr class="table-active" *ngFor="let item of productList ">
-                <td class="lg-2 col-md-2 col-sm-2">{{item.name}}</td>
-                <td class="lg-2 col-md-2 col-sm-2" >{{item.description}}</td>
-                <td class="lg-1 col-md-1 col-sm-1">{{item.miniAmount}}</td>
-                <td class="lg-2 col-md-2 col-sm-2">{{item.barcode}}</td>
-                <td class="lg-1 col-md-1 col-sm-1">{{item.sellingPrice}}</td>
-                <td class="lg-1 col-md-1 col-sm-1">{{item.purchasingPrice}}</td>
-                <td class="lg-1 col-md-1 col-sm-1">{{item.expiryPeriod}}</td>
-                <td class="lg-2 col-md-2 col-sm-2">{{item.categoryId}}</td>
-                <td class="lg-2 col-md-2 col-sm-2"><a class="btn btn-success"  (click)="NavigationToEditProduct(item.id)">edit</a></td>
-                <td class="lg-3 col-md-3 col-sm-3"><a class="btn  btn-danger" (click)="deleteProduct(item.id)">delete</a></td>
-                <td></td>
-              </tr>
-              <tr>
-             
-            </tbody>
-          </table>
-    </div>
-</div> -->
+
 <div class="container-fluid pt-4">
   <div class="d-flex justify-content-end mb-4">
     <button class="btn btn-success rounded" (click)="navigateToAddProduct()"><mat-icon>add</mat-icon></button>
@@ -58,14 +20,15 @@
       <th mat-header-cell *matHeaderCellDef>barcode</th>
       <td mat-cell *matCellDef="let element">{{element.barcode}}</td>
     </ng-container>
-    <ng-container matColumnDef="sellingPrice">
-      <th mat-header-cell *matHeaderCellDef>sellingPrice</th>
-      <td mat-cell *matCellDef="let element">{{element.sellingPrice}}</td>
-    </ng-container>
     <ng-container matColumnDef="purchasingPrice">
       <th mat-header-cell *matHeaderCellDef>purchasingPrice</th>
       <td mat-cell *matCellDef="let element">{{element.purchasingPrice}}</td>
     </ng-container>
+    <ng-container matColumnDef="sellingPrice">
+      <th mat-header-cell *matHeaderCellDef>sellingPrice</th>
+      <td mat-cell *matCellDef="let element">{{element.sellingPrice}}</td>
+    </ng-container>
+    
     <ng-container matColumnDef="expiryPeriod">
       <th mat-header-cell *matHeaderCellDef>expiryPeriod</th>
       <td mat-cell *matCellDef="let element">{{element.expiryPeriod}}</td>

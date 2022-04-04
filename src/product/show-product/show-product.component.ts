@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmDeleteService } from 'src/app/sharedServics/confirm-delete.service';
 import { Product } from 'src/app/shared_classes_intefaces/peoduct';
-import { CategoryService } from 'src/category/category.service';
+import { CategoryService } from '../productService/category.service';
 import { ProductService } from '../productService/product.service';
 
 @Component({
@@ -14,13 +14,13 @@ export class ShowProductComponent implements OnInit {
 
   constructor(private router:Router,private dialogService:ConfirmDeleteService,private productService:ProductService,private categoryService:CategoryService ) { }
   categoryList:string[]=[];
-  displayedColumns: string[] = ['name','description','miniAmount','barcode','sellingPrice','purchasingPrice','expiryPeriod','CatName','actions'];
+  displayedColumns: string[] = ['name','description','miniAmount','barcode','purchasingPrice','sellingPrice','expiryPeriod','CatName','actions'];
   dataSource:Product[]=[];
     ngOnInit(): void {
       this.productService.getAll().subscribe(data=>{
         this.dataSource=data;
         for(let element of this.dataSource){
-          this.categoryService.getCategoryById(element.categoryId).subscribe(res=>{
+          this.categoryService.getByID(element.categoryId).subscribe(res=>{
             this.categoryList.push(res.name);
           },error=>console.log(error));
         }

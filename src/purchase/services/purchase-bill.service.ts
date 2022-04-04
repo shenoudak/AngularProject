@@ -27,6 +27,12 @@ export class PurchaseBillService {
     return this.http.get<any>(this._url+'/id/'+purchaseBillId+'/Products')
     .pipe(catchError(this.errorHandler));
   }
+  
+
+  getPurchaseProductsByBillCod(purchaseBillCode:number):Observable<any>{
+    return this.http.get<any>(this._url+'/code/'+purchaseBillCode+'/Products')
+    .pipe(catchError(this.errorHandler));
+  }
    insert(purchaseBill:PurchaseBill):Observable<any>{
      console.log(JSON.stringify(purchaseBill));
      return this.http.post<PurchaseBill>(this._url,JSON.stringify(purchaseBill),this.httpOptions)

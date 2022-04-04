@@ -19,7 +19,12 @@ export class AddDiscountComponent implements OnInit {
   get DiscountValue(){  
     return this.registrationForm.get('DiscountValue');
    }
-  
+   get Title(){  
+    return this.registrationForm.get('Title');
+   }
+   get UnitCount(){  
+    return this.registrationForm.get('UnitCount');
+   }
    get StartDate(){  
     return this.registrationForm.get('StartDate');
    }
@@ -34,12 +39,14 @@ export class AddDiscountComponent implements OnInit {
       DiscountValue:[0,[Validators.required,Validators.pattern('^[0-9]+$')]],
       Notes:[''],
       StartDate:['',[Validators.required]],
-      EndDate:['',[Validators.required]]
+      EndDate:['',[Validators.required]],
+      Title:['',[Validators.required]],
+      UnitCount:['',[Validators.required]]
      }
    );
    customerDiscount:any;
     SaveData(){
-      this.customerDiscount=new CustomerDiscount(this.DiscountValue?.value,this.Notes?.value,this.StartDate?.value,this.EndDate?.value);
+      this.customerDiscount=new CustomerDiscount(this.DiscountValue?.value,this.Notes?.value,this.StartDate?.value,this.EndDate?.value,this.Title?.value,this.UnitCount?.value);
       this.customerDiscountService.insert(this.customerDiscount).subscribe(data=>{
         console.log(data);
         this.router.navigate(['/home/customer/showDiscount']);

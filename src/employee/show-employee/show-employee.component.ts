@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmDeleteService } from 'src/app/sharedServics/confirm-delete.service';
 import { Employee } from 'src/app/shared_classes_intefaces/employee';
+import { Job } from 'src/app/shared_classes_intefaces/job';
 import { Stock } from 'src/app/shared_classes_intefaces/stock';
-import { IJob } from 'src/job/IJob';
-import { JobService } from 'src/job/job.service';
+import { JobService } from 'src/stock/stock/services/job.service';
 import { StockService } from 'src/stock/stock/stock.service';
 import { EmployeeService } from '../services/employee.service';
 
@@ -22,23 +22,21 @@ export class ShowEmployeeComponent implements OnInit {
   stockNamesList:any[]=[];
   jobtitleNamesList:any=[];
   isCheckedList:boolean[]=[];
-  job:IJob={} as IJob;
+  job:Job={} as Job;
   isCheckedPro:boolean=false;
   ngOnInit(): void {
     this.employeeService.getAll().subscribe(data=>{
       this.dataSource=data;
       console.log(data);
       for(let element of this.dataSource){
-        //if(element.haveAccess===1)
         this.isCheckedList.push(element.haveAccess);
-        //console.log(element.haveAccess);
          this.stockService.getByID(element.stockId).subscribe(res=>{
          this.stock=res;
          this.stockNamesList.push(this.stock.name);
          },error=>{
            console.log(error);
          });
-         this.jobService.getJobById(element.jobId).subscribe(res=>{
+         this.jobService.getByID(element.jobId).subscribe(res=>{
          this.job=res;
          this.jobtitleNamesList.push(this.job.jobTitle);
         

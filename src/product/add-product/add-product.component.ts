@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import {  Router } from '@angular/router';
 import { Product } from 'src/app/shared_classes_intefaces/peoduct';
-import { CategoryService } from 'src/category/category.service';
+import { CategoryService } from '../productService/category.service';
 import { ProductService } from '../productService/product.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class AddProductComponent implements OnInit {
   constructor(private fb:FormBuilder,private router:Router,private productService:ProductService,private categoryService:CategoryService) { }
   categoryList:any[]=[];//Category
   ngOnInit(): void {
-   this.categoryService.showCategory().subscribe(data=>{
+   this.categoryService.getAll().subscribe(data=>{
       this.categoryList=data;
     },error=>{
       console.log(error);
@@ -48,9 +48,8 @@ export class AddProductComponent implements OnInit {
    }
    registrationForm=this.fb.group(
      {
-      Name:['',[Validators.required]],
+      Name:['',[Validators.required,Validators.minLength(5)]],
       Description:['',],
-      //MiniAmount:[0,[Validators.pattern('^[0-9]+$')]],
       MiniAmount:['',[Validators.required,Validators.pattern('^[0-9]+$')]],
       SellingPrice:['',[Validators.required,Validators.pattern('^[0-9]+$')]],
       PurchasingPrice:['',[Validators.required,Validators.pattern('^[0-9]+$')]],
