@@ -15,6 +15,9 @@ import { EditTransferOperationComponent } from './edit-transfer-operation/edit-t
 import { AddJobComponent } from './add-job/add-job.component';
 import { EditJobComponent } from './edit-job/edit-job.component';
 import { ShowJobComponent } from './show-job/show-job.component';
+import { AddSupplierComponent } from './add-supplier/add-supplier.component';
+import { EditSupplierComponent } from './edit-supplier/edit-supplier.component';
+import { ShowSupplierComponent } from './show-supplier/show-supplier.component';
 @NgModule({
   declarations: [
     StockMainComponent,
@@ -27,6 +30,9 @@ import { ShowJobComponent } from './show-job/show-job.component';
     AddJobComponent,
     EditJobComponent,
     ShowJobComponent,
+    AddSupplierComponent,
+    EditSupplierComponent,
+    ShowSupplierComponent,
   ],
   imports: [
     CommonModule,

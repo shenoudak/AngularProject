@@ -17,10 +17,8 @@ import { CustomerModule } from 'src/Customer/customer/customer.module';
 import { TaxesModule } from 'src/taxes/taxes.module';
 import { ProductModule } from 'src/product/product.module';
 import { ExpenceModule } from 'src/expence/expence.module';
-import { ExpiredProductModule } from 'src/expired-product/expired-product.module';
 import { PaymentMethodModule } from 'src/payment-method/payment-method.module';
 import { StockProductModule } from 'src/stock-product/stock-product.module';
-import { SupplierModule } from 'src/supplier/supplier.module';
 import { EmployeeModule } from 'src/employee/employee.module';
 import { SalesModule } from 'src/sales/sales.module';
 import { ReportModule } from 'src/report/report.module';
@@ -51,10 +49,8 @@ import { ReportModule } from 'src/report/report.module';
     TaxesModule,
     ProductModule,
     ExpenceModule,
-    ExpiredProductModule,
     PaymentMethodModule,
     StockProductModule,
-    SupplierModule,
     EmployeeModule,
     PurchaseModule,
     SalesModule,

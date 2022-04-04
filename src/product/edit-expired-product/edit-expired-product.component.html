@@ -1,0 +1,91 @@
+<div class="container-fluid ">
+    <!-- {{registrationForm.value|json}} -->
+
+    <div class="row  mx-auto">
+        <h1 class="text-primary">Add Expired Product</h1>
+        <hr>
+        <form [formGroup]='registrationForm'>
+            <div class="form-group mb-3">
+                <label class="mb-2">Amount</label>
+                <input type="text" formControlName="Amount" class=" form-control"
+                    [class.is-invalid]="Amount?.invalid&&Amount?.touched" />
+                <div *ngIf="Amount?.invalid&&Amount?.touched">
+                    <small class="text-danger " *ngIf="Amount?.errors?.['required']">is required</small>
+                    <small class="text-danger" *ngIf="Amount?.errors?.['pattern']">Accept only digit Number</small>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label class="mb-2">Notes</label>
+                <input type="text" formControlName="Notes" class=" form-control"
+                    [class.is-invalid]="Notes?.invalid&&Notes?.touched" />
+                <div *ngIf="Notes?.invalid&&Notes?.touched">
+                    <small class="text-danger " *ngIf="Notes?.errors?.['required']">Is required</small>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label class="mb-2">Date Added</label>
+                <input type="text" disabled value={{myDateToDay|date}} class="mb-3 form-control "
+                    [class.is-invalid]="DateAdded?.invalid&&DateAdded?.touched">
+                <div *ngIf="DateAdded?.invalid&&DateAdded?.touched">
+                    <small class="text-danger " *ngIf="DateAdded?.errors?.['required']">Is required</small>
+                </div>
+            </div>
+
+
+           
+                <div class="container" ng-app="invoice">
+                    <section class="row" ng-controller="InvoiceController">
+                        <table class="table table-hover mx-auto">
+                            <thead>
+
+                                <tr class="text-center ">
+                                    <th>Product </th>
+                                    <th>Production Date</th>
+                                    
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr class="text-center mb-3 text-center ">
+                                    <td>
+                                        <select class="form-select" aria-label="Default select example"
+                                            formControlName="ProductId"
+                                            [class.is-invalid]="ProductId?.invalid&&ProductId?.touched">
+                                            <option value={{item.id}} *ngFor="let item of productList">{{item.name}}
+                                            </option>
+                                        </select>
+                                        <div *ngIf="ProductId?.invalid&&ProductId?.touched">
+                                            <small class="text-danger " *ngIf="ProductId?.errors?.['required']">
+                                                Is required</small>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <mat-form-field class="example-full-width" appearance="fill">
+                                                <mat-label>Choose Production Date</mat-label>
+                                                <input matInput [max]="maxDate" [matDatepicker]="picker" formControlName="ProductionDate"
+                                                    [class.is-invalid]="ProductionDate?.invalid&&ProductionDate?.touched">
+                                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                                <mat-datepicker #picker ></mat-datepicker>
+                                            </mat-form-field>
+                                            </div>
+                                            <div *ngIf="ProductionDate?.invalid&&ProductionDate?.touched">
+                                                <small class="text-danger " *ngIf="ProductionDate?.errors?.['required']">Is required</small>
+                                            </div>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </section>
+                </div>
+            
+        </form>
+        <div class="col-12 d-flex justify-content-center mt-3">
+            <button class="btn btn-primary" [disabled]="Amount?.invalid||ProductId?.invalid||ProductionDate?.invalid||Notes?.invalid
+            " (click)="SaveData()">Save</button>
+        </div>
+    </div>
+</div>
+<hr>

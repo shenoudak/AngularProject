@@ -1,0 +1,85 @@
+<div class="container-fluid ">
+    <!-- {{registrationForm.value|json}} -->
+
+    <div class="row mx-auto">
+        <h1 class="text-primary">Add Supplier</h1>
+        <hr>
+        <form [formGroup]='registrationForm'>
+            <div class="form-group mb-3">
+                <label class="mb-2">Name</label>
+                <input type="text" formControlName="Name" [class.is-invalid]="Name?.invalid&&Name?.touched"
+                    class="form-control ">
+                <div *ngIf="Name?.invalid&&Name?.touched">
+                    <small class="text-danger " *ngIf="Name?.errors?.['required']">Is required</small>
+                    <small class="text-danger" *ngIf="Name?.errors?.['minlength']">Minimum Length Equal 5</small>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label class="mb-2">Balance Debit</label>
+                <input type="text" formControlName="BalanceDebit" class=" form-control"
+                    [class.is-invalid]="BalanceDebit?.invalid&&BalanceDebit?.touched" />
+                <div *ngIf="BalanceDebit?.invalid&&BalanceDebit?.touched">
+                    <small class="text-danger" *ngIf="BalanceDebit?.errors?.['pattern']">Accept only digit
+                        Number</small>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label class="mb-2">Phone</label>
+                <input type="text" formControlName="Phone" class=" form-control"
+                    [class.is-invalid]="Phone?.invalid&&Phone?.touched" />
+                <div *ngIf="Phone?.invalid&&Phone?.touched">
+                    <small class="text-danger " *ngIf="Phone?.errors?.['required']">Is required</small>
+                    <small class="text-danger" *ngIf="Phone?.errors?.['pattern']">Accept only digit Number</small>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label class="mb-2">Address</label>
+                <input type="text" formControlName="Address" class="mb-3 form-control " [class.is-invalid]="Address?.invalid&&Address?.touched">
+                <div *ngIf="Address?.invalid&&Address?.touched">
+                    <small class="text-danger " *ngIf="Address?.errors?.['required']">Is required</small>
+               </div>
+            </div>
+            
+          
+            <div class="container" ng-app="invoice">
+                <section class="row" ng-controller="InvoiceController">
+                    <table class="table table-hover mx-auto" style="width:50%">
+                        <thead>
+
+                            <tr class="text-center ">
+                                <th>Trader Type </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr class="text-center mb-3 ">
+                                
+                                <td>
+                                    <select class="form-select" aria-label="Default select example"
+                                        formControlName="TypeId" [class.is-invalid]="TypeId?.invalid&&TypeId?.touched">
+                                        <option value={{item.id}} *ngFor="let item of customerTypesList">
+                                            {{item.typeName}}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="TypeId?.invalid&&TypeId?.touched">
+                                        <small class="text-danger " *ngIf="TypeId?.errors?.['required']">
+                                            Is required</small>
+                                    </div>
+                                </td>
+                                
+
+                            </tr>
+                            <tr class="text-center">
+
+                    </table>
+                </section>
+            </div>
+        </form>
+        <div class="col-12 d-flex justify-content-center mt-3">
+            <button class="btn btn-primary"
+                [disabled]="Name?.invalid||Phone?.invalid ||BalanceDebit?.invalid|| TypeId?.invalid||Address?.invalid"
+                (click)="SaveData()">Save</button>
+        </div>
+    </div>
+</div>
+<hr>

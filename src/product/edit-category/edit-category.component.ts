@@ -25,7 +25,8 @@ export class EditCategoryComponent implements OnInit {
        this.registrationForm.get('Name')?.patchValue(this.categoryObject.name);
        this.registrationForm.get('Description')?.patchValue(this.categoryObject.description);
      })
- })}
+ })
+}
   get Name(){  
     return this.registrationForm.get('Name');
    }

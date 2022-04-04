@@ -6,8 +6,8 @@ import { PurchaseProduct } from 'src/app/shared_classes_intefaces/purchaseProduc
 import { Tax } from 'src/app/shared_classes_intefaces/tax';
 import { PaymentMethodService } from 'src/payment-method/payment-method.service';
 import { ProductService } from 'src/product/productService/product.service';
+import { SupplierService } from 'src/stock/stock/services/supplier.service';
 import { StockService } from 'src/stock/stock/stock.service';
-import { SupplierService } from 'src/supplier/supplier.service';
 import { TaxService } from 'src/taxes/taxService/tax.service';
 import { PurchaseBillService } from '../services/purchase-bill.service';
 
@@ -61,7 +61,7 @@ export class AddBillComponent implements OnInit {
     }, error => {
       console.log(error);
     });
-    this.supplierService.GetAllSupplier().subscribe(data => {
+    this.supplierService.getAll().subscribe(data => {
       this.supplierList = data;
     }, error => {
       console.log(error);

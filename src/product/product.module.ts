@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { ProductRoutingModule } from './product-routing.module';
 import { ShowProductComponent } from './show-product/show-product.component';
@@ -10,6 +10,9 @@ import { MaterialModule } from 'src/material/material.module';
 import { AddCategoryComponent } from './add-category/add-category.component';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
 import { ShowCategoryComponent } from './show-category/show-category.component';
+import { ShowExpiredProductComponent } from './show-expired-product/show-expired-product.component';
+import { EditExpiredProductComponent } from './edit-expired-product/edit-expired-product.component';
+import { AddExpiredProductComponent } from './add-expired-product/add-expired-product.component';
 
 
 @NgModule({
@@ -19,7 +22,10 @@ import { ShowCategoryComponent } from './show-category/show-category.component';
     EditProductComponent,
     AddCategoryComponent,
     EditCategoryComponent,
-    ShowCategoryComponent
+    ShowCategoryComponent,
+    ShowExpiredProductComponent,
+    EditExpiredProductComponent,
+    AddExpiredProductComponent
   ],
   imports: [
     CommonModule,
@@ -27,6 +33,7 @@ import { ShowCategoryComponent } from './show-category/show-category.component';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule
-  ]
+  ],
+  providers: [DatePipe],
 })
 export class ProductModule { }
