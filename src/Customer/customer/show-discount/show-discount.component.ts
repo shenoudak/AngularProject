@@ -11,7 +11,7 @@ import { CustomerDiscountService } from '../customerService/customer-discount.se
 export class ShowDiscountComponent implements OnInit {
 
   constructor(private router:Router,private dialogService:ConfirmDeleteService,private customerDiscountService:CustomerDiscountService) { }
-  displayedColumns: string[] = ['discountValue','notes','startDate','endDate','actions'];
+  displayedColumns: string[] = ['title','unitCount','discountValue','startDate','endDate','actions'];
   dataSource:any=[];
   customerDiscountkList:any[]=[]
   ngOnInit(): void {

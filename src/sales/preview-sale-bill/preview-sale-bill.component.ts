@@ -16,6 +16,7 @@ export class PreviewSaleBillComponent implements OnInit {
   constructor(private activateRoute:ActivatedRoute,private taxService:TaxService,private saleBillService:SaleBillService,private productService:ProductService) {
    
   }
+
   header:any="Sale INVOICE "
   saleProductList:SaleBillProduct[]=[];
   saleBillCode:any;

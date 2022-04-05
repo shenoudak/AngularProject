@@ -18,6 +18,9 @@ import { ShowJobComponent } from './show-job/show-job.component';
 import { AddSupplierComponent } from './add-supplier/add-supplier.component';
 import { EditSupplierComponent } from './edit-supplier/edit-supplier.component';
 import { ShowSupplierComponent } from './show-supplier/show-supplier.component';
+import { AddStockProductComponent } from './add-stock-product/add-stock-product.component';
+import { EditStockProductComponent } from './edit-stock-product/edit-stock-product.component';
+import { ShowStockProductComponent } from './show-stock-product/show-stock-product.component';
 @NgModule({
   declarations: [
     StockMainComponent,
@@ -33,6 +36,9 @@ import { ShowSupplierComponent } from './show-supplier/show-supplier.component';
     AddSupplierComponent,
     EditSupplierComponent,
     ShowSupplierComponent,
+    AddStockProductComponent,
+    EditStockProductComponent,
+    ShowStockProductComponent,
   ],
   imports: [
     CommonModule,

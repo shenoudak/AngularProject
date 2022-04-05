@@ -17,11 +17,10 @@ import { CustomerModule } from 'src/Customer/customer/customer.module';
 import { TaxesModule } from 'src/taxes/taxes.module';
 import { ProductModule } from 'src/product/product.module';
 import { ExpenceModule } from 'src/expence/expence.module';
-import { PaymentMethodModule } from 'src/payment-method/payment-method.module';
-import { StockProductModule } from 'src/stock-product/stock-product.module';
 import { EmployeeModule } from 'src/employee/employee.module';
 import { SalesModule } from 'src/sales/sales.module';
 import { ReportModule } from 'src/report/report.module';
+import { PaymentModule } from 'src/payment/payment.module';
 
 
 
@@ -49,12 +48,11 @@ import { ReportModule } from 'src/report/report.module';
     TaxesModule,
     ProductModule,
     ExpenceModule,
-    PaymentMethodModule,
-    StockProductModule,
     EmployeeModule,
     PurchaseModule,
     SalesModule,
-    ReportModule
+    ReportModule,
+    PaymentModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

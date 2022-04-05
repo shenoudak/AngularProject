@@ -6,7 +6,7 @@ import { SaleBill } from 'src/app/shared_classes_intefaces/saleBill';
 import { SaleBillProduct } from 'src/app/shared_classes_intefaces/saleBillProduct';
 import { Tax } from 'src/app/shared_classes_intefaces/tax';
 import { CustomerService } from 'src/Customer/customer/customerService/customer.service';
-import { PaymentMethodService } from 'src/payment-method/payment-method.service';
+import { PaymentMService } from 'src/payment/services/payment-m.service';
 import { ProductService } from 'src/product/productService/product.service';
 import { StockService } from 'src/stock/stock/stock.service';
 import { TaxService } from 'src/taxes/taxService/tax.service';
@@ -33,7 +33,7 @@ export class AddSaleBillComponent implements OnInit {
     dateToDay:any;
     //purchaseproducts:PurchaseProduct[];
     purchaseProList: any[] = [];
-    constructor(private fb: FormBuilder, private paymentMethodService: PaymentMethodService, private taxService: TaxService, private customerService: CustomerService, private stockService: StockService, private router: Router, private productService: ProductService, private saleBillService: SaleBillService) {
+    constructor(private fb: FormBuilder, private paymentMethodService: PaymentMService, private taxService: TaxService, private customerService: CustomerService, private stockService: StockService, private router: Router, private productService: ProductService, private saleBillService: SaleBillService) {
       const currentYear = new Date().getFullYear();
       const today = new Date();
       this.dateToDay=today;
@@ -69,7 +69,7 @@ export class AddSaleBillComponent implements OnInit {
       }, error => {
         console.log(error);
       })
-      this.paymentMethodService.showPaymentMethod().subscribe(data => {
+      this.paymentMethodService.getAll().subscribe(data => {
         this.paymentMList = data;
       }, error => {
         console.log(error);

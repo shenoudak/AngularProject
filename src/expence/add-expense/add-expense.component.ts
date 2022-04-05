@@ -8,7 +8,7 @@ import { Expense } from 'src/app/shared_classes_intefaces/expense';
 import { ExpenseType } from 'src/app/shared_classes_intefaces/expenseType';
 import { Stock } from 'src/app/shared_classes_intefaces/stock';
 import { EmployeeService } from 'src/employee/services/employee.service';
-import { PaymentMethodService } from 'src/payment-method/payment-method.service';
+import { PaymentMService } from 'src/payment/services/payment-m.service';
 import { StockService } from 'src/stock/stock/stock.service';
 import { ExpenseTypeService } from '../services/expense-type.service';
 import { ExpenseService } from '../services/expense.service';
@@ -20,7 +20,7 @@ import { ExpenseService } from '../services/expense.service';
 })
 export class AddExpenseComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private datePipe:DatePipe,private expenseService: ExpenseService, private paymentMethodService: PaymentMethodService, private stockService: StockService, private employeeService: EmployeeService, private router: Router, private expenseTypeService: ExpenseTypeService) { }
+  constructor(private fb: FormBuilder, private datePipe:DatePipe,private expenseService: ExpenseService, private paymentMethodService: PaymentMService, private stockService: StockService, private employeeService: EmployeeService, private router: Router, private expenseTypeService: ExpenseTypeService) { }
   stockList: Stock[] = [];
   employeeList: Employee[] = [];
   expenseTypeList: ExpenseType[] = [];
@@ -47,7 +47,7 @@ export class AddExpenseComponent implements OnInit {
     }, error => {
       console.log(error);
     });
-    this.paymentMethodService.showPaymentMethod().subscribe(data => {
+    this.paymentMethodService.getAll().subscribe(data => {
       this.paymentMethodList = data;
       console.log(this.paymentMethodList);
     }, error => {

@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { PurchaseBill } from 'src/app/shared_classes_intefaces/purchaseBill';
 import { PurchaseProduct } from 'src/app/shared_classes_intefaces/purchaseProduct';
 import { Tax } from 'src/app/shared_classes_intefaces/tax';
-import { PaymentMethodService } from 'src/payment-method/payment-method.service';
+import { PaymentMService } from 'src/payment/services/payment-m.service';
 import { ProductService } from 'src/product/productService/product.service';
 import { SupplierService } from 'src/stock/stock/services/supplier.service';
 import { StockService } from 'src/stock/stock/stock.service';
@@ -33,7 +33,7 @@ export class AddBillComponent implements OnInit {
   dateToDay:any;
   //purchaseproducts:PurchaseProduct[];
   purchaseProList: any[] = [];
-  constructor(private fb: FormBuilder, private paymentMethodService: PaymentMethodService, private taxService: TaxService, private supplierService: SupplierService, private stockService: StockService, private router: Router, private productService: ProductService, private purchaseBillService: PurchaseBillService) {
+  constructor(private fb: FormBuilder, private paymentMethodService: PaymentMService, private taxService: TaxService, private supplierService: SupplierService, private stockService: StockService, private router: Router, private productService: ProductService, private purchaseBillService: PurchaseBillService) {
     const currentYear = new Date().getFullYear();
     const today = new Date();
     this.dateToDay=today;
@@ -71,7 +71,7 @@ export class AddBillComponent implements OnInit {
     }, error => {
       console.log(error);
     })
-    this.paymentMethodService.showPaymentMethod().subscribe(data => {
+    this.paymentMethodService.getAll().subscribe(data => {
       this.paymentMList = data;
     }, error => {
       console.log(error);
@@ -158,7 +158,7 @@ export class AddBillComponent implements OnInit {
     this.totalPriceOfProduct = (parseInt(this.Price?.value) * parseInt(this.Amount?.value)) - ((parseInt(this.Discount?.value) * .01 * parseInt(this.Price?.value) * parseInt(this.Amount?.value)));
     this.purchaseProduct = new PurchaseProduct(this.Amount?.value, this.Discount?.value, this.totalPriceOfProduct, this.ProdId?.value);
     this.purchaseProList.push(this.purchaseProduct);
-   this.blockFunction();
+    this.blockFunction();
     this.productlengthEqualZero = false;
     this.dataSource = this.purchaseProList;
     this.tooglePurchaseProductForm = !this.tooglePurchaseProductForm;

@@ -79,7 +79,7 @@
                     <mat-icon>business_center</mat-icon>
                 </span>
                 <span class="col-8 d-flex ">
-                    Stocks
+                    Manage Stocks
                 </span>
     
                 <span class="col-2 d-flex justify-content-end" *ngIf="toogleListStocks">
@@ -95,7 +95,12 @@
             <mat-nav-list [class.d-none]=toogleListStocks>
                 <span class="row ">
                     <a mat-list-item routerLink="/home/stock" routerLinkActive="list-item-active">
-                     <span class=" ms-4"> Manage Store </span>
+                     <span class=" ms-4"> Stock </span>
+                     </a>
+                </span>
+                <span class="row ">
+                    <a mat-list-item routerLink="home/stock/showStockProduct" routerLinkActive="list-item-active">
+                     <span class=" ms-4"> Stock product </span>
                      </a>
                 </span>
                 <span class="row ">
@@ -108,6 +113,7 @@
                      <span class=" ms-4"> Jobs </span>
                      </a>
                 </span>
+                
                
             </mat-nav-list>
     
@@ -171,8 +177,8 @@
                  </a>
             </span>
             <span class="row ">
-                <a mat-list-item routerLink="/s" routerLinkActive="list-item-active">
-                 <span class=" ms-4"> Sub Category </span>
+                <a mat-list-item routerLink="/home/purchase/addRetBill" routerLinkActive="list-item-active">
+                 <span class=" ms-4"> Add Return Bill </span>
                  </a>
             </span>
             <span class="row ">
@@ -242,8 +248,8 @@
                  </a>
             </span>
             <span class="row ">
-                <a mat-list-item routerLink="/s" routerLinkActive="list-item-active">
-                 <span class=" ms-4"> Sub Category </span>
+                <a mat-list-item routerLink="/home/sale/addRetBill" routerLinkActive="list-item-active">
+                 <span class=" ms-4"> Add Return Bill </span>
                  </a>
             </span>
             <span class="row ">

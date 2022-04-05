@@ -1,0 +1,70 @@
+<div class="container-fluid ">
+    <!-- {{registrationForm.value|json}} -->
+    <div class="row mx-auto">
+        <h1 class="text-primary">Add Payment</h1>
+        <hr>
+        <form [formGroup]='registrationForm'>
+            <div class="form-group ">
+                <input type="text" formControlName="Name" [class.is-invalid]="Name?.invalid&&Name?.touched"
+                    class="form-control ">
+                <div *ngIf="Name?.invalid&&Name?.touched">
+                    <small class="text-danger " *ngIf="Name?.errors?.['required']">Is required</small>
+                    <small class="text-danger" *ngIf="Name?.errors?.['minlength']">Minimum Length Equal 5</small>
+                </div>
+            </div>
+
+
+            <div class="container" ng-app="invoice">
+                <section class="row" ng-controller="InvoiceController">
+                    <table class="table table-hover mx-auto" style="width:80%">
+                        <thead>
+
+                            <tr class="text-center mt-5 mb-5">
+                                <th>Type</th>
+                                <th>Balance</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr class="text-center  ">
+                                <td>
+                                    <select class="form-select" aria-label="Default select example"
+                                        formControlName="Type" [class.is-invalid]="Type?.invalid&&Type?.touched">
+                                        <option value='Bank'>
+                                            Bank
+                                        </option>
+                                        <option value='MoneySafe'>
+                                            Money Safe
+                                        </option>
+                                    </select>
+                                    <div *ngIf="Type?.invalid&&Type?.touched">
+                                        <small class="text-danger " *ngIf="Type?.errors?.['required']">
+                                            Is required</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group mb-3">
+                                        <input type="number" formControlName="Balance"
+                                            [class.is-invalid]="Type?.invalid&&Type?.touched" class="form-control ">
+                                        <div *ngIf="Type?.invalid&&Type?.touched">
+                                            <small class="text-danger " *ngIf="Type?.errors?.['required']">Is
+                                                required</small>
+
+                                        </div>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </section>
+            </div>
+
+        </form>
+        <div class="col-12 d-flex justify-content-center">
+            <button class="btn btn-primary" [disabled]="Name?.invalid||Type?.invalid||Balance?.invalid"
+                (click)="SaveData()">Save</button>
+        </div>
+    </div>
+</div>

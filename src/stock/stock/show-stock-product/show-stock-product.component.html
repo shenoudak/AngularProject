@@ -1,0 +1,81 @@
+<!-- <div class="container-fluid pt-4">
+    <div class="d-flex justify-content-end">
+            <a routerLink="/home/stock/add" (click)="navigateToAddCustomer()" class="btn btn-primary">add Customer</a>
+    </div>
+    <div class="row">
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th class="lg-1 col-md-1 col-sm-1" scope="col">Name</th>
+                <th class="lg-1 col-md-1 col-sm-1" scope="col">balanceOutstand</th>
+                <th class="lg-1 col-md-1 col-sm-1" scope="col">phone</th>
+                <th class="lg-2 col-md-2 col-sm-2" scope="col">address</th>
+                <th class="lg-1 col-md-1 col-sm-1" scope="col">tradeName</th>
+                <th class="lg-1 col-md-1 col-sm-1" scope="col">tradeType</th>
+                <th class="lg-2 col-md-2 col-sm-2"></th>
+                <th class="lg-3 col-md-3 col-sm-3"></th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="table-active" *ngFor="let item of customerList;let ind=index " >
+               
+                <td class="lg-1 col-md-1 col-sm-1">{{item.name}}</td>
+                <td class="lg-1 col-md-1 col-sm-1">{{item.balanceOutstand}}</td>
+                <td class="lg-1 col-md-1 col-sm-1" >{{item.phone}}</td>
+                <td class="lg-2 col-md-2 col-sm-2" >{{item.address}}</td>
+                <td class="lg-1 col-md- col-sm-1" >{{item.tradeName}}</td>
+                <td class="lg-1 col-md-1 col-sm-1" >{{customerTypeName[ind]}}</td>
+                <td class="lg-2 col-md-2 col-sm-2"><a class="btn btn-success"  (click)="NavigationToEditCustomer(item.id)">edit</a></td>
+                <td class="lg-3 col-md-3 col-sm-3"><a class="btn  btn-danger" (click)="deleteCustomer(item.id)">delete</a></td>
+                <td></td>
+              </tr>
+              <tr>
+             
+            </tbody>
+          </table>
+    </div>
+</div> -->
+<div class="container-fluid pt-4">
+    <!-- <div class="d-flex justify-content-end mb-4">
+      <button class="btn btn-success rounded" (click)="navigateToAddStockProduct()"><mat-icon>add</mat-icon></button>
+    </div> -->
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+        <ng-container matColumnDef="product">
+            <th mat-header-cell *matHeaderCellDef>Product</th>
+            <td mat-cell *matCellDef="let element; let i = index">{{productListName[i]}}</td>
+          </ng-container>
+          <ng-container matColumnDef="stock">
+            <th mat-header-cell *matHeaderCellDef>Stock</th>
+            <td mat-cell *matCellDef="let element; let i = index">{{stockListName[i]}}</td>
+          </ng-container>
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef>Amount</th>
+        <td mat-cell *matCellDef="let element">{{element.amount}}</td>
+      </ng-container>
+      <ng-container matColumnDef="prodDate">
+        <th mat-header-cell *matHeaderCellDef>Production Date</th>
+        <td mat-cell *matCellDef="let element">{{element.productionDate|date:'mediumDate'}}</td>
+      </ng-container>
+      
+      
+      <ng-container  matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions </th>
+        <td mat-cell  *matCellDef="let element">
+    
+        <button mat-icon-button matTooltip="Click to Delete" class="iconbutton" color="warn"
+          (click)="deleteStockProduct(element.id)">
+          <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+      </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  
+  
+  
+  
+  
+  

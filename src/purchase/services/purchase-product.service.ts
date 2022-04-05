@@ -9,7 +9,7 @@ import { PurchaseProduct } from 'src/app/shared_classes_intefaces/purchaseProduc
 export class PurchaseProductService {
 
   constructor(private http:HttpClient) { }
-  _url:string="https://localhost:44338/api/purchaseProduct";
+  _url:string="https://localhost:44338/api/PurchaseProducts";
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'

@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PurchaseBill } from 'src/app/shared_classes_intefaces/purchaseBill';
 import { PurchaseProduct } from 'src/app/shared_classes_intefaces/purchaseProduct';
-import { PaymentMethodService } from 'src/payment-method/payment-method.service';
+import { PaymentMService } from 'src/payment/services/payment-m.service';
 import { ProductService } from 'src/product/productService/product.service';
 import { SupplierService } from 'src/stock/stock/services/supplier.service';
 import { TaxService } from 'src/taxes/taxService/tax.service';
@@ -17,7 +17,7 @@ import { PurchaseBillService } from '../services/purchase-bill.service';
   styleUrls: ['./show-purchase-bill.component.scss']
 })
 export class ShowPurchaseBillComponent implements OnInit {
-  constructor(private fb:FormBuilder,private activateRoute:ActivatedRoute,private paymentMethodService:PaymentMethodService,private taxService:TaxService,private supplierService:SupplierService,private router:Router,private purchaseProductService:PurchaseBillService,private purchaseBillService:PurchaseBillService,private productService:ProductService) {
+  constructor(private fb:FormBuilder,private activateRoute:ActivatedRoute,private paymentMethodService:PaymentMService,private taxService:TaxService,private supplierService:SupplierService,private router:Router,private purchaseProductService:PurchaseBillService,private purchaseBillService:PurchaseBillService,private productService:ProductService) {
    
   }
   header:any="Purchase INVOICE "

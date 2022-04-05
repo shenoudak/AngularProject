@@ -2,14 +2,12 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CustomerType } from 'src/app/shared_classes_intefaces/customerType';
 import { Employee } from 'src/app/shared_classes_intefaces/employee';
 import { Expense } from 'src/app/shared_classes_intefaces/expense';
 import { ExpenseType } from 'src/app/shared_classes_intefaces/expenseType';
 import { Stock } from 'src/app/shared_classes_intefaces/stock';
-import { CustomerTypeService } from 'src/Customer/customer/customerService/customer-type.service';
 import { EmployeeService } from 'src/employee/services/employee.service';
-import { PaymentMethodService } from 'src/payment-method/payment-method.service';
+import { PaymentMService } from 'src/payment/services/payment-m.service';
 import { StockService } from 'src/stock/stock/stock.service';
 import { ExpenseTypeService } from '../services/expense-type.service';
 import { ExpenseService } from '../services/expense.service';
@@ -21,7 +19,7 @@ import { ExpenseService } from '../services/expense.service';
 })
 export class EditExpenseComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private datePipe: DatePipe, private activatedRoute: ActivatedRoute, private expenseService: ExpenseService, private paymentMethodService: PaymentMethodService, private stockService: StockService, private employeeService: EmployeeService, private router: Router, private expenseTypeService: ExpenseTypeService) { }
+  constructor(private fb: FormBuilder, private datePipe: DatePipe, private activatedRoute: ActivatedRoute, private expenseService: ExpenseService, private paymentMethodService: PaymentMService, private stockService: StockService, private employeeService: EmployeeService, private router: Router, private expenseTypeService: ExpenseTypeService) { }
   expenseId: any;
   expense: Expense = {} as Expense;
   stockList: Stock[] = [];
@@ -30,11 +28,6 @@ export class EditExpenseComponent implements OnInit {
   paymentMethodList: any[] = [];
   changeDataFormat: any;
   myDateToDay: any;
-  /*stockList: Stock[] = [];
-  changeDataFormat:any;
-  transferOperationId:any;
-  transferOperation:TransferOperation={} as TransferOperation;
-  employeeList: Employee[] = [];*/
   ngOnInit(): void {
     this.myDateToDay = new Date();
     this.activatedRoute.paramMap.subscribe(parms => {
@@ -54,7 +47,7 @@ export class EditExpenseComponent implements OnInit {
           , error => {
             console.log(error);
           });
-        this.paymentMethodService.showPaymentMethod().subscribe(data => {
+        this.paymentMethodService.getAll().subscribe(data => {
           this.paymentMethodList = data;
         }
           , error => {

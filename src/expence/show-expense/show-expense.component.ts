@@ -6,10 +6,8 @@ import { Employee } from 'src/app/shared_classes_intefaces/employee';
 import { Expense } from 'src/app/shared_classes_intefaces/expense';
 import { ExpenseType } from 'src/app/shared_classes_intefaces/expenseType';
 import { Stock } from 'src/app/shared_classes_intefaces/stock';
-import { CustomerTypeService } from 'src/Customer/customer/customerService/customer-type.service';
 import { EmployeeService } from 'src/employee/services/employee.service';
-import { IPayment } from 'src/payment-method/IPayment';
-import { PaymentMethodService } from 'src/payment-method/payment-method.service';
+import { PaymentMService } from 'src/payment/services/payment-m.service';
 import { StockService } from 'src/stock/stock/stock.service';
 import { ExpenseTypeService } from '../services/expense-type.service';
 import { ExpenseService } from '../services/expense.service';
@@ -21,7 +19,7 @@ import { ExpenseService } from '../services/expense.service';
 })
 export class ShowExpenseComponent implements OnInit {
 
-  constructor(private router: Router, private expenseService: ExpenseService, private dialogService: ConfirmDeleteService, private expenseTypeService: ExpenseTypeService, private employeeService: EmployeeService, private stockService: StockService, private paymentMethodService: PaymentMethodService) { }
+  constructor(private router: Router, private expenseService: ExpenseService, private dialogService: ConfirmDeleteService, private expenseTypeService: ExpenseTypeService, private employeeService: EmployeeService, private stockService: StockService, private paymentMethodService: PaymentMService) { }
   displayedColumns: string[] = ['date', 'notes', 'value', 'checkNumber', 'stockName', 'employeeName', 'expenseType', 'paymentMethodType', 'actions'];
 
 
@@ -60,7 +58,7 @@ export class ShowExpenseComponent implements OnInit {
         }, error => {
           console.log(error);
         });
-        this.paymentMethodService.showPaymentById(element.payMethodId).subscribe(res => {
+        this.paymentMethodService.getByID(element.payMethodId).subscribe(res => {
           this.paymentMethod = res;
           console.log(this.paymentMethod);
           this.paymentMethodList.push(this.paymentMethod.name);

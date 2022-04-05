@@ -1,0 +1,80 @@
+<div class="container-fluid ">
+    {{registrationForm.value|json}}
+
+    <div class="row mx-auto">
+        <h1 class="text-primary">Add Stock Product</h1>
+        <hr>
+        <form [formGroup]='registrationForm'>
+            <div class="form-group mb-3">
+                <label class="mb-2">Amount</label>
+                <input type="number" formControlName="Amount" class=" form-control"
+                    [class.is-invalid]="Amount?.invalid&&Amount?.touched" />
+                <div *ngIf="Amount?.invalid&&Amount?.touched">
+                    <small class="text-danger " *ngIf="Amount?.errors?.['required']">Is required</small>
+                    <small class="text-danger" *ngIf="Amount?.errors?.['pattern']">Accept only digit
+                        Number</small>
+                </div>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="mb-2">Production Date</label>
+                    <input type="date" formControlName="ProductionDate" [class.is-invalid]="ProductionDate?.invalid&&ProductionDate?.touched"
+                        class="form-control ">
+                    <div *ngIf="ProductionDate?.invalid&&ProductionDate?.touched">
+                        <small class="text-danger " *ngIf="ProductionDate?.errors?.['required']">Is required</small>
+                    </div>
+                </div>
+           
+            <div class="container" ng-app="invoice">
+                <section class="row" ng-controller="InvoiceController">
+                    <table class="table table-hover mx-auto" style="width:80%">
+                        <thead>
+
+                            <tr class="text-center ">
+                               <th>Product </th>
+                                <th>Stock  </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr class="text-center mb-3 ">
+                                <td>
+                                    <select class="form-select" aria-label="Default select example"
+                                        formControlName="ProductId" [class.is-invalid]="ProductId?.invalid&&ProductId?.touched">
+                                        <option value={{item.id}} *ngFor="let item of productList">
+                                            {{item.name}}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="ProductId?.invalid&&ProductId?.touched">
+                                        <small class="text-danger " *ngIf="ProductId?.errors?.['required']">
+                                            Is required</small>
+                                    </div>
+                                </td>
+                                <td>
+                                    <select class="form-select" aria-label="Default select example"
+                                        formControlName="StockId" [class.is-invalid]="StockId?.invalid&&StockId?.touched">
+                                        <option value={{item.id}} *ngFor="let item of stockList">
+                                            {{item.name}}
+                                        </option>
+                                    </select>
+                                    <div *ngIf="StockId?.invalid&&StockId?.touched">
+                                        <small class="text-danger " *ngIf="StockId?.errors?.['required']">
+                                            Is required</small>
+                                    </div>
+                                </td>
+                                
+
+                            </tr>
+                            <tr class="text-center">
+
+                    </table>
+                </section>
+            </div>
+        </form>
+        <div class="col-12 d-flex justify-content-center mt-3">
+            <button class="btn btn-primary"
+                [disabled]="ProductionDate?.invalid||Amount?.invalid ||StockId?.invalid||ProductId?.invalid"
+                (click)="SaveData()">Save</button>
+        </div>
+    </div>
+</div>
+<hr>
